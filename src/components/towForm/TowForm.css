@@ -1,0 +1,17 @@
+form.tow-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0rem 33rem;
+}
+p.pFax {
+    color: white;
+}
+
+@media (max-width: 576px) {
+   
+    form.tow-form {
+        display: flex;
+        flex-direction: column;
+        margin: 0rem 0rem;
+    }
+}

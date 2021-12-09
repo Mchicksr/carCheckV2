@@ -1,0 +1,17 @@
+.comNav {
+    display: flex;
+    position: relative;
+    justify-content: center;
+  }
+  .ComLink {
+    padding: 2rem;
+  }
+  
+  h2.ComH:hover {
+    color: white;
+    text-shadow: 4px 4px grey;
+    text-decoration: none;
+  }
+  a.comHref:focus {
+    color: gray;
+  }

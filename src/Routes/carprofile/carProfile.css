@@ -1,0 +1,63 @@
+.dataL
+{
+    color:white;
+}
+
+.checkBox{
+    color:white;
+}
+ul.data {
+    display: flex;
+    justify-content: center;
+}
+
+.carSet{
+    padding-left: 1rem;
+}
+
+.deleteCar{
+    margin-top: 3rem;
+    border-radius: 12px;
+    padding: 5px 15px;
+    background-color: darkslategray;
+    color: white;
+
+}
+
+.deleteCar:hover{
+    color: burlywood;
+    box-shadow: 1px 1px dimgrey;
+}
+.towButton {
+    margin: 12px 0rem;
+}
+.towcontainer {
+    border: solid;
+    display: inline;
+    padding: 6px 8px 6px 8px;
+    background: whitesmoke;
+}
+.tow{
+    padding:1rem;
+    font-size: large;
+    color: black;
+}
+
+.closedModal {
+    display: none;
+}
+
+button.propBtn {
+    border-radius: 12px;
+    padding: 5px 15px;
+    margin: 1rem;
+    background-color: darkslategray;
+    color: white;
+}
+button.propBtn:hover {
+    color: burlywood;
+    box-shadow: 1px 1px dimgrey;
+}
+form.commentForm {
+    margin: 3rem;
+}

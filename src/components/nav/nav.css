@@ -1,0 +1,7 @@
+.navList{
+    display: flex;
+}
+
+.navItem{
+    padding-left: 20px;
+}
