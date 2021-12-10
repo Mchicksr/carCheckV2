@@ -23,10 +23,10 @@ function TowForm({Lic, Cm, Cmo}) {
     const [city,setCity]= useState("")
     const [zip,setZip]= useState("")
     const [location,setLocation]= useState("")
-    const [make,setMake]= useState("")
-    const [model,setModel]= useState("")
+    const [,setMake]= useState("")
+    const [,setModel]= useState("")
     const [year,setYear]= useState("")
-    const [tag,setTag]= useState("")
+    const [,setTag]= useState("")
     const [sta,setSta]= useState("")
     const [color,setColor]= useState("")
     const [vid,setVid]= useState("")
@@ -36,7 +36,7 @@ function TowForm({Lic, Cm, Cmo}) {
     const [img] = useState(null)
 
     
-    // console.log('form',file)
+    // console.log('form',to)
 
    
     
@@ -45,8 +45,7 @@ function TowForm({Lic, Cm, Cmo}) {
     let file = img
     formdata.append('image',file)
         e.preventDefault();
-        console.log('click')
-        axios.post('https://api.documo.com/v1/faxes',{
+        axios.post('http://localhost:8000/create-pdf',{
             to,
             faxNum,
             date,
@@ -58,10 +57,10 @@ function TowForm({Lic, Cm, Cmo}) {
             city,
             zip,
             location,
-            make,
-            model,
+            make:Cm,
+            model:Cmo,
             year,
-            tag,
+            tag:Lic,
             sta,
             color,
             vid,
@@ -133,17 +132,17 @@ function TowForm({Lic, Cm, Cmo}) {
                     <input type="text" className="FormInput"value={zip} onChange={e => setZip(e.currentTarget.value)}></input><br></br>
                     <label htmlFor="" className="FormLabel">specific location of vehicle/vessel on property:</label>
                     <input type="text" className="FormInput"value={location} onChange={e => setLocation(e.currentTarget.value)}></input><br></br>
-                    <label htmlFor="" className="FormLabel">Make:</label>
-                    <h3 className="FormLabel">{Cm} {<br></br>} (copy and paste)</h3>
-                    <input type="text" placeholder={Cm} className="FormInput"value={make} onChange={e => setMake(e.currentTarget.value)}></input><br></br>
-                    <label htmlFor="" className="FormLabel">Model:</label>
-                    <h3 className="FormLabel">{Cmo} {<br></br>} (copy and paste)</h3>
-                    <input type="text" placeholder={Cmo} className="FormInput"value={model} onChange={e => setModel(e.currentTarget.value)}></input><br></br>
+                    {/* <label htmlFor="" className="FormLabel">Make:</label> */}
+                    {/* <h3 className="FormLabel">{Cm} {<br></br>} (copy and paste)</h3> */}
+                    {/* <input type="text" placeholder={Cm} className="FormInput"value={make} onChange={e => setMake(e.currentTarget.value)}></input><br></br> */}
+                    {/* <label htmlFor="" className="FormLabel">Model:</label> */}
+                    {/* <h3 className="FormLabel">{Cmo} {<br></br>} (copy and paste)</h3> */}
+                    {/* <input type="text" placeholder={Cmo} className="FormInput"value={model} onChange={e => setModel(e.currentTarget.value)}></input><br></br> */}
                     <label htmlFor="" className="FormLabel">Year:</label>
                     <input type="text" className="FormInput"value={year} onChange={e => setYear(e.currentTarget.value)}></input><br></br>
-                    <label htmlFor="" className="FormLabel">Tag No.:</label>
-                    <h3 className="FormLabel">{Lic}{<br></br>} (copy and paste)</h3>
-                    <input type="text" placeholder={Lic} className="FormInput"value={tag} onChange={e => setTag(e.currentTarget.value)}></input><br></br>
+                    {/* <label htmlFor="" className="FormLabel">Tag No.:</label> */}
+                    {/* <h3 className="FormLabel">{Lic}{<br></br>} (copy and paste)</h3> */}
+                    {/* <input type="text" placeholder={Lic} className="FormInput"value={tag} onChange={e => setTag(e.currentTarget.value)}></input><br></br> */}
                     <label htmlFor="" className="FormLabel">State:</label>
                     <input type="text" className="FormInput"value={sta} onChange={e => setSta(e.currentTarget.value)}></input><br></br>
                     <label htmlFor="" className="FormLabel">Colors(s):</label>

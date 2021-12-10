@@ -1,5 +1,5 @@
 import React from 'react';
-import moment from 'moment'
+import {format} from 'date-fns'
 
 function CarInfo({id,lic,cm,cmo,violations,st,address,color,modified}) {
     return (
@@ -29,7 +29,7 @@ function CarInfo({id,lic,cm,cmo,violations,st,address,color,modified}) {
 
                     <div className="carPair">
                         <h4 className="dataL carSet">Date Created</h4>
-                        <li className="dataL carSet">{moment(modified).fromNow()}</li>
+                        <li className="dataL carSet">{format(modified, 'Do MMM YYYY')}</li>
                     </div>
                 </ul>
         </div>

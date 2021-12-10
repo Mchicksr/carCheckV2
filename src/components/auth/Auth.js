@@ -19,7 +19,6 @@ function Auth(props) {
     const handleShowPassword = () => setShowPassword((prevShowPassword=>!prevShowPassword))
 
     const handleSubmit = (e) =>{
-        console.log('click')
         e.preventDefault()
         if(isSignup) {
             dispatch(signup(formData, history))

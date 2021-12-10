@@ -50,7 +50,6 @@ export const verify = (id) => async (dispatch) => {
 export const deleteCar = (id) => async (dispatch) => {
     try {
         await api.deleteCar(id)
-        console.log('click',id)
         dispatch({type:DELETE})
     } catch (error) {
         console.log(error)

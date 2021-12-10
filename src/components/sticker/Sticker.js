@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 import {useDispatch,useSelector} from 'react-redux'
 import {addSticker,deleteSticker,getStickers} from '../../actions/sticker'
 
-function Sticker({carId}) {
+function Sticker({carId,manager}) {
     const stickers = useSelector((state) => state.sticker)
     const dispatch = useDispatch()
     
@@ -37,11 +37,14 @@ function Sticker({carId}) {
 
                 return null
             }).map(item => {
-                return  item === "" ? null : 'stickerd'
+                return  item === "" ? null : <i className="fas fa-times"></i>
             })} <br/>
+            {manager ? <>
 
             <button onClick={()=> dispatch(addSticker({sticker:carId,carId:carId}))}>Sticker</button>           
             <button onClick={removeSticker}>Remove</button>
+            
+            </>: null}
 
         </div>
     );

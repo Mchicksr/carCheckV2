@@ -14,26 +14,31 @@ import Tow from './Routes/tow/Tow';
 import CarEntryForm from './Routes/carEntryForm/carEntryForm';
 import AuthPath from './Routes/auth/AuthPath';
 
+
 function App() {
   const cars = useSelector((state)=> state.cars)
   const communities = useSelector((state) => state.communities)
   const [searchTerm,setSearchTerm] = useState("")
+  const [manager,setManager] = useState(false)
   const dispatch = useDispatch()
+  const access = '61a94e4adba13dd081420629'
+  const user = JSON.parse(localStorage.getItem('profile'))
 
   useEffect(() => {
     dispatch(getCars())
     dispatch(getCommunities())
-  }, [dispatch])
+    user?.result?._id === access ? setManager(true) : setManager(false)
+  }, [dispatch,user?.result?._id])
 
   return (
     <div className="App"> 
       <Navbar/>    
       <Switch> 
         <Route path="/Login" component={AuthPath}/>
-        <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars}/>}/>
+        <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
         <Route path='/TowForm' component={Tow}/>
         <Route path='/Profile/:searchTerm' render={() => <Profile cars={cars}/>}/>
-        <Route path='/Tags' render={() => <Tags renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>}/>
+        <Route path='/Tags' render={() => <Tags renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm} manager={manager} user={user}/>}/>
         <Route path='/' exact component={UserProfile}/>
       </Switch>
 

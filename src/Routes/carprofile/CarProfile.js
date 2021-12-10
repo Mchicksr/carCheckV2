@@ -22,16 +22,17 @@ function CarProfile(props) {
     const modified = location.state?.modified
     const verified = location.state?.verified
     const sticker = location.state?.sticker
+    const manager = location.state?.manager
     return (
         <div>
             <h1>Profile</h1>
             <CarInfo violations={violations} lic={lic} cm={cm} cmo={cmo} id={id} st={st} address={address} color={color} modified={modified}/>
             <ViolationBtn violations={violations} id={id}/>
-            <Verify id={id} verified={verified}/>
-            <Sticker carId={id} sticker={sticker}/>
+            <Verify id={id} verified={verified} manager={manager}/>
+            <Sticker carId={id} sticker={sticker} manager={manager}/>
             <TowBtn lic={lic} cm={cm} cmo={cmo} st={st} color={color} address={address}/>
             <Comments carId={id}/>
-            <DeleteCarBtn id={id}/>
+            <DeleteCarBtn id={id} manager={manager}/>
 
         </div>
     );

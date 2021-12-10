@@ -53,7 +53,7 @@ function Comments({carId}) {
                 }
                 return null
             }).map((item)=> (
-                 <CommentList name={item.name} comment={item.content}/>
+                 <CommentList name={item.name} comment={item.content} modified={item.modified}/>
             ))}
                 </> : null
             }
