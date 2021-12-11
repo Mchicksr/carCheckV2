@@ -8,6 +8,7 @@ import './carProfile.css'
 import Sticker from '../../components/sticker/Sticker';
 import Comments from '../../components/comments/Comments';
 import DeleteCarBtn from '../../components/profile/DeleteCarBtn';
+
 function CarProfile(props) {
     
     const location = useLocation()

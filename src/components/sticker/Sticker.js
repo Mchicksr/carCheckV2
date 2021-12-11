@@ -1,6 +1,9 @@
 import React,{useEffect} from 'react';
 import {useDispatch,useSelector} from 'react-redux'
 import {addSticker,deleteSticker,getStickers} from '../../actions/sticker'
+import {Button} from '@material-ui/core'
+import {format} from 'date-fns'
+
 
 function Sticker({carId,manager}) {
     const stickers = useSelector((state) => state.sticker)
@@ -37,12 +40,12 @@ function Sticker({carId,manager}) {
 
                 return null
             }).map(item => {
-                return  item === "" ? null : <i className="fas fa-times"></i>
+                return  item === "" ? null :(<> <i className="fas fa-times"></i> <p>{format(item.modified,'Do MMM YYYY')}</p></>)
             })} <br/>
             {manager ? <>
 
-            <button onClick={()=> dispatch(addSticker({sticker:carId,carId:carId}))}>Sticker</button>           
-            <button onClick={removeSticker}>Remove</button>
+            <Button variant="contained" color="primary" size="small" onClick={()=> dispatch(addSticker({sticker:carId,carId:carId}))}>Sticker</Button>           
+            <Button variant="contained" color="secondary" size="small" onClick={removeSticker}>Remove</Button>
             
             </>: null}
 

@@ -6,7 +6,18 @@ form.tow-form {
 p.pFax {
     color: white;
 }
+.makeStyles-profile-5 {
+    width: 157px;
+    display: flex;
+    justify-content: space-between;
+}
 
+.MuiIconButton-label {
+    width: 44%!important;
+    display: flex;
+    align-items: inherit;
+    justify-content: inherit;
+}
 @media (max-width: 576px) {
    
     form.tow-form {

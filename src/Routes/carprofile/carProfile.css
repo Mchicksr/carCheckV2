@@ -40,7 +40,7 @@ ul.data {
 .tow{
     padding:1rem;
     font-size: large;
-    color: black;
+    color: black!important;
 }
 
 .closedModal {
@@ -60,4 +60,8 @@ button.propBtn:hover {
 }
 form.commentForm {
     margin: 3rem;
+}
+
+i.fas.fa-truck-pickup {
+    color: black;
 }

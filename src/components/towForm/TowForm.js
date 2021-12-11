@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import { TextField, Button, Paper } from '@material-ui/core';
 import axios from 'axios'
 import {saveAs} from 'file-saver'
 import formData from 'form-data'
 import './TowForm.css'
-// import '../Routes/TowForm/TowForm.css'
-// import Fax from './fax';
-// import './Form'
-// import config from '../config';
+import useStyles from './styles'
+// import {createImage,getImage} from '../../actions/Image'
+// import {useDispatch,useSelector} from 'react-redux'
+// import FileBase from 'react-file-base64'
+
 
 
 
 function TowForm({Lic, Cm, Cmo}) {
+    // const dispatch=useDispatch()
+    // const image = useSelector((state)=>state.image)
+    const classes = useStyles()
+
 
     const [to,setTo]= useState("")
     const [faxNum,setFaxNum]= useState("")
@@ -34,13 +40,25 @@ function TowForm({Lic, Cm, Cmo}) {
     const [vinfo,setVinfo]= useState("")
     const [reason,setReason]= useState("")
     const [img] = useState(null)
+    const [photo,setPhoto] = useState([])
+    const [photo1,setPhoto1] = useState("")
+    const [photo2,setPhoto2] = useState("")
+    // console.log('test1',photo)
 
-    
-    // console.log('form',to)
+    const chooseImage = () =>{
+       setPhoto1(photo[0].selectedFile)
+       setPhoto2(photo[1].selectedFile)
+        
+    }
+   useEffect(() => {
+    axios.get('http://localhost:8000/image')
+    .then(res => setPhoto(res.data))
 
-   
-    
+   },[])
+
+
     const createAndDownloadPdf = (e) => {
+        chooseImage()
      let formdata = new formData()
     let file = img
     formdata.append('image',file)
@@ -67,7 +85,9 @@ function TowForm({Lic, Cm, Cmo}) {
             details,
             vinfo,
             reason,
-            formdata
+            formdata,
+            photo1,
+            photo2
             
         })
         // .then(()=>{console.log(formdata)})
@@ -107,66 +127,37 @@ function TowForm({Lic, Cm, Cmo}) {
    
 
     return (
-        <div>
+        <Paper className={classes.paper}>
+            {/* <div><FileBase type="file" multiple={false} onDone={({base64}) => setPic(base64)}></FileBase></div>
+            <button onClick={()=>dispatch(createImage({selectedFile:pic}))}>Create Image</button> */}
+            {/* <button onClick={chooseImage}>click</button> */}
                 <h1 className="h1Form">Please Print</h1>
-                <form className="tow-form">
-                    <label htmlFor="company" className="FormLabel">To (Name of towing company)</label>
-                    <input type="text" className="FormInput"value={to} onChange={e => setTo(e.currentTarget.value)}></input><br></br>
-                    <label htmlFor="faxNumber" className="FormLabel">Fax number for towing company:</label>
-                    <input type="text" className="FormInput"value={faxNum} onChange={e => setFaxNum(e.currentTarget.value)}></input><br></br>
-                    <label htmlFor="" className="FormLabel">Today's Date</label>
-                    <input type="text" className="FormInput"value={date} onChange={e => setDate(e.currentTarget.value)}></input><br></br>
-                    <label htmlFor="" className="FormLabel">Time</label>
-                    <input type="text" className="FormInput"value={time} onChange={e => setTime(e.currentTarget.value)}></input><br></br>
-                    <label htmlFor="" className="FormLabel">From(Your Name)</label>
-                    <input type="text" className="FormInput"value={from} onChange={e => setFrom(e.currentTarget.value)}></input><br></br>
-                    <label htmlFor="" className="FormLabel">Owner/Agent for (Name of buisiness/Facility):</label>
-                    <input type="text" className="FormInput"value={owner} onChange={e => setOwner(e.currentTarget.value)}></input><br></br>
-                    <label htmlFor="" className="FormLabel">Your call back phone number:</label>
-                    <input type="text" className="FormInput"value={callback} onChange={e => setCallback(e.currentTarget.value)}></input><br></br>
-                    <label htmlFor="" className="FormLabel">Located at Street Adress:</label>
-                    <input type="text" className="FormInput"value={sa} onChange={e => setSa(e.currentTarget.value)}></input><br></br>
-                    <label htmlFor="" className="FormLabel">city:</label>
-                    <input type="text" className="FormInput"value={city} onChange={e => setCity(e.currentTarget.value)}></input><br></br>
-                    <label htmlFor="" className="FormLabel">Zip:</label>
-                    <input type="text" className="FormInput"value={zip} onChange={e => setZip(e.currentTarget.value)}></input><br></br>
-                    <label htmlFor="" className="FormLabel">specific location of vehicle/vessel on property:</label>
-                    <input type="text" className="FormInput"value={location} onChange={e => setLocation(e.currentTarget.value)}></input><br></br>
-                    {/* <label htmlFor="" className="FormLabel">Make:</label> */}
-                    {/* <h3 className="FormLabel">{Cm} {<br></br>} (copy and paste)</h3> */}
-                    {/* <input type="text" placeholder={Cm} className="FormInput"value={make} onChange={e => setMake(e.currentTarget.value)}></input><br></br> */}
-                    {/* <label htmlFor="" className="FormLabel">Model:</label> */}
-                    {/* <h3 className="FormLabel">{Cmo} {<br></br>} (copy and paste)</h3> */}
-                    {/* <input type="text" placeholder={Cmo} className="FormInput"value={model} onChange={e => setModel(e.currentTarget.value)}></input><br></br> */}
-                    <label htmlFor="" className="FormLabel">Year:</label>
-                    <input type="text" className="FormInput"value={year} onChange={e => setYear(e.currentTarget.value)}></input><br></br>
-                    {/* <label htmlFor="" className="FormLabel">Tag No.:</label> */}
-                    {/* <h3 className="FormLabel">{Lic}{<br></br>} (copy and paste)</h3> */}
-                    {/* <input type="text" placeholder={Lic} className="FormInput"value={tag} onChange={e => setTag(e.currentTarget.value)}></input><br></br> */}
-                    <label htmlFor="" className="FormLabel">State:</label>
-                    <input type="text" className="FormInput"value={sta} onChange={e => setSta(e.currentTarget.value)}></input><br></br>
-                    <label htmlFor="" className="FormLabel">Colors(s):</label>
-                    <input type="text" className="FormInput"value={color} onChange={e => setColor(e.currentTarget.value)}></input><br></br>
-                    {/* <label htmlFor="" className="FormLabel">Vehicle Identification No.:</label> */}
-                    {/* <input type="text" className="FormInput"value={vid} onChange={e => setVid(e.currentTarget.value)}></input><br></br> */}
-                    <label htmlFor="" className="FormLabel">Other details/description:</label>
-                    <input type="text" className="FormInput"value={details} onChange={e => setDetails(e.currentTarget.value)}></input><br></br>
-                    {/* <label htmlFor="" className="FormLabel">Vehicle owner information (if known): */}
-                    {/* </label>/ */}
-                    {/* <input type="text" className="FormInput"value={vinfo} onChange={e => setVinfo(e.currentTarget.value)}></input><br></br> */}
-                    <label htmlFor="" className="FormLabel">Reason for Removal</label>
-                    <input type="text" className="FormInput"value={reason} onChange={e => setReason(e.currentTarget.value)}></input><br></br>
-                    {/* <input type="file" onChange={handleChange} id="avatar" name="avatar" accept="image/png, image/jpeg, accepts" multiple="multiple"/><br/> */}
-                    {/* {console.log('img',formdata)} */}
+                <form autoComplete="off"  className="tow-form" onSubmit={createAndDownloadPdf}>
+                   
+                    <TextField name="to" variant="outlined" label="(Name of towing company)" fullWidth value={to}  required onChange={e => setTo(e.currentTarget.value)}/> <br/>
+                    <TextField name="faxNum" variant="outlined" label="Fax number for towing company:" placeholder="xxx-xxx-xxxx" fullWidth value={faxNum}  required onChange={e => setFaxNum(e.currentTarget.value)}/> <br/>
+                    <TextField name="date" variant="outlined" label="Today's Date" fullWidth value={date} placeholder="xx/xx/xxxx" required onChange={e => setDate(e.currentTarget.value)}/> <br/>
+                    <TextField name="time" variant="outlined" label="Time" fullWidth value={time}  required onChange={e => setTime(e.currentTarget.value)}/> <br/>
+                    <TextField name="from" variant="outlined" label="From(Your Name)" fullWidth value={from}  required onChange={e => setFrom(e.currentTarget.value)}/> <br/>
+                    <TextField name="owner" variant="outlined" label="Owner/Agent for (Name of buisiness/Facility)" fullWidth value={owner}  required onChange={e => setOwner(e.currentTarget.value)}/> <br/>
+                    <TextField name="callback" variant="outlined" label="Your call back phone number" fullWidth value={callback}  required onChange={e => setCallback(e.currentTarget.value)}/> <br/>
+                    <TextField name="sa" variant="outlined" label="Located at Street Adress" fullWidth value={sa}  required onChange={e => setSa(e.currentTarget.value)}/> <br/>
+                    <TextField name="city" variant="outlined" label="City" fullWidth value={city}  required onChange={e => setCity(e.currentTarget.value)}/> <br/>
+                    <TextField name="zip" variant="outlined" label="Zip" fullWidth value={zip}  required onChange={e => setZip(e.currentTarget.value)}/> <br/>
+                    <TextField name="location" variant="outlined" label="specific location of vehicle/vessel on property" fullWidth value={location}  onChange={e => setLocation(e.currentTarget.value)}/> <br/>           
+                    <TextField name="year" variant="outlined" label="Year" fullWidth value={year}  required onChange={e => setYear(e.currentTarget.value)}/> <br/>         
+                    <TextField name="sta" variant="outlined" label="State" fullWidth value={sta}  required onChange={e => setSta(e.currentTarget.value)}/> <br/>
+                    <TextField name="color" variant="outlined" label="Colors(s)" fullWidth value={color}  required onChange={e => setColor(e.currentTarget.value)}/> <br/>            
+                    <TextField name="details" variant="outlined" label="Other details/description" fullWidth value={details}   onChange={e => setDetails(e.currentTarget.value)}/> <br/>                
+                    <TextField name="vinfo" variant="outlined" label="Vehicle owner information (if known)" fullWidth value={vinfo}   onChange={e => setVinfo(e.currentTarget.value)}/> <br/>
+                    <TextField name="reason" variant="outlined" label="Reason for Removal" fullWidth value={reason}   onChange={e => setReason(e.currentTarget.value)}/> <br/>             
                     { img && <img src={URL.createObjectURL(img)} alt="img" height="100px"></img>}
-                    <button onClick={createAndDownloadPdf}>Create PDF</button>
+                    <Button variant="contained" color="primary" size="large" type="submit" fullWidth >Create PDF</Button>
 
                 </form>
-                {/* <Fax 
-                    faxNum={faxNum}
-                /> */}
                
-            </div>
+               
+                </Paper>
     );
 }
 

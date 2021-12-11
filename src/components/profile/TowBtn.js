@@ -6,7 +6,7 @@ function TowBtn({lic,cm,cmo,st,color,address}) {
         <div>
             <div className="towButton">
                     <div className="towcontainer">
-                        <i className="fas fa-truck-pickup"></i>
+                    <i className="fas fa-truck-pickup"></i>
                         <Link className="tow" to={{
                             pathname: `/TowForm/${lic}`,
                             state: {

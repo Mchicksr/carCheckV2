@@ -36,3 +36,7 @@ export const createComments = (newComment) => API.post('/comments',newComment)
 // Auth
 export const signIn = (formData) => API.post('/user/signin',formData)
 export const signUp = (formData) => API.post('/user/signup',formData)
+
+// Sticker
+export const fetchImage = () => API.get('/image')
+export const createImage = (newImage) => API.post('/image',newImage)

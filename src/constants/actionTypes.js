@@ -1,6 +1,8 @@
 export const FETCH_ALL = "FETCH_ALL"
 export const FETCH_CARS = "FETCH_CARS"
 export const FETCH_COMMENTS = "FETCH_COMMENTS"
+export const FETCH_IMAGE = "GET_IMAGE"
+export const CREATE_IMAGE = "CREATE_IMAGE"
 export const CREATE_CARS = "CREATE_CARS"
 export const CREATE_COMMENTS = "CREATE_COMMENTS"
 export const DELETE = "DELETE"

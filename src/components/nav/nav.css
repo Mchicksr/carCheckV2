@@ -4,4 +4,12 @@
 
 .navItem{
     padding-left: 20px;
+    color:black;
+}
+.userName{
+    color:white;
+}
+
+.navLink{
+    color: grey!important;
 }

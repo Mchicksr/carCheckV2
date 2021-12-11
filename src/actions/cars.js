@@ -24,6 +24,7 @@ export const addViolation = (id) => async (dispatch) =>{
 try {
     const {data} = await api.addViolation(id)
     dispatch({type:UPDATE, payload:data})
+    alert('Violation added')
 } catch (error) {
     console.log(error)
 }
@@ -33,6 +34,8 @@ export const resetViolation = (id) => async (dispatch) => {
     try {
         const {data} = await api.resetViolation(id)
         dispatch({type:UPDATE, payload:data})
+        alert('Violation reset')
+
     } catch (error) {
         console.log(error)
     }

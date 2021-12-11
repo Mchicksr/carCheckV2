@@ -13,6 +13,7 @@ import Profile from './Routes/carprofile/CarProfile';
 import Tow from './Routes/tow/Tow';
 import CarEntryForm from './Routes/carEntryForm/carEntryForm';
 import AuthPath from './Routes/auth/AuthPath';
+import Fax from './components/towForm/Fax';
 
 
 function App() {
@@ -32,8 +33,9 @@ function App() {
 
   return (
     <div className="App"> 
-      <Navbar/>    
+      <Navbar manager={manager}/>    
       <Switch> 
+        <Route path="/Fax" render={() => <Fax manager={manager}/>}/>
         <Route path="/Login" component={AuthPath}/>
         <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
         <Route path='/TowForm' component={Tow}/>

@@ -1,12 +1,11 @@
 import React from 'react';
-import Nav from '../../components/nav/Nav';
-
-function Navbar(props) {
+import Navbar from '../../components/nav/NavBar'
+function NavBar({manager}) {
     return (
         <div>
-            <Nav />
+            <Navbar manager={manager}/>
         </div>
     );
 }
 
-export default Navbar;
+export default NavBar;
