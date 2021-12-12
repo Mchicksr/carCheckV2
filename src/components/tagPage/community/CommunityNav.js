@@ -1,31 +1,54 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { getCommunities } from '../../../actions/community';
-import {useDispatch,useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CommunityLink from './CommunityLink';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 import './community.css'
 
 
 function CommunityNav(props) {
-    const community = useSelector((state)=>state.communities)
+    const community = useSelector((state) => state.communities)
     const dispatch = useDispatch()
 
-    useEffect(()=>{
-        dispatch(getCommunities())
-    },[dispatch])
+    const [value, setValue] = React.useState(0);
 
-    const communities = () =>(
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+    useEffect(() => {
+        dispatch(getCommunities())
+    }, [dispatch])
+
+    const communities = () => (
         <>
-        <div className="comNav">
-            {
-                community.map((item,index) => {
-                    return <li key={index}><CommunityLink key={item.id} _id={item._id} name={item.community}/></li>
-                })
-            }
-        </div>
+
+
+            <Box sx={{ maxWidth: 480, bgcolor: 'background.paper' }}>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    variant="scrollable"
+                    scrollButtons
+                    allowScrollButtonsMobile
+                    aria-label="scrollable force tabs example"
+                >
+                    {
+                        community.map((item, index) => {
+                            return <li key={index}><CommunityLink key={item.id} _id={item._id} name={item.community} Tab={Tab} /></li>
+                        })
+                    }
+
+                </Tabs>
+            </Box>
+
+
         </>
     )
-        
-    
+
+
     return (
         <div>
             {communities()}

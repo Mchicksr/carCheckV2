@@ -4,7 +4,7 @@
     justify-content: center;
   }
   .ComLink {
-    padding: 2rem;
+    color: black!important;
   }
   
   h2.ComH:hover {

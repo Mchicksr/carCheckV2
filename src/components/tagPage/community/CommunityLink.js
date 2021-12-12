@@ -1,11 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-function CommunityLink({_id,name}) {
+
+function CommunityLink({_id,name,Tab}) {
     return (
-        <div className="ComLink">
-        <Link className="comHref" to={`/Tags/${_id}`}>
-            <h2 key={name} className="ComH">{name}</h2>
-        </Link>
+        <div >
+            <Link class="ComLink"to={`/Tags/${_id}`}><Tab label={name} /></Link>
     </div>
     );
 }

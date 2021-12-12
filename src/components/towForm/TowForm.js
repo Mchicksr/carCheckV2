@@ -3,7 +3,6 @@ import { TextField, Button, Paper } from '@material-ui/core';
 import axios from 'axios'
 import {saveAs} from 'file-saver'
 import formData from 'form-data'
-import './TowForm.css'
 import useStyles from './styles'
 import config from '../../config'
 // import {createImage,getImage} from '../../actions/Image'
