@@ -5,6 +5,7 @@ import {saveAs} from 'file-saver'
 import formData from 'form-data'
 import './TowForm.css'
 import useStyles from './styles'
+import config from '../../config'
 // import {createImage,getImage} from '../../actions/Image'
 // import {useDispatch,useSelector} from 'react-redux'
 // import FileBase from 'react-file-base64'
@@ -51,7 +52,8 @@ function TowForm({Lic, Cm, Cmo}) {
         
     }
    useEffect(() => {
-    axios.get('http://localhost:8000/image')
+    // axios.get('http://localhost:8000/image')
+    axios.get(`${config.API_ENDPOINT}image`)
     .then(res => setPhoto(res.data))
 
    },[])
@@ -63,7 +65,7 @@ function TowForm({Lic, Cm, Cmo}) {
     let file = img
     formdata.append('image',file)
         e.preventDefault();
-        axios.post('http://localhost:8000/create-pdf',{
+        axios.post(`${config.API_ENDPOINT}create-pdf`,{
             to,
             faxNum,
             date,
@@ -115,7 +117,7 @@ function TowForm({Lic, Cm, Cmo}) {
         setReason('')
         // setImg(null)
     })
-  .then(()=>axios.get('http://localhost:8000/fetch-pdf',{ responseType:'blob' }))
+  .then(()=>axios.get(`${config.API_ENDPOINT}fetch-pdf`,{ responseType:'blob' }))
   .then((res)=>{
     const pdfBlob= new Blob([res.data], { type:'application/pdf' })
 

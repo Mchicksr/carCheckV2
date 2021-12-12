@@ -9,6 +9,8 @@ function Tow(props) {
     // const St = location.state.St
     // const color = location.state.color
     // const address = location.state.address 
+    // console.log('cmo',cmo)
+    console.log('cm',cm)
     return (
         <div>
             <TowForm Lic={Lic} Cm={cm} Cmo={cmo}/>
