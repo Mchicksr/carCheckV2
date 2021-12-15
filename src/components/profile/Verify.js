@@ -1,10 +1,14 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {useDispatch} from 'react-redux'
 import {verify} from '../../actions/cars'
 
 function Verify({id,verified,manager}) {
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        
+    },[dispatch])
     return (
         <div>
             <h3>Verify Status</h3>
