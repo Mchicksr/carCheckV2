@@ -23,12 +23,13 @@ function App() {
   const [manager,setManager] = useState(false)
   const dispatch = useDispatch()
   const access = '61a94e4adba13dd081420629'
+  const access2 = '61bb63d143156f329531f69b'
   const user = JSON.parse(localStorage.getItem('profile'))
 
   useEffect(() => {
     dispatch(getCars())
     dispatch(getCommunities())
-    user?.result?._id === access ? setManager(true) : setManager(false)
+    user?.result?._id === access || access2 ? setManager(true) : setManager(false)
   }, [dispatch,user?.result?._id])
 
   return (
