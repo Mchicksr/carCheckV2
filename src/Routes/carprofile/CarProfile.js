@@ -24,6 +24,9 @@ function CarProfile(props) {
     const verified = location.state?.verified
     const sticker = location.state?.sticker
     const manager = location.state?.manager
+    const creator = location.state?.creator
+    console.log('creator4',creator)
+
     return (
         <div>
             <h1>Profile</h1>
@@ -32,9 +35,8 @@ function CarProfile(props) {
             <Verify id={id} verified={verified} manager={manager}/>
             <Sticker carId={id} sticker={sticker} manager={manager}/>
             <TowBtn lic={lic} cm={cm} cmo={cmo} st={st} color={color} address={address}/>
-            <Comments carId={id}/>
-            <DeleteCarBtn id={id} manager={manager}/>
-
+            <Comments carId={id} address={address} modified={modified}/>
+            <DeleteCarBtn id={id} manager={manager} creator={creator}/>
         </div>
     );
 }

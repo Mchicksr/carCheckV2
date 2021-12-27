@@ -3,10 +3,11 @@ import {useDispatch,useSelector} from 'react-redux'
 import {getComments,createComments} from '../../actions/comments'
 import { TextField, Button, Paper } from '@material-ui/core';
 import CommentList from './CommentList';
+import {format} from 'date-fns'
 import useStyles from './styles'
 
 
-function Comments({carId}) {
+function Comments({carId,address,modified}) {
     const dispatch = useDispatch()
     const classes = useStyles()
     const comments = useSelector((state) => state.comments) 
@@ -44,6 +45,9 @@ function Comments({carId}) {
 
                 </form>
             </Paper>
+            <h3>original comment</h3>
+            {address} <br />
+            <p className="dataL carSet">{format(modified, 'Do MMM YYYY')}</p>
             {comments.filter(comment => {
                 if(!comment){
                     return comment

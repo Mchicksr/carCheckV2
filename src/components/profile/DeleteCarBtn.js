@@ -4,18 +4,17 @@ import {useHistory} from 'react-router-dom'
 import { deleteCar } from '../../actions/cars';
 import {Button} from '@material-ui/core'
 
-function DeleteCarBtn({id,manager}) {
+function DeleteCarBtn({id,manager,creator}) {
     const dispatch = useDispatch()
     const history = useHistory()
     const [popUp,setPopUp] = useState(false)
-    
     const eraseCar = () => {
         dispatch(deleteCar(id))
         history.push('/Tags')
     }
     return (
         <div>
-            {manager?
+            {creator?
             <>
                     <Button variant="contained" color="secondary" size="small" onClick={()=> setPopUp(!popUp)}>Delete</Button>
                 {popUp ? <>

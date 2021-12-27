@@ -13,7 +13,7 @@ function ViolationBtn({id,violations}) {
             <h3>Violations</h3>
             <h3>{vio}</h3>
             <Button variant="contained" color="primary" size="small" onClick={() => {return dispatch(addViolation(id)), setVio(vio + 1)}}>Add Violation</Button>
-            <Button variant="contained" color="secondary" size="small" onClick={()=> dispatch(resetViolation(id))}>Reset Violation</Button>
+            <Button variant="contained" color="secondary" size="small" onClick={()=> {return dispatch(resetViolation(id)), setVio(0)}}>Reset Violation</Button>
         </div>
     );
 }

@@ -13,6 +13,10 @@ function Fax({manager}) {
              setImg(e.target.files)
         }
     }
+
+    const clear = () => {
+        setFaxNum("")
+     }
     
     const uploadFiles = (index) => {
         
@@ -36,9 +40,10 @@ function Fax({manager}) {
             'Content-Type':'multipart/form-data',
         }
        
-        axios.post(API,attachments,{'headers':headers}).then(res=> {
-            
-            console.log(res)
+        axios.post(API,attachments,{'headers':headers}).then(res=> {     
+           console.log(res)
+           alert('Fax sent')
+           clear()
         })
     }
      

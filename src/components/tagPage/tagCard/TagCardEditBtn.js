@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-function TagCardEditBtn({id,violations,cm,cmo,lic,color,address,modified,verified,sticker,manager}) {
+function TagCardEditBtn({id,violations,cm,cmo,lic,color,address,modified,verified,sticker,manager,creator}) {
+
     return (
         <div>
             <Link className={'TCEdit'} to={{
@@ -16,7 +17,8 @@ function TagCardEditBtn({id,violations,cm,cmo,lic,color,address,modified,verifie
                     modified:modified,
                     verified:verified,
                     sticker:sticker,
-                    manager:manager
+                    manager:manager,
+                    creator:creator
                 }
             }}>
             Edit

@@ -21,6 +21,7 @@ function App() {
   const communities = useSelector((state) => state.communities)
   const [searchTerm,setSearchTerm] = useState("")
   const [manager,setManager] = useState(false)
+  const [creator,setCreator] = useState(false)
   const dispatch = useDispatch()
   const access = '61a94e4adba13dd081420629'
   const access2 = '61bb63d143156f329531f69b'
@@ -30,7 +31,9 @@ function App() {
     dispatch(getCars())
     dispatch(getCommunities())
     user?.result?._id === access || access2 ? setManager(true) : setManager(false)
+    user?.result?._id === access ? setCreator(true) : setCreator(false)
   }, [dispatch,user?.result?._id])
+  console.log('creator',creator)
 
   return (
     <div className="App"> 
@@ -41,7 +44,7 @@ function App() {
         <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
         <Route path='/TowForm' component={Tow}/>
         <Route path='/Profile/:searchTerm' render={() => <Profile cars={cars}/>}/>
-        <Route path='/Tags' render={() => <Tags renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm} manager={manager} user={user}/>}/>
+        <Route path='/Tags' render={() => <Tags renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm} manager={manager} user={user} creator={creator}/>}/>
         <Route path='/' exact component={UserProfile}/>
       </Switch>
 

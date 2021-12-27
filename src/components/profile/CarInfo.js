@@ -22,10 +22,10 @@ function CarInfo({id,lic,cm,cmo,violations,st,address,color,modified}) {
                         <h4 className="dataL carSet">Color</h4>
                         <li className="dataL carSet">{color}</li>
                     </div>
-                    <div className="carPair">
+                    {/* <div className="carPair">
                         <h4 className="dataL carSet">Address</h4>
                         <li className="dataL carSet">{address}</li>
-                    </div>
+                    </div> */}
 
                     <div className="carPair">
                         <h4 className="dataL carSet">Date Created</h4>

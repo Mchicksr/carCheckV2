@@ -1,5 +1,5 @@
 import React from "react"
- const renderCarTags = (Route,cars,TagCard,searchTerm,manager) => {
+ const renderCarTags = (Route,cars,TagCard,searchTerm,manager,creator) => {
     const row = ['/Tags','/Tags/:urlId'].map(path => (
         <>
           <Route
@@ -41,6 +41,7 @@ import React from "react"
                       sticker={item.sticker}
                       key={index}
                       manager={manager}
+                      creator={creator}
                   />
                 
                   </li>
