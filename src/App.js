@@ -28,7 +28,6 @@ function App() {
   const access2 = '61bb63d143156f329531f69b'
   const user = JSON.parse(localStorage.getItem('profile'))
 
-  console.log('Test',cars)
 
   useEffect(() => {
     dispatch(getCars())
@@ -36,7 +35,6 @@ function App() {
     user?.result?._id === access || access2 ? setManager(true) : setManager(false)
     user?.result?._id === access ? setCreator(true) : setCreator(false)
   }, [dispatch,user?.result?._id])
-  console.log('creator',creator)
 
   return (
     <div className="App"> 
