@@ -22,10 +22,13 @@ function App() {
   const [searchTerm,setSearchTerm] = useState("")
   const [manager,setManager] = useState(false)
   const [creator,setCreator] = useState(false)
+  const [safe,setSafe] = useState(false)
   const dispatch = useDispatch()
   const access = '61a94e4adba13dd081420629'
   const access2 = '61bb63d143156f329531f69b'
   const user = JSON.parse(localStorage.getItem('profile'))
+
+  console.log('Test',cars)
 
   useEffect(() => {
     dispatch(getCars())
@@ -44,7 +47,7 @@ function App() {
         <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
         <Route path='/TowForm' component={Tow}/>
         <Route path='/Profile/:searchTerm' render={() => <Profile cars={cars}/>}/>
-        <Route path='/Tags' render={() => <Tags renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm} manager={manager} user={user} creator={creator}/>}/>
+        <Route path='/Tags' render={() => <Tags renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm} manager={manager} user={user} creator={creator} safe={safe} setSafe={setSafe}/>}/>
         <Route path='/' exact component={UserProfile}/>
       </Switch>
 

@@ -1,5 +1,5 @@
 import React from "react"
- const renderCarTags = (Route,cars,TagCard,searchTerm,manager,creator) => {
+ const renderCarTags = (Route,cars,TagCard,searchTerm,manager,creator,safe) => {
     const row = ['/Tags','/Tags/:urlId'].map(path => (
         <>
           <Route
@@ -24,6 +24,12 @@ import React from "react"
                   return val
               }
               return null
+          }).filter((val) => {
+            if(!safe){
+              return val
+            } else if(safe && val.verified[0]){
+              return val
+            }
           }).map((item,index) => (
               <li key={index}>
               

@@ -2,7 +2,6 @@ import React from 'react';
 import {format} from 'date-fns'
 
 function CommentList({name,comment,modified}) {
-    console.log("safe list comment ssection")
     return (
         <div>
             

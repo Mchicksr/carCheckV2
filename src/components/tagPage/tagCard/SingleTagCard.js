@@ -6,7 +6,7 @@ import Sticker from '../../sticker/Sticker';
 function TagCard({id,lp,carMake,carModel,violations,verified,color,address,modified,sticker,manager,creator}) {
 
     return (
-        <div className='tagCard'>
+        <div className='tagCard' key={id}>
             <div className="containerTc">
                 <ul key={id}>
                     <h2 className="TcH2">License Plate:</h2>
