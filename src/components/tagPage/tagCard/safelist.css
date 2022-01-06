@@ -1,10 +1,10 @@
 .safe{
-    background-color:gray;
+    background-color:gray!important;
 }
 /* .safe:active{
     background-color:greenyellow;
 } */
 
 .safeOn{
-    background-color: greenyellow;
+    background-color: greenyellow!important;
 }
