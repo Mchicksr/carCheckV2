@@ -13,18 +13,23 @@ import config from '../../config'
 
 
 function TowForm({Lic, Cm, Cmo}) {
+    const ndate = new Date()
+    const dayz= `${ndate.getMonth()+ 1}/${ndate.getDate()}/${ndate.getFullYear()}`
+    const timez= `${ndate.getHours()}:${ndate.getMinutes()}`
+    console.log('days', dayz)
+    console.log('time',timez)
     // const dispatch=useDispatch()
     // const image = useSelector((state)=>state.image)
     const classes = useStyles()
 
 
-    const [to,setTo]= useState("")
-    const [faxNum,setFaxNum]= useState("")
-    const [date,setDate]= useState("")
-    const [time,setTime]= useState("")
-    const [from,setFrom]= useState("")
-    const [owner,setOwner]= useState("")
-    const [callback,setCallback]= useState("")
+    const [to,setTo]= useState("Kelle Towing")
+    const [faxNum,setFaxNum]= useState("5618327178")
+    const [date,setDate]= useState(dayz)
+    const [time,setTime]= useState(timez)
+    const [from,setFrom]= useState("Parks Smart")
+    const [owner,setOwner]= useState("Parks Smart")
+    const [callback,setCallback]= useState("5618007443")
     const [sa,setSa]= useState("")
     const [city,setCity]= useState("")
     const [zip,setZip]= useState("")

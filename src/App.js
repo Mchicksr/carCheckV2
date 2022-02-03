@@ -21,26 +21,30 @@ function App() {
   const communities = useSelector((state) => state.communities)
   const [searchTerm,setSearchTerm] = useState("")
   const [manager,setManager] = useState(false)
+  const [towManager,setTowManager] = useState(false)
   const [creator,setCreator] = useState(false)
   const [safe,setSafe] = useState(false)
   const dispatch = useDispatch()
   const access = '61a94e4adba13dd081420629'
   const access2 = '61bb63d143156f329531f69b'
   const user = JSON.parse(localStorage.getItem('profile'))
-
+  
+  
 
   useEffect(() => {
     dispatch(getCars())
     dispatch(getCommunities())
-    user?.result?._id === access || access2 ? setManager(true) : setManager(false)
+    user?.result?._id === access && access2? setManager(true) : setManager(false)
+    user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
     user?.result?._id === access ? setCreator(true) : setCreator(false)
   }, [dispatch,user?.result?._id])
-
+console.log('appmanager',manager)
+console.log('appTowmanager',towManager)
   return (
     <div className="App"> 
       <Navbar manager={manager}/>    
       <Switch> 
-        <Route path="/Fax" render={() => <Fax manager={manager}/>}/>
+        <Route path="/Fax" render={() => <Fax manager={manager} creator={creator} towManager={towManager}/>}/>
         <Route path="/Login" component={AuthPath}/>
         <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
         <Route path='/TowForm' component={Tow}/>
