@@ -1,4 +1,28 @@
 import React from "react"
+import dayjs from "dayjs"
+
+const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
+const isSameOrBefore = require("dayjs/plugin/isSameOrBefore");
+dayjs.extend(isSameOrBefore);
+dayjs.extend(isSameOrAfter);
+// const handleFilterDate = (date,field) => {
+//   const filteredData = cars.filter(item => {
+//     if(field == 'from' && dayjs(item.modified).isSameOrAfter(date)){
+//       return item
+//     } 
+//   })
+//   setData(filteredData)
+// }
+
+// const handleFilterDate2 = (date, field) => {
+//   const filteredData = cars.filter((item) => {
+//     if (field === "to" && dayjs(item.modified).isSameOrBefore(dayjs(date))) {
+//       return item;
+//     }
+//   });
+
+//   setData(filteredData);
+// };
  const renderCarTags = (Route,cars,TagCard,searchTerm,manager,creator,safe) => {
     const row = ['/Tags','/Tags/:urlId'].map(path => (
         <>
@@ -30,6 +54,7 @@ import React from "react"
             } else if(safe && val.verified[0]){
               return val
             }
+
           }).map((item,index) => (
               <li key={index}>
               

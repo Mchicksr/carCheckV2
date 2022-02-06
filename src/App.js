@@ -1,4 +1,6 @@
 import React,{useEffect,useState} from 'react';
+import dayjs from "dayjs"
+
 import './App.css';
 import {useDispatch,useSelector} from 'react-redux'
 import { Route, Switch} from 'react-router-dom'
@@ -14,12 +16,15 @@ import Tow from './Routes/tow/Tow';
 import CarEntryForm from './Routes/carEntryForm/carEntryForm';
 import AuthPath from './Routes/auth/AuthPath';
 import Fax from './components/towForm/Fax';
+import CarLog from './Routes/filter/CarLog';
 
 
 function App() {
   const cars = useSelector((state)=> state.cars)
   const communities = useSelector((state) => state.communities)
   const [searchTerm,setSearchTerm] = useState("")
+  const [fieldFrom,setFieldFrom] = useState("")
+  const [fieldTo,setFieldTo] = useState("")
   const [manager,setManager] = useState(false)
   const [towManager,setTowManager] = useState(false)
   const [creator,setCreator] = useState(false)
@@ -28,8 +33,9 @@ function App() {
   const access = '61a94e4adba13dd081420629'
   const access2 = '61bb63d143156f329531f69b'
   const user = JSON.parse(localStorage.getItem('profile'))
+
   
-  
+
 
   useEffect(() => {
     dispatch(getCars())
@@ -40,16 +46,18 @@ function App() {
   }, [dispatch,user?.result?._id])
 console.log('appmanager',manager)
 console.log('appTowmanager',towManager)
+
   return (
     <div className="App"> 
       <Navbar manager={manager}/>    
       <Switch> 
+        <Route path="/CarLog" render={() => <CarLog cars={cars} communities={communities}/>}/>
         <Route path="/Fax" render={() => <Fax manager={manager} creator={creator} towManager={towManager}/>}/>
         <Route path="/Login" component={AuthPath}/>
         <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
         <Route path='/TowForm' component={Tow}/>
         <Route path='/Profile/:searchTerm' render={() => <Profile cars={cars}/>}/>
-        <Route path='/Tags' render={() => <Tags renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm} manager={manager} user={user} creator={creator} safe={safe} setSafe={setSafe}/>}/>
+        <Route path='/Tags' render={() => <Tags renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm} manager={manager} user={user} creator={creator} safe={safe} setSafe={setSafe} />}/>
         <Route path='/' exact component={UserProfile}/>
       </Switch>
 

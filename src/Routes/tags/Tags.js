@@ -2,6 +2,7 @@ import React from 'react';
 import CommunityNav from '../../components/tagPage/community/CommunityNav';
 import SearchBar from '../../components/tagPage/SearchBar';
 import SafeList from '../../components/tagPage/tagCard/safeList';
+import DateFilter from '../../components/tagPage/filter/DateFilter'
 
 function Tags({renderCarTags, Route, cars, TagCard,searchTerm, setSearchTerm,manager,user,creator,safe,setSafe}) {
     return (

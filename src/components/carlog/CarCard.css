@@ -1,0 +1,115 @@
+.containerFc{
+    border: solid black 1px;
+    background-color: rgba(47, 78, 105, 0.616);
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* width: 50%; */
+    width: 20vw;
+    border-radius: 20px;
+
+    
+}
+
+.FcHeader{
+    color: rgb(194, 179, 96);
+}
+
+.tagCardFc{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 31%;
+    padding: 7px;
+
+}
+
+.card-body {
+    background-color: #1a1a1ab8;
+    padding: 1rem;
+    border-radius: 18px;
+    width: 84%;
+    border: solid 0.1px #a7a2a2;
+    /* font-size: 24px; */
+    font-size: 16px;
+
+
+}
+
+.print__button {
+    background: none;
+    color: wheat;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border: solid 0.3px;
+    border-radius: 5px;
+    padding: 0.5rem;
+    background-color: #294d5e;
+    margin-right: 14px;
+
+
+}
+.print__button:hover{
+    background-color: rgb(50, 99, 82);
+    color: white;
+}
+
+.fileContainer {
+    display: grid;
+    grid-template-columns: repeat(2,0.1fr);
+    justify-content: center;
+}
+
+input#startDate {
+    margin-top: 11px;
+}
+@media all and (min-width: 1024px) and (max-width: 1280px) {
+   body{
+       /* background-color: orange; */
+       /* color: blue; */
+   }
+    .containerFc{
+        display: flex;
+        flex-direction: column;
+
+    }
+    .tagCardFc{
+        display: flex;
+        flex-direction: column;
+    }
+ }
+ 
+@media all and (min-width: 1024px) {
+    body{
+        /* background-color: blue; */
+    }
+    .containerFc{
+        height: 16vh;
+    }
+ }
+@media all and (min-width: 768px) and (max-width: 1024px) {
+    body{
+        /* background-color: green; */
+    }
+ }
+ 
+@media all and (min-width: 480px) and (max-width: 768px) { 
+    body{
+        /* background-color: pink; */
+    }
+}
+ 
+@media all and (max-width: 480px) { 
+    body{
+        /* background-color: yellow; */
+    }
+    .containerFc{
+        width: 65vw;
+
+    }
+}
+ 

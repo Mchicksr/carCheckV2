@@ -1,4 +1,5 @@
 import React from 'react';
+import dayjs from "dayjs";
 import './singleTagCard.css'
 import TagCardEditBtn from './TagCardEditBtn';
 import Verify from '../../profile/Verify';
@@ -20,6 +21,9 @@ function TagCard({id,lp,carMake,carModel,violations,verified,color,address,modif
 
                         <Verify id={id} verified={verified} />
                         <Sticker carId={id}/>
+                    <p>
+                    {dayjs(modified).format("DD MMMM YYYY")}
+                    </p>
                         <TagCardEditBtn id={id} violations={violations} cm={carMake} cmo={carModel} lic={lp} color={color} address={address} modified={modified} verified={verified} sticker={sticker} manager={manager} creator={creator}/>
                 </ul>
             </div>

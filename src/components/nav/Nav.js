@@ -42,6 +42,7 @@ function Nav(props) {
                         <li className="navItem"><Link to='/Tags'><h2>Find Car Tags</h2></Link></li>
                         <li className="navItem"><Link to='/CarForm'><h2>Add Car</h2></Link></li>
                         <li className="navItem"><Link to='/Fax'><h2>Tow Car</h2></Link></li>
+                        <li className="navItem"><Link to='/CarLog'><h2>Car Log</h2></Link></li>
                         
                     </ul>
                 </div>
