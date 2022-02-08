@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 function TowBtn({lic,cm,cmo,st,color,address}) {
-    console.log('cmo',cmo)
     return (
         <div>
             <div className="towButton">

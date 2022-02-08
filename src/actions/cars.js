@@ -4,7 +4,6 @@ import * as api from '../api/index'
 export const getCars = () => async (dispatch) => {
     try {
         const {data} = await api.fetchCars()
-        // console.log('cars',data)
         dispatch({type:FETCH_CARS,payload:data})
     } catch (error) {
         console.log(error.message)
@@ -20,9 +19,9 @@ export const createCar = (carData) => async (dispatch) => {
     }
 } 
 
-export const addViolation = (id) => async (dispatch) =>{
+export const addViolation = (id,violation) => async (dispatch) =>{
 try {
-    const {data} = await api.addViolation(id)
+    const {data} = await api.addViolation(id,violation)
     dispatch({type:UPDATE, payload:data})
 } catch (error) {
     console.log(error)

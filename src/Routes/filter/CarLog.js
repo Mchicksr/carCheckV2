@@ -1,15 +1,14 @@
 import React, { useRef } from 'react';
 
-import axios from 'axios'
-import {saveAs} from 'file-saver'
-import formData from 'form-data'
+// import axios from 'axios'
+// import {saveAs} from 'file-saver'
+// import formData from 'form-data'
 
 import CarCard from '../../components/carlog/CarCard';
 import Log from '../../components/carlog/Log';
 import dayjs from "dayjs";
-import { useState,useEffect } from 'react';
-import CommunityNav from '../../components/tagPage/community/CommunityNav';
-import { TextField, Button, Paper } from '@material-ui/core';
+import { useState } from 'react';
+import { Button } from '@material-ui/core';
 
 import { useReactToPrint } from "react-to-print";
 import {CSVLink} from "react-csv"
@@ -32,7 +31,7 @@ function CarLog({cars,communities}) {
       const handleFilterDate = (date,field) => {
         const filteredData = cars.filter(item => {
           if(field == 'from' && dayjs(item.modified).isSameOrAfter(date)){
-            console.log('Copy',dayjs(item.modified).isSameOrAfter(date))
+            // console.log('Copy',dayjs(item.modified).isSameOrAfter(date))
             return item
           } 
         })
@@ -49,7 +48,7 @@ function CarLog({cars,communities}) {
                 } else {
                 }
             }).map( item => <CarCard 
-            key={item.id} 
+            key={item._id} 
             cars={item}
             carMake={item.car_make}
             carModel={item.car_model}
@@ -59,34 +58,32 @@ function CarLog({cars,communities}) {
             return list
         }
 
-        const createAndDownloadPdf = (e) => {
-            // chooseImage()
-         let formdata = new formData()
-        // let file = img
-        // formdata.append('image',file)
-            e.preventDefault();
-            axios.post(`http://localhost:8000/create-log`,{
-               Lic:cars.license_plate,
-               Car: cars.cars,
-               Mdate: cars.modified,
+        // const createAndDownloadPdf = (e) => {
+        //  let formdata = new formData()
+      
+        //     e.preventDefault();
+        //     axios.post(`http://localhost:8000/create-log`,{
+        //        Lic:cars.license_plate,
+        //        Car: cars.cars,
+        //        Mdate: cars.modified,
                 
-            })
-            // .then(()=>{console.log(formdata)})
-        .then(() => {
+        //     })
+        // .then(() => {
            
-        })
-        .then(()=>axios.get(`http://localhost:8000/fetch-log`,{ responseType:'blob' }))
-          .then((res)=>{
-          const pdfBlob= new Blob([res.data], { type:'application/pdf' })
-          saveAs(pdfBlob, 'newPdf.pdf');
-        })
-        }
+        // })
+        // .then(()=>axios.get(`http://localhost:8000/fetch-log`,{ responseType:'blob' }))
+        //   .then((res)=>{
+        //   const pdfBlob= new Blob([res.data], { type:'application/pdf' })
+        //   saveAs(pdfBlob, 'newPdf.pdf');
+        // })
+        // }
 
         const headers =[
             {label:'License Plate',key:'license_plate'},
             {label:'Car Make',key:'car_make'},
             {label:'Car Model',key:'car_model'},
-            {label:'Date Submited',key:'modified'}
+            {label:'Date Submited',key:'modified'},
+            {label:'Violations',key:'violaitons'}
           ]
           
           const csvReport = {
@@ -95,7 +92,6 @@ function CarLog({cars,communities}) {
             data: allCars
           }
 
-          console.log('cehk',allCars)
     return (
         <div>
             <h1>Car Log</h1> <br></br>

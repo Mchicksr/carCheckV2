@@ -5,4 +5,5 @@ import auth from './auth'
 import comments from './comments'
 import sticker from './sticker'
 import image from './image'
-export default combineReducers({communities,cars,auth,comments,sticker,image})
+import violations from './violation'
+export default combineReducers({communities,cars,auth,comments,sticker,image,violations})

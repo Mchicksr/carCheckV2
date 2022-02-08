@@ -25,13 +25,12 @@ function CarProfile(props) {
     const sticker = location.state?.sticker
     const manager = location.state?.manager
     const creator = location.state?.creator
-    console.log('creator4',creator)
 
     return (
         <div>
             <h1>Profile</h1>
             <CarInfo violations={violations} lic={lic} cm={cm} cmo={cmo} id={id} st={st} address={address} color={color} modified={modified}/>
-            <ViolationBtn violations={violations} id={id}/>
+            <ViolationBtn violations={violations} id={id} lic={lic}/>
             <Verify id={id} verified={verified} manager={manager}/>
             <Sticker carId={id} sticker={sticker} manager={manager}/>
             <TowBtn lic={lic} cm={cm} cmo={cmo} st={st} color={color} address={address}/>

@@ -65,3 +65,16 @@ form.commentForm {
 i.fas.fa-truck-pickup {
     color: black;
 }
+
+.violation_type {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+}
+
+.vPair{
+    margin-right: 18px;
+
+}

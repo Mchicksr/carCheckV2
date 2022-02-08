@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 
-function DateFilter({setFieldFrom, fieldFrom,onDateFilter,onDate2Filter,setData}) {
+function DateFilter({ fieldFrom,onDateFilter,onDate2Filter}) {
     const [filters,setFilters] = useState({
         name:"",
         email:"",
@@ -10,8 +10,8 @@ function DateFilter({setFieldFrom, fieldFrom,onDateFilter,onDate2Filter,setData}
       })
 
 
-      const [from,setFrom] = useState("")
-      const [to,SetTo] = useState("")
+      // const [from,setFrom] = useState("")
+      // const [to,SetTo] = useState("")
 
       const handleInput= (field) => (event) => {
         const {value} = event.target;
@@ -32,7 +32,6 @@ function DateFilter({setFieldFrom, fieldFrom,onDateFilter,onDate2Filter,setData}
           default:
             break;
         }
-        console.log('check',field)
         
       }
 

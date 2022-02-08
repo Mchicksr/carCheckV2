@@ -1,5 +1,4 @@
 import React,{useEffect,useState} from 'react';
-import dayjs from "dayjs"
 
 import './App.css';
 import {useDispatch,useSelector} from 'react-redux'
@@ -23,8 +22,6 @@ function App() {
   const cars = useSelector((state)=> state.cars)
   const communities = useSelector((state) => state.communities)
   const [searchTerm,setSearchTerm] = useState("")
-  const [fieldFrom,setFieldFrom] = useState("")
-  const [fieldTo,setFieldTo] = useState("")
   const [manager,setManager] = useState(false)
   const [towManager,setTowManager] = useState(false)
   const [creator,setCreator] = useState(false)
@@ -44,8 +41,6 @@ function App() {
     user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
     user?.result?._id === access ? setCreator(true) : setCreator(false)
   }, [dispatch,user?.result?._id])
-console.log('appmanager',manager)
-console.log('appTowmanager',towManager)
 
   return (
     <div className="App"> 

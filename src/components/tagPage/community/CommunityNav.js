@@ -37,7 +37,7 @@ function CommunityNav(props) {
                 >
                     {
                         community.map((item, index) => {
-                            return <li key={index}><CommunityLink key={item.id} _id={item._id} name={item.community} Tab={Tab} /></li>
+                            return <li key={item._id}><CommunityLink key={item.id} _id={item._id} name={item.community} Tab={Tab} /></li>
                         })
                     }
 

@@ -16,8 +16,6 @@ function TowForm({Lic, Cm, Cmo}) {
     const ndate = new Date()
     const dayz= `${ndate.getMonth()+ 1}/${ndate.getDate()}/${ndate.getFullYear()}`
     const timez= `${ndate.getHours()}:${ndate.getMinutes()}`
-    console.log('days', dayz)
-    console.log('time',timez)
     // const dispatch=useDispatch()
     // const image = useSelector((state)=>state.image)
     const classes = useStyles()

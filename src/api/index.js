@@ -18,7 +18,8 @@ export const createCars = (newCar) => API.post('/cars',newCar)
 export const deleteCar = (id) => API.delete(`/cars/${id}`)
 
 // violation
-export const addViolation =  (id) => API.patch(`/cars/${id}/violation`)
+// export const addViolation =  (id) => API.patch(`/cars/${id}/violation`)
+export const addViolation =  (id,violation) => axios.patch(`http://localhost:8000/cars/${id}/violation`,violation)
 export const resetViolation = (id) => API.patch(`/cars/${id}/resetviolation`)
 
 // verify
@@ -40,3 +41,8 @@ export const signUp = (formData) => API.post('/user/signup',formData)
 // Sticker
 export const fetchImage = () => API.get('/image')
 export const createImage = (newImage) => API.post('/image',newImage)
+
+// violation Type
+export const fetchViolation = () => axios.get('http://localhost:8000/violation')
+export const createViolation = (newViolation) => axios.post('http://localhost:8000/violation',newViolation)
+export const deleteViolation = (id) => axios.delete(`http://localhost:8000/violation/${id}`)

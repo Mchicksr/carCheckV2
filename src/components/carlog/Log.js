@@ -9,7 +9,7 @@ function Log({onCarFilter,onDateFilter}) {
         to:""
       })
 
-    const [email,setEmail] = useState("")
+    // const [email,setEmail] = useState("")
 
 
     const handleInput= (field) => (event) => {
@@ -40,7 +40,6 @@ function Log({onCarFilter,onDateFilter}) {
             break;
         }
         
-        console.log('check',field)
       }
 
     return (

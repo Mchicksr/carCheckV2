@@ -40,7 +40,6 @@ function Fax({manager,creator,towManager}) {
         }
        
         axios.post(API,attachments,{'headers':headers}).then(res=> {     
-           console.log(res)
            alert('Fax sent')
            clear()
         })
