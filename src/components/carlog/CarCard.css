@@ -34,6 +34,8 @@
     width: 84%;
     border: solid 0.1px #a7a2a2;
     /* font-size: 24px; */
+    max-height: 14rem;
+    overflow: scroll;
     font-size: 16px;
 
 
@@ -60,12 +62,20 @@
 
 .fileContainer {
     display: grid;
-    grid-template-columns: repeat(2,0.1fr);
+    /* grid-template-columns: repeat(2,0.1fr); */
     justify-content: center;
 }
 
 input#startDate {
     margin-top: 11px;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedSecondary.MuiButton-containedSizeLarge.MuiButton-sizeLarge {
+    margin-top: 5rem;
+}
+
+.pretti{
+    /* display: none; */
 }
 @media all and (min-width: 1024px) and (max-width: 1280px) {
    body{
@@ -88,7 +98,9 @@ input#startDate {
         /* background-color: blue; */
     }
     .containerFc{
-        height: 16vh;
+        height: 30vh;
+        min-height: 19rem;
+
     }
  }
 @media all and (min-width: 768px) and (max-width: 1024px) {
@@ -109,6 +121,10 @@ input#startDate {
     }
     .containerFc{
         width: 65vw;
+
+    }
+    .card-body{
+        font-size: 12px;
 
     }
 }

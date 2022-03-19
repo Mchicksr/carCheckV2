@@ -18,8 +18,8 @@ function CarForm({communities}) {
         {id:1,violation_type:'parking in grass'},
         {id:2,violation_type:'backing in'},
         {id:3,violation_type:'parking on street'}, 
-        {id:4,violation_type:'unauthorized parking'},
-        {id:5,violation_type:'no park zone'},
+        {id:4,violation_type:'expired license plate'},
+        {id:5,violation_type:'not registered'},
         {id:6,violation_type:'expired pass'},
         {id:7,violation_type:'other'}
     

@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useCallback} from 'react';
-import logo from '../../images/Car_check.png'
+import logo from '../../images/official-logo.png'
 import {Link,useHistory,useLocation} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import decode from 'jwt-decode'

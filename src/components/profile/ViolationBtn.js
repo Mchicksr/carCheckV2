@@ -18,7 +18,22 @@ function ViolationBtn({ id, violations, lic }) {
     const newarr = []
     useEffect(() => {
         dispatch(getViolations())
-    }, [vio])
+
+        const result = violation_types.filter(item => {
+            if (item.carLic === lic) {
+                console.log('cehs3',item.carLic)
+                return item
+            } else {
+                console.log('sdcs')
+                return null
+            }
+        })
+        
+            console.log('check2',result.length)
+            setVio(result.length)
+        
+
+    }, [vio,])
 
 
 
@@ -26,14 +41,14 @@ function ViolationBtn({ id, violations, lic }) {
         { id: 1, violation_type: 'parking in grass' },
         { id: 2, violation_type: 'backing in' },
         { id: 3, violation_type: 'parking on street' },
-        { id: 4, violation_type: 'unauthorized parking' },
-        { id: 5, violation_type: 'no park zone' },
+        { id: 4, violation_type: 'expired license plate' },
+        { id: 5, violation_type: 'not registered' },
         { id: 6, violation_type: 'expired pass' },
         { id: 7, violation_type: 'other' }
 
     ]
     // console.log('check',violation_types)
-
+    // console.log('violations',violations)
     const violationCount = () => {
         const result = violation_types.filter(item => {
             if (item.carLic === lic) {
@@ -44,13 +59,14 @@ function ViolationBtn({ id, violations, lic }) {
             }
         })
         const counter = () => {
-            let i =0
-            while(i < result.length){
-                return [
-                    setVio(result.length), 
+            setVio(result.length)
+            // let i =0
+            // while(i < result.length){
+            //     return [
+            //         setVio(result.length), 
 
-                ]
-            }
+            //     ]
+            // }
         }
         // setVio(result.length)
         return [
@@ -62,7 +78,8 @@ function ViolationBtn({ id, violations, lic }) {
             ]
 
     }
-    console.log('arr', newarr.length)
+    // console.log('arr', newarr.length)
+    // console.log('arr', vio)
     return (
         <div>
             <button onClick={violationCount}>check</button>
@@ -83,6 +100,7 @@ function ViolationBtn({ id, violations, lic }) {
             
             {violation_types.filter(item => {
                 if (item?.carLic === lic) {
+                    
                     return item
                 } else {
                     return null

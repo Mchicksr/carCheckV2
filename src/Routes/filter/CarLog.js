@@ -5,6 +5,7 @@ import React, { useRef } from 'react';
 // import formData from 'form-data'
 
 import CarCard from '../../components/carlog/CarCard';
+import CarCardCsv from'../../components/carlog/CarCardCsv';
 import Log from '../../components/carlog/Log';
 import dayjs from "dayjs";
 import { useState } from 'react';
@@ -16,11 +17,12 @@ import {CSVLink} from "react-csv"
 
 
 
-function CarLog({cars,communities}) {
+function CarLog({cars,communities,violations}) {
     // console.log('this',cars)
     const [allCars, setCars] = useState(cars)
     const [commute,setCommute] = useState('')
-   
+    const [carStatus, setCarStatus] = useState([]) 
+   console.log('carsS',carStatus)
     const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -37,7 +39,7 @@ function CarLog({cars,communities}) {
         })
         setCars(filteredData)
       }
-     
+    //  console.log(violations,'checks')
       const renderList = () => {
           const list = allCars.filter((car)=>{
                 if(!commute){
@@ -53,37 +55,50 @@ function CarLog({cars,communities}) {
             carMake={item.car_make}
             carModel={item.car_model}
             modified={item.modified}
+            vType={violations}
+            setCarStatus={setCarStatus}
+            
+            />)
+            return list
+        }
+      const renderCsv = () => {
+          const list = allCars.filter((car)=>{
+                if(!commute){
+                    return <h1>Choose Community</h1>
+                } else if(car.community_id === commute){
+
+                    return car
+                } else {
+                }
+            }).map( item => <CarCardCsv 
+            key={item._id} 
+            cars={item}
+            carMake={item.car_make}
+            carModel={item.car_model}
+            modified={item.modified}
+            vType={violations}
+            setCarStatus={setCarStatus}
             
             />)
             return list
         }
 
-        // const createAndDownloadPdf = (e) => {
-        //  let formdata = new formData()
-      
-        //     e.preventDefault();
-        //     axios.post(`http://localhost:8000/create-log`,{
-        //        Lic:cars.license_plate,
-        //        Car: cars.cars,
-        //        Mdate: cars.modified,
-                
-        //     })
-        // .then(() => {
-           
-        // })
-        // .then(()=>axios.get(`http://localhost:8000/fetch-log`,{ responseType:'blob' }))
-        //   .then((res)=>{
-        //   const pdfBlob= new Blob([res.data], { type:'application/pdf' })
-        //   saveAs(pdfBlob, 'newPdf.pdf');
-        // })
-        // }
-
+        const arr2 = [
+            {id:1,letter:'a'},
+            {id:2,letter:'b'},
+            {id:3,letter:'c'}
+    ]
+    const both = [...allCars, ...arr2]
+    // console.log('both',both)
         const headers =[
             {label:'License Plate',key:'license_plate'},
             {label:'Car Make',key:'car_make'},
             {label:'Car Model',key:'car_model'},
             {label:'Date Submited',key:'modified'},
-            {label:'Violations',key:'violaitons'}
+            {label:'Violation',key:'violation'},
+           
+
+            // {label:'Violations',key:'violaitons'}
           ]
           
           const csvReport = {
@@ -96,7 +111,7 @@ function CarLog({cars,communities}) {
         <div>
             <h1>Car Log</h1> <br></br>
             <div className="fileContainer">
-                <button onClick={handlePrint} className="print__button"> Create PDF </button> 
+                {/* <button onClick={handlePrint} className="print__button"> Create PDF </button>  */}
                 <CSVLink className='print__button' {...csvReport}>Create CSV</CSVLink> <br />
             </div>
 
@@ -111,13 +126,19 @@ function CarLog({cars,communities}) {
                 onDateFilter={handleFilterDate}
                 setData={setCars}
             />
+            <div className="pretti">
             <div ref={componentRef} className="ClContainer">
                 {renderList()}
-
             </div>
                 <Button variant="contained" color="secondary" size="large" onClick={()=> setCars(cars)}>Reset</Button>
                 {/* <Button variant="contained" color="primary" size="large" onClick={createAndDownloadPdf}>Create Log</Button> */}
-
+                </div>
+                {/* <div className="pdf">
+                <div ref={componentRef} className="">
+                {renderCsv()}
+            </div>
+                </div> */}
+                {/* <Button variant="contained" color="secondary" size="large" onClick={()=> setCars(cars)}>Reset</Button> */}
         </div>
     );
 }

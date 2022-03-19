@@ -1,19 +1,13 @@
 // import axios from 'axios'
-import React,{useEffect} from 'react';
+import React from 'react';
 import dayjs from "dayjs";
 // import {saveAs} from 'file-saver'
 // import formData from 'form-data'
 
-import './CarCard.css'
+// import './CarCard.css'
 import violations from '../../reducers/violation';
 
 function CarCard({cars,vType,setCarStatus}) {
-  const carS = []
-  const carObj = {}
-useEffect(() => {
-  setCarStatus(carS)
-}, [setCarStatus])
-
 
 const works = [...vType].filter(item => {
   if(item.carLic === cars.license_plate){
@@ -22,27 +16,15 @@ const works = [...vType].filter(item => {
     return null
   }
  
-}).map(item =>{ 
-  // working versionc1
-    // carObj[item.carLic] = carS.label
-    // carObj[item.violation_type] = carS.value
-    // carS.push(carObj)
-  // version 2
-    carS.push({"carLic":item.carLic,"Violation":item.violation_type})
-  
-  return[
-                  
-                  
-                  <li key={item._id}>{item.violation_type}</li>]
-                })
-    
-                // console.log('CarS',carS)
-                  return (
+}).map(item =>{ return[
+                  setCarStatus(item.violation_type),
+                  <li key={item._id}>{item.violation_type}</li>]})
+    return (
         
-        <div className="tagCardFc">
-          <div className="containerFc">
+        <div className="">
+          <div className="">
             {/* <img src={cars?.image} className="card-img-top" alt="" /> */}
-            <div className="card-body">
+            <div className="">
                 <h3 className="FcHeader"> Plate</h3>
               <p className="card-text">{cars?.license_plate}</p>
               <h3 className="FcHeader">Car Type</h3>

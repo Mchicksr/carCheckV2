@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useCallback} from 'react';
 import {AppBar,Toolbar,Typography,Avatar,Button} from '@material-ui/core'
-import logo from '../../images/Car_check.png'
+import logo from '../../images/official-logo'
 import {Link,useHistory,useLocation} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import decode from 'jwt-decode'

@@ -5,6 +5,7 @@ import {useDispatch,useSelector} from 'react-redux'
 import { Route, Switch} from 'react-router-dom'
 import {getCars} from './actions/cars'
 import {getCommunities} from './actions/community'
+import { getViolations } from './actions/violation';
 import Navbar from './Routes/navBar/Navbar';
 import UserProfile from './Routes/userProfile/UserProfile'
 import Tags from './Routes/tags/Tags';
@@ -21,6 +22,7 @@ import CarLog from './Routes/filter/CarLog';
 function App() {
   const cars = useSelector((state)=> state.cars)
   const communities = useSelector((state) => state.communities)
+  const violations = useSelector((state)=>state.violations)
   const [searchTerm,setSearchTerm] = useState("")
   const [manager,setManager] = useState(false)
   const [towManager,setTowManager] = useState(false)
@@ -31,22 +33,22 @@ function App() {
   const access2 = '61bb63d143156f329531f69b'
   const user = JSON.parse(localStorage.getItem('profile'))
 
-  
 
 
   useEffect(() => {
     dispatch(getCars())
     dispatch(getCommunities())
+    dispatch(getViolations())
     user?.result?._id === access && access2? setManager(true) : setManager(false)
     user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
     user?.result?._id === access ? setCreator(true) : setCreator(false)
   }, [dispatch,user?.result?._id])
-
+console.log('vio',violations)
   return (
     <div className="App"> 
       <Navbar manager={manager}/>    
       <Switch> 
-        <Route path="/CarLog" render={() => <CarLog cars={cars} communities={communities}/>}/>
+        <Route path="/CarLog" render={() => <CarLog cars={cars} communities={communities} violations={violations}/>}/>
         <Route path="/Fax" render={() => <Fax manager={manager} creator={creator} towManager={towManager}/>}/>
         <Route path="/Login" component={AuthPath}/>
         <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>

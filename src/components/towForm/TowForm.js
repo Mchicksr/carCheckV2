@@ -149,7 +149,7 @@ function TowForm({Lic, Cm, Cmo}) {
                     <TextField name="city" variant="outlined" label="City" fullWidth value={city}  required onChange={e => setCity(e.currentTarget.value)}/> <br/>
                     <TextField name="zip" variant="outlined" label="Zip" fullWidth value={zip}  required onChange={e => setZip(e.currentTarget.value)}/> <br/>
                     <TextField name="location" variant="outlined" label="specific location of vehicle/vessel on property" fullWidth value={location}  onChange={e => setLocation(e.currentTarget.value)}/> <br/>           
-                    <TextField name="year" variant="outlined" label="Year" fullWidth value={year}  required onChange={e => setYear(e.currentTarget.value)}/> <br/>         
+                    <TextField name="year" variant="outlined" label="Year" fullWidth value={year}   onChange={e => setYear(e.currentTarget.value)}/> <br/>         
                     <TextField name="sta" variant="outlined" label="State" fullWidth value={sta}  required onChange={e => setSta(e.currentTarget.value)}/> <br/>
                     <TextField name="color" variant="outlined" label="Colors(s)" fullWidth value={color}  required onChange={e => setColor(e.currentTarget.value)}/> <br/>            
                     <TextField name="details" variant="outlined" label="Other details/description" fullWidth value={details}   onChange={e => setDetails(e.currentTarget.value)}/> <br/>                

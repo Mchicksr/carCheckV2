@@ -1,6 +1,16 @@
-.ClContainer{
+/* .ClContainer{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+} */
+
+.ClContainer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px,auto));
+    grid-auto-columns: 1fr;
+    gap: 0rem;
+    flex-wrap: wrap;
+    row-gap: 5rem;
     justify-content: center;
 }
 .tagCard{
