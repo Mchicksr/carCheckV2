@@ -7,7 +7,7 @@ import {createCar} from '../../actions/cars'
 import { createViolation } from '../../actions/violation';
 import useStyles from './styles'
 
-function CarForm({communities}) {
+function CarForm({communities,setSearchTerm}) {
     const [carData,setCarData] = useState({license_plate:"",car_make:"",car_model:"",color:"",car_address:"",violations:0,community_id:""})
     const [violationType,setViolationType] = useState("")
     // const violation_types = useSelector((state) => state.violations)    
@@ -39,7 +39,10 @@ function CarForm({communities}) {
     return (
         <Paper className={classes.paper}>
             <form autoComplete="off"  className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-                <TextField name="license_plate" variant="outlined" label="License Plate" fullWidth value={carData.license_plate}  required onChange={(e) => setCarData({...carData,license_plate: e.target.value})}/>
+                <TextField name="license_plate" variant="outlined" label="License Plate" fullWidth value={carData.license_plate}  required onChange={(e) => {
+                    return [setCarData({...carData,license_plate: e.target.value}),
+                            setSearchTerm({...carData,license_plate: e.target.value})
+                ]}}/>
                 <TextField name="car_make" variant="outlined" label="Car Make" fullWidth value={carData.car_make} required onChange={(e) => setCarData({...carData,car_make: e.target.value})}/>
                 <TextField name="car_model" variant="outlined" label="Car Model" fullWidth value={carData.car_model} required onChange={(e) => setCarData({...carData,car_model:e.target.value})}/>
                 <TextField name="color" variant="outlined" label="Color" fullWidth value={carData.color} required onChange={(e) => setCarData({...carData,color:e.target.value})}/>

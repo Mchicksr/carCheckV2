@@ -47,16 +47,16 @@ console.log('vio',violations)
   return (
     <div className="App"> 
       <Navbar manager={manager}/>    
-      <Switch> 
+       
+        <Route path='/' component={UserProfile}/>
+        <Route path="/" render={() => <CarEntryForm communities={communities} cars={cars} user={user} setSearchTerm={setSearchTerm}/>}/>
         <Route path="/CarLog" render={() => <CarLog cars={cars} communities={communities} violations={violations}/>}/>
         <Route path="/Fax" render={() => <Fax manager={manager} creator={creator} towManager={towManager}/>}/>
         <Route path="/Login" component={AuthPath}/>
-        <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
         <Route path='/TowForm' component={Tow}/>
         <Route path='/Profile/:searchTerm' render={() => <Profile cars={cars}/>}/>
         <Route path='/Tags' render={() => <Tags renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm} manager={manager} user={user} creator={creator} safe={safe} setSafe={setSafe} />}/>
-        <Route path='/' exact component={UserProfile}/>
-      </Switch>
+      
 
     </div>
   );
