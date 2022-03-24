@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory,Link } from 'react-router-dom';
 import { TextField, Button, Paper } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 // import FileBase from 'react-file-base64';
@@ -41,7 +41,7 @@ function CarForm({communities,setSearchTerm}) {
             <form autoComplete="off"  className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <TextField name="license_plate" variant="outlined" label="License Plate" fullWidth value={carData.license_plate}  required onChange={(e) => {
                     return [setCarData({...carData,license_plate: e.target.value}),
-                            setSearchTerm({...carData,license_plate: e.target.value})
+                            setSearchTerm(e.target.value)
                 ]}}/>
                 <TextField name="car_make" variant="outlined" label="Car Make" fullWidth value={carData.car_make} required onChange={(e) => setCarData({...carData,car_make: e.target.value})}/>
                 <TextField name="car_model" variant="outlined" label="Car Model" fullWidth value={carData.car_model} required onChange={(e) => setCarData({...carData,car_model:e.target.value})}/>
@@ -51,7 +51,7 @@ function CarForm({communities,setSearchTerm}) {
                 <select name="community_id" id="community_id" value={carData.community_id} onChange={(e) => setCarData({...carData,community_id:e.target.value})}>
                     <option>---select community</option>
                     {communities.map((value,index) => {
-                        return <option key={index} value={value._id}>{value.community}</option>
+                        return [<option key={index} value={value._id}>{value.community}</option>,<Link class="ComLink"to={`/Tags/${carData.community_id}`}></Link>]
                     })}
                 </select>
 
