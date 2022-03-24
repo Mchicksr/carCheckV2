@@ -44,7 +44,8 @@ dayjs.extend(isSameOrAfter);
             }).filter((val)=>{
               if(searchTerm === ""){
                   return val
-              }else if(val.license_plate.toLowerCase().includes(searchTerm.toLowerCase())){
+              // }else if(val.license_plate.toLowerCase().includes(searchTerm.toLowerCase())){
+              }else if(val.license_plate.includes(searchTerm)){
                   return val
               }
               return null
