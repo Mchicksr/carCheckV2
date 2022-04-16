@@ -1,11 +1,12 @@
 import React,{useState} from 'react';
 import { useHistory } from 'react-router-dom';
-import { TextField, Button, Paper } from '@material-ui/core';
+import { TextField, Button, Paper, Select } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 // import FileBase from 'react-file-base64';
 import {createCar} from '../../actions/cars'
 import { createViolation } from '../../actions/violation';
 import useStyles from './styles'
+import './CarForm.css'
 
 function CarForm({communities}) {
     const [carData,setCarData] = useState({license_plate:"",car_make:"",car_model:"",color:"",car_address:"",violations:0,community_id:""})
@@ -20,8 +21,9 @@ function CarForm({communities}) {
         {id:3,violation_type:'parking on street'}, 
         {id:4,violation_type:'expired license plate'},
         {id:5,violation_type:'not registered'},
-        {id:6,violation_type:'expired pass'},
-        {id:7,violation_type:'other'}
+        {id:7,violation_type:'expired pass'},
+        {id:8,violation_type:'commercial vehicle'},
+        {id:9,violation_type:'other'}
     
     ]
     const violationData = {violation_type: violationType,carLic: carData.license_plate}

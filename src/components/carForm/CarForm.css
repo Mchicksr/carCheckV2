@@ -1,0 +1,14 @@
+select#community_id {
+    width: 14rem;
+    height: 3rem;
+}
+
+select#violation_type {
+    width: 14rem;
+    height: 3rem;
+    margin-left: 1rem;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.makeStyles-buttonSubmit-16.MuiButton-containedPrimary.MuiButton-containedSizeLarge.MuiButton-sizeLarge.MuiButton-fullWidth {
+    margin-top: 2rem;
+}
