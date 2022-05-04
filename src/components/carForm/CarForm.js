@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { useHistory,Link } from 'react-router-dom';
 import { TextField, Button, Paper } from '@material-ui/core';
+import CommunityNav from '../tagPage/community/CommunityNav';
 import { useDispatch } from 'react-redux';
 // import FileBase from 'react-file-base64';
 import {createCar} from '../../actions/cars'
@@ -10,6 +11,7 @@ import useStyles from './styles'
 function CarForm({communities,setSearchTerm}) {
     const [carData,setCarData] = useState({license_plate:"",car_make:"",car_model:"",color:"",car_address:"",violations:0,community_id:""})
     const [violationType,setViolationType] = useState("")
+    const [commuteId,setCommuteId] = useState("")
     // const violation_types = useSelector((state) => state.violations)    
     const classes = useStyles()
     const dispatch = useDispatch()
@@ -36,8 +38,10 @@ function CarForm({communities,setSearchTerm}) {
         clear()
         history.push('/Tags')
     }
+console.log('currentID',commuteId)
     return (
         <Paper className={classes.paper}>
+            <CommunityNav setCommuteId={setCommuteId}/>
             <form autoComplete="off"  className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <TextField name="license_plate" variant="outlined" label="License Plate" fullWidth value={carData.license_plate}  required onChange={(e) => {
                     return [setCarData({...carData,license_plate: e.target.value}),

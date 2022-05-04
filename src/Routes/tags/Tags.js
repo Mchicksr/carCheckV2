@@ -11,7 +11,7 @@ function Tags({renderCarTags, Route, cars, TagCard,searchTerm, setSearchTerm,man
             <h1>Car Tags</h1>
             <SafeList safe={safe} setSafe={setSafe}/>
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
-            <CommunityNav/>
+            {/* <CommunityNav/> */}
             {renderCarTags(Route,cars,TagCard,searchTerm,manager,creator,safe)}
             
             </>:<h1>Please Login</h1>}

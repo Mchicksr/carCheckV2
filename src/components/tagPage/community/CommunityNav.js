@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import './community.css'
 
 
-function CommunityNav(props) {
+function CommunityNav({setCommuteId}) {
     const community = useSelector((state) => state.communities)
     const dispatch = useDispatch()
 
@@ -37,7 +37,7 @@ function CommunityNav(props) {
                 >
                     {
                         community.map((item, index) => {
-                            return <li key={item._id}><CommunityLink key={item.id} _id={item._id} name={item.community} Tab={Tab} /></li>
+                            return <li key={item._id}><CommunityLink key={item.id} _id={item._id} name={item.community} Tab={Tab} setCommuteId={setCommuteId}/></li>
                         })
                     }
 

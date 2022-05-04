@@ -28,17 +28,17 @@ function App() {
   const [towManager,setTowManager] = useState(false)
   const [creator,setCreator] = useState(false)
   const [safe,setSafe] = useState(false)
+  const [comId,setComID] = useState('')
   const dispatch = useDispatch()
   const access = '61a94e4adba13dd081420629'
   const access2 = '61bb63d143156f329531f69b'
   const user = JSON.parse(localStorage.getItem('profile'))
 
 
-
+console.log('Cars Database',cars)
   useEffect(() => {
     dispatch(getCars())
     dispatch(getCommunities())
-    dispatch(getViolations())
     user?.result?._id === access && access2? setManager(true) : setManager(false)
     user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
     user?.result?._id === access ? setCreator(true) : setCreator(false)
@@ -55,7 +55,7 @@ console.log('vio',violations)
         <Route path="/Login" component={AuthPath}/>
         <Route path='/TowForm' component={Tow}/>
         <Route path='/Profile/:searchTerm' render={() => <Profile cars={cars}/>}/>
-        <Route path='/Tags' render={() => <Tags renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm} manager={manager} user={user} creator={creator} safe={safe} setSafe={setSafe} />}/>
+        <Route path='/Tags' render={() => <Tags renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm} manager={manager} user={user} creator={creator} safe={safe} setSafe={setSafe} setComID={setComID}/>}/>
       
 
     </div>
