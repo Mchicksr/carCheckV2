@@ -4,13 +4,13 @@ import SearchBar from '../../components/tagPage/SearchBar';
 import SafeList from '../../components/tagPage/tagCard/safeList';
 // import DateFilter from '../../components/tagPage/filter/DateFilter'
 
-function Tags({renderCarTags, Route, cars, TagCard,searchTerm, setSearchTerm,manager,user,creator,safe,setSafe}) {
+function Tags({renderCarTags, Route, cars, TagCard,searchTerm, setSearchTerm,manager,user,creator,safe,setSafe,setCarArr}) {
     return (
         <div>
             {user?<>
             <h1>Car Tags</h1>
             <SafeList safe={safe} setSafe={setSafe}/>
-            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+            <SearchBar setCarArr={setCarArr} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
             <CommunityNav/>
             {renderCarTags(Route,cars,TagCard,searchTerm,manager,creator,safe)}
             

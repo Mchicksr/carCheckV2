@@ -1,4 +1,4 @@
-import { FETCH_CARS,CREATE_CARS,UPDATE, DELETE } from "../constants/actionTypes";
+import { FETCH_CARS,CREATE_CARS,UPDATE, DELETE, GET_CAR } from "../constants/actionTypes";
 import * as api from '../api/index'
 
 export const getCars = () => async (dispatch) => {
@@ -9,10 +9,21 @@ export const getCars = () => async (dispatch) => {
         console.log(error.message)
     }
 }
+export const getCar = (searchTerm) => async (dispatch) => {
+    try {
+        const {data} = await api.getCar(searchTerm)
+        dispatch({type:GET_CAR,payload:data})
+        console.log('checkACTION',data)
+    } catch (error) {
+        console.log(error.message)
+    }
+}
 
 export const createCar = (carData) => async (dispatch) => {
     try {
         const {data} = await api.createCars(carData)
+        console.log('data',data)
+
         dispatch({type:CREATE_CARS,payload:data})
     } catch (error) {
         console.log(error)

@@ -16,6 +16,7 @@ export const fetchCommunity = () => API.get('/community')
 export const fetchCars = () => API.get('/cars')
 export const createCars = (newCar) => API.post('/cars',newCar)
 export const deleteCar = (id) => API.delete(`/cars/${id}`)
+export const getCar = (searchTerm) => axios.get(`http://localhost:8000/cars/find/${searchTerm}`)
 
 // violation
 // export const addViolation =  (id) => API.patch(`/cars/${id}/violation`)

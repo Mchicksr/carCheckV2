@@ -1,9 +1,13 @@
-import { FETCH_CARS,CREATE_CARS,UPDATE,DELETE } from "../constants/actionTypes";
+import { FETCH_CARS,CREATE_CARS,UPDATE,DELETE,GET_CAR } from "../constants/actionTypes";
  const cars = (cars=[],action) => {
 
     switch(action.type) {
         case FETCH_CARS:
             return action.payload
+        case GET_CAR:
+            console.log('AP',action.payload)
+            return action.payload
+
         case CREATE_CARS:
                 return [...cars,action.payload]
 

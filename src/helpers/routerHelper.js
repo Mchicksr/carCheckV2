@@ -5,6 +5,8 @@ const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
 const isSameOrBefore = require("dayjs/plugin/isSameOrBefore");
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
+
+const no ="No Cars"
 // const handleFilterDate = (date,field) => {
 //   const filteredData = cars.filter(item => {
 //     if(field == 'from' && dayjs(item.modified).isSameOrAfter(date)){
@@ -44,8 +46,11 @@ dayjs.extend(isSameOrAfter);
             }).filter((val)=>{
               if(searchTerm === ""){
                   return val
-              // }else if(val.license_plate.toLowerCase().includes(searchTerm.toLowerCase())){
-              }else if(val.license_plate.includes(searchTerm)){
+              
+              }
+            
+              else if(val.license_plate.toLowerCase().includes(searchTerm.toLowerCase())){
+              // }else if(val.license_plate.includes(searchTerm)){
                   return val
               }
               return null
@@ -57,8 +62,11 @@ dayjs.extend(isSameOrAfter);
             }
 
           }).map((item,index) => (
-              <li key={item._id}>
-              
+            
+              console.log('item',item),
+            
+            <li >
+             
               <TagCard
                       id={item._id}
                       lp={item.license_plate}
@@ -71,12 +79,13 @@ dayjs.extend(isSameOrAfter);
                       modified={item.modified}
                       community={item.community_id}
                       sticker={item.sticker}
-                      key={index}
+                      key={item._id}
                       manager={manager}
                       creator={creator}
                   />
-                
+              
                   </li>
+         
             ))
             }
           }
