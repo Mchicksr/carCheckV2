@@ -43,7 +43,7 @@ function App() {
     user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
     user?.result?._id === access ? setCreator(true) : setCreator(false)
   }, [dispatch,user?.result?._id])
-console.log('vio',violations)
+// console.log('vio',violations)
   return (
     <div className="App"> 
       <Navbar manager={manager}/>    

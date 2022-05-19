@@ -20,7 +20,7 @@ function CarForm({communities}) {
         {id:2,violation_type:'backing in'},
         {id:3,violation_type:'parking on street'}, 
         {id:4,violation_type:'expired license plate'},
-        {id:5,violation_type:'not registered'},
+        {id:5,violation_type:'No Decal or Pass'},
         {id:7,violation_type:'expired pass'},
         {id:8,violation_type:'commercial vehicle'},
         {id:9,violation_type:'other'}

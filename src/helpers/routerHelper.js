@@ -60,6 +60,7 @@ dayjs.extend(isSameOrAfter);
               <li key={item._id}>
               
               <TagCard
+                      key={index}
                       id={item._id}
                       lp={item.license_plate}
                       carMake={item.car_make}
@@ -71,7 +72,6 @@ dayjs.extend(isSameOrAfter);
                       modified={item.modified}
                       community={item.community_id}
                       sticker={item.sticker}
-                      key={index}
                       manager={manager}
                       creator={creator}
                   />
