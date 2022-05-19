@@ -37,7 +37,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getCars())
-    dispatch(getCommunities())
+    dispatch(getCommunities()) 
     dispatch(getViolations())
     user?.result?._id === access && access2? setManager(true) : setManager(false)
     user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
