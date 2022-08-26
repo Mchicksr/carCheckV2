@@ -14,8 +14,9 @@ export const getCar = (searchTerm) => async (dispatch) => {
         const {data} = await api.getCar(searchTerm)
         dispatch({type:GET_CAR,payload:data})
         console.log('checkACTION',data)
+        
     } catch (error) {
-        console.log(error.message)
+        console.log(error)
     }
 }
 
@@ -24,6 +25,7 @@ export const createCar = (carData) => async (dispatch) => {
         const {data} = await api.createCars(carData)
         console.log('data',data)
 
+
         dispatch({type:CREATE_CARS,payload:data})
     } catch (error) {
         console.log(error)
@@ -31,12 +33,12 @@ export const createCar = (carData) => async (dispatch) => {
 } 
 
 export const addViolation = (id,violation) => async (dispatch) =>{
-try {
-    const {data} = await api.addViolation(id,violation)
-    dispatch({type:UPDATE, payload:data})
-} catch (error) {
-    console.log(error)
-}
+    try {
+        const {data} = await api.addViolation(id,violation)
+        dispatch({type:UPDATE, payload:data})
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export const resetViolation = (id) => async (dispatch) => {

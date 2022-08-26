@@ -33,6 +33,7 @@ function App() {
   const access = '61a94e4adba13dd081420629'
   const access2 = '61bb63d143156f329531f69b'
   const user = JSON.parse(localStorage.getItem('profile'))
+  const [show,setShow] = useState(false)
 
 
 
@@ -44,7 +45,7 @@ function App() {
     user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
     user?.result?._id === access ? setCreator(true) : setCreator(false)
   }, [dispatch,user?.result?._id])
-console.log('vio',violations)
+// console.log('vio',violations)
   return (
     <div className="App"> 
       <Navbar manager={manager}/>    
@@ -55,7 +56,7 @@ console.log('vio',violations)
         <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
         <Route path='/TowForm' component={Tow}/>
         <Route path='/Profile/:searchTerm' render={() => <Profile cars={cars}/>}/>
-        <Route path='/Tags' render={() => <Tags renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm} manager={manager} user={user} creator={creator} safe={safe} setSafe={setSafe} setCarArr={setCarArr}/>}/>
+        <Route path='/Tags' render={() => <Tags renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm} manager={manager} user={user} creator={creator} safe={safe} setSafe={setSafe} setCarArr={setCarArr} show={show} setShow={setShow} communities={communities}/>}/>
         <Route path='/' exact component={UserProfile}/>
       </Switch>
 

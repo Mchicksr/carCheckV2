@@ -5,7 +5,7 @@ const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
 const isSameOrBefore = require("dayjs/plugin/isSameOrBefore");
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
-
+console.log('car:','DF3G4WW')
 const no ="No Cars"
 // const handleFilterDate = (date,field) => {
 //   const filteredData = cars.filter(item => {
@@ -25,7 +25,9 @@ const no ="No Cars"
 
 //   setData(filteredData);
 // };
- const renderCarTags = (Route,cars,TagCard,searchTerm,manager,creator,safe) => {
+ const renderCarTags = (Route,cars,TagCard,searchTerm,manager,creator,safe,show,setShow) => {
+  console.log('show',show)
+
     const row = ['/Tags','/Tags/:urlId'].map(path => (
         <>
           <Route
@@ -40,17 +42,22 @@ const no ="No Cars"
                 return car
               }
               else if(car.community_id === urlId){
+                
                 return car
               }
-              return null
+              // return null
             }).filter((val)=>{
-              if(searchTerm === ""){
+              if(searchTerm == ""){
+                console.log('empty')
                   return val
               
+              } else if(searchTerm == 0){
+                console.log('none')
+                return val
               }
-            
               else if(val.license_plate.toLowerCase().includes(searchTerm.toLowerCase())){
               // }else if(val.license_plate.includes(searchTerm)){
+
                   return val
               }
               return null
@@ -66,6 +73,7 @@ const no ="No Cars"
               console.log('item',item),
             
             <li >
+             {
              
               <TagCard
                       id={item._id}
@@ -83,7 +91,7 @@ const no ="No Cars"
                       manager={manager}
                       creator={creator}
                   />
-              
+          }
                   </li>
          
             ))

@@ -12,8 +12,8 @@ function Verify({id,verified,manager}) {
     return (
         <div>
             <h3>Verify Status</h3>
-            {verified.map(item => {
-                return item === "" ? "not verified" : <i className="fas fa-check-circle"></i>
+            {verified.map((item, index )=> {
+                return item === "" ? "not verified" : <i key={index} className="fas fa-check-circle"></i>
             })} <br />
             {manager ? <> 
             <button onClick={()=> dispatch(verify(id))}>Verify</button>
