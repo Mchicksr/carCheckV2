@@ -5,14 +5,14 @@ import dayjs from "dayjs";
 // import formData from 'form-data'
 
 import './CarCard.css'
-import violations from '../../reducers/violation';
+// import violations from '../../reducers/violation';
 
 function CarCard({cars,vType,setCarStatus}) {
   const carS = []
-  const carObj = {}
+  // const carObj = {}
 useEffect(() => {
   setCarStatus(carS)
-}, [setCarStatus])
+}, [setCarStatus,carS])
 
 
 const works = [...vType].filter(item => {

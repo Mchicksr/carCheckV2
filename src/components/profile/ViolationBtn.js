@@ -15,7 +15,7 @@ function ViolationBtn({ id, violations, lic }) {
     const [violationType, setViolationType] = useState("")
 
     const violationData = { violation_type: violationType, carLic: lic }
-    const newarr = []
+    // const newarr = []
     useEffect(() => {
         dispatch(getViolations())
 

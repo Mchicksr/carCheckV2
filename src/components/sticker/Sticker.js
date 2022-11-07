@@ -39,8 +39,8 @@ function Sticker({carId,manager}) {
         
 
                 return null
-            }).map(item => {
-                return  item === "" ? null :(<> <i className="fas fa-times" key={carId}></i> <p>{format(item.modified,'Do MMM YYYY')}</p></>)
+            }).map((item,index) => {
+                return  item === "" ? null :(<div key={`m${index}`}> <i className="fas fa-times" key={index}></i> <p key={`t${index}`}>{format(item.modified,'Do MMM YYYY')}</p></div>)
             })} <br/>
             {manager ? <>
 

@@ -5,13 +5,13 @@ import React, { useRef } from 'react';
 // import formData from 'form-data'
 
 import CarCard from '../../components/carlog/CarCard';
-import CarCardCsv from'../../components/carlog/CarCardCsv';
+// import CarCardCsv from'../../components/carlog/CarCardCsv';
 import Log from '../../components/carlog/Log';
 import dayjs from "dayjs";
 import { useState } from 'react';
 import { Button } from '@material-ui/core';
 
-import { useReactToPrint } from "react-to-print";
+// import { useReactToPrint } from "react-to-print";
 import {CSVLink} from "react-csv"
 
 
@@ -24,15 +24,17 @@ function CarLog({cars,communities,violations}) {
     const [carStatus, setCarStatus] = useState([]) 
    console.log('carsS',carStatus)
     const componentRef = useRef();
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
+
+//   const handlePrint = useReactToPrint({
+//     content: () => componentRef.current,
+//   });
 
    
 
       const handleFilterDate = (date,field) => {
         const filteredData = cars.filter(item => {
-          if(field == 'from' && dayjs(item.modified).isSameOrAfter(date)){
+        //   if(field == 'from' && dayjs(item.modified).isSameOrAfter(date)){
+          if(field === 'from' && dayjs(item.modified).isSameOrAfter(date)){
             // console.log('Copy',dayjs(item.modified).isSameOrAfter(date))
             return item
           } 
@@ -45,6 +47,7 @@ function CarLog({cars,communities,violations}) {
                 if(!commute){
                     return <h1>Choose Community</h1>
                 } else if(car.community_id === commute){
+                // } else if(car.community_id === commute){
 
                     return car
                 } else {
@@ -61,27 +64,27 @@ function CarLog({cars,communities,violations}) {
             />)
             return list
         }
-      const renderCsv = () => {
-          const list = allCars.filter((car)=>{
-                if(!commute){
-                    return <h1>Choose Community</h1>
-                } else if(car.community_id === commute){
+    //   const renderCsv = () => {
+    //       const list = allCars.filter((car)=>{
+    //             if(!commute){
+    //                 return <h1>Choose Community</h1>
+    //             } else if(car.community_id === commute){
 
-                    return car
-                } else {
-                }
-            }).map( item => <CarCardCsv 
-            key={item._id} 
-            cars={item}
-            carMake={item.car_make}
-            carModel={item.car_model}
-            modified={item.modified}
-            vType={violations}
-            setCarStatus={setCarStatus}
+    //                 return car
+    //             } else {
+    //             }
+    //         }).map( item => <CarCardCsv 
+    //         key={item._id} 
+    //         cars={item}
+    //         carMake={item.car_make}
+    //         carModel={item.car_model}
+    //         modified={item.modified}
+    //         vType={violations}
+    //         setCarStatus={setCarStatus}
             
-            />)
-            return list
-        }
+    //         />)
+    //         return list
+    //     }
 
         const arr2 = [
             {id:1,letter:'a'},

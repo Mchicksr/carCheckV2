@@ -13,7 +13,7 @@ function Verify({id,verified,manager}) {
         <div>
             <h3>Verify Status</h3>
             {verified.map((item, index )=> {
-                return item === "" ? "not verified" : <i key={index} className="fas fa-check-circle"></i>
+                return item === "" ? <p key={index}>"not verified"</p> : <i key={index} className="fas fa-check-circle"></i>
             })} <br />
             {manager ? <> 
             <button onClick={()=> dispatch(verify(id))}>Verify</button>

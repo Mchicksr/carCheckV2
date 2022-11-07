@@ -1,67 +1,81 @@
 import React,{useState,useEffect} from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import {getCar} from '../../actions/cars';
+import axios from 'axios';
 // import {Link} from 'react-router-dom'
 function SearchBar({searchTerm,setSearchTerm,setCarArr,setShow,communities}) {
     const cars = useSelector((state)=> state.cars)
     const [carResult,setCarResult ] = useState('')
-    const numOfCars = cars.length
+    const [numOfCars,setNumofCars] = useState({num:cars.length})
+    const [carNum, setCarNum] = useState(0)
+    // const [numOfCars,setNumofCars] = useState(0)
+    // const numOfCars = cars.length
     const dispatch = useDispatch()
-
+   
+   const myUrl = new URL('http://localhost:3000/')
+   const Url = new URL(window.location.href)
     
-    console.log('check',cars)
-    // setCarResult(numOfCars) 
+    useEffect(() => {
+   
+    setNumofCars((prev) =>{ 
+        return {...prev, num:cars.length}
+        })
+    }, [cars.length, carResult]);
 
-    console.log('CR',carResult)
+
     const findCar = async () =>{
-        // console.log('clicks')
+        
         await dispatch(getCar(searchTerm))
         setShow(true)
 
         if(searchTerm == 0){
             setCarResult('Type License Plate in Field')
         } else {
-            console.log('check length',cars)
-             setCarResult(numOfCars) 
-             return await carResult
+          
+          
+
+            setCarResult(numOfCars.num)
+          
         }
         
     }
 
     const carName = () => {
+        
+
         let carResult;
         let commute;
        carResult = cars.map(car => {
-            return car.community_id
+            communities.filter((coms, index) =>{
+                if(coms._id == car.community_id){
+                    commute = coms.community
+                }
+            } )
+            return commute
         })
 
-        commute = communities.map(place =>{
-            return <li key={place.id}>{place.community.children}</li>
-        })
-        console.log('commute',commute)
+  
         return carResult
     }
 
-    console.log('cName',carName())
+    
+  
     return (
         <div>
             <h2 className="tagSub">Tag Number</h2>
               <form>
               <label htmlFor="TagNumber"></label> 
               <input className="TFInput" type="text" value={searchTerm} onChange={e => setSearchTerm(e.target.value)}></input><br></br>
-              {/* <button type="button" onClick={() => dispatch(getCar(searchTerm))}>Search</button> */}
-              <button class="btn btn-primary" type="button" onClick={findCar}>Search</button>
-              {/* <Link className="TFBtn" to={`/Profile/${searchTerm}`}>Submit</Link> */}
+
+              <button className="btn btn-primary" type="button" onClick={findCar}>Search</button>
+
           </form>
-          {/* <p>{cars.map(car =>{
-              
-              return <p>{car.car_make.length}</p> 
-          })}</p> */}
-          
-          <p> Results: {carResult}</p>
+      
+        
+          <p> Results: {numOfCars.num}</p>
           <p>Communities: {carName()}</p>
         </div>
     );
 }
 
-export default SearchBar;
+export default SearchBar; 

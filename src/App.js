@@ -3,7 +3,7 @@ import React,{useEffect,useState} from 'react';
 import './App.css';
 import {useDispatch,useSelector} from 'react-redux'
 import { Route, Switch} from 'react-router-dom'
-import {getCar} from './actions/cars'
+// import {getCar} from './actions/cars'
 import {getCommunities} from './actions/community'
 import { getViolations } from './actions/violation';
 import Navbar from './Routes/navBar/Navbar';
@@ -56,7 +56,7 @@ function App() {
         <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
         <Route path='/TowForm' component={Tow}/>
         <Route path='/Profile/:searchTerm' render={() => <Profile cars={cars}/>}/>
-        <Route path='/Tags' render={() => <Tags renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm} manager={manager} user={user} creator={creator} safe={safe} setSafe={setSafe} setCarArr={setCarArr} show={show} setShow={setShow} communities={communities}/>}/>
+        <Route path='/Tags' render={() => <Tags car={carArr} renderCarTags={renderCarTags} Route={Route} cars={cars} TagCard={TagCard} searchTerm={searchTerm} setSearchTerm={setSearchTerm} manager={manager} user={user} creator={creator} safe={safe} setSafe={setSafe} setCarArr={setCarArr} show={show} setShow={setShow} communities={communities}/>}/>
         <Route path='/' exact component={UserProfile}/>
       </Switch>
 

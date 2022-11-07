@@ -57,7 +57,7 @@ function Comments({carId,address,modified}) {
                 }
                 return null
             }).map((item)=> (
-                 <CommentList name={item.name} comment={item.content} modified={item.modified}/>
+                 <CommentList key={item._id} name={item.name} comment={item.content} modified={item.modified}/>
             ))}
                 </> : null
             }

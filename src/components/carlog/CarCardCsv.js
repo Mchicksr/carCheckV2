@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 // import formData from 'form-data'
 
 // import './CarCard.css'
-import violations from '../../reducers/violation';
+// import violations from '../../reducers/violation';
 
 function CarCard({cars,vType,setCarStatus}) {
 

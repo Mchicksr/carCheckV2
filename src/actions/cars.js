@@ -13,7 +13,7 @@ export const getCar = (searchTerm) => async (dispatch) => {
     try {
         const {data} = await api.getCar(searchTerm)
         dispatch({type:GET_CAR,payload:data})
-        console.log('checkACTION',data)
+        // console.log('checkACTION',data)
         
     } catch (error) {
         console.log(error)

@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { useHistory } from 'react-router-dom';
-import { TextField, Button, Paper, Select } from '@material-ui/core';
+import { TextField, Button, Paper } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 // import FileBase from 'react-file-base64';
 import {createCar} from '../../actions/cars'
@@ -46,6 +46,7 @@ function CarForm({communities}) {
                 <TextField name="car_model" variant="outlined" label="Car Model" fullWidth value={carData.car_model} required onChange={(e) => setCarData({...carData,car_model:e.target.value})}/>
                 <TextField name="color" variant="outlined" label="Color" fullWidth value={carData.color} required onChange={(e) => setCarData({...carData,color:e.target.value})}/>
                 {/* <TextField name="car_address" variant="outlined" label="address" fullWidth value={carData.car_address} required onChange={(e) => setCarData({...carData,car_address:e.target.value})}/> */}
+
                 <TextField name="car_address" variant="outlined" label="Comments" fullWidth value={carData.car_address} multiline onChange={(e) => setCarData({...carData,car_address:e.target.value})}/>
                 <select name="community_id" id="community_id" value={carData.community_id} onChange={(e) => setCarData({...carData,community_id:e.target.value})}>
                     <option>---select community</option>
@@ -56,8 +57,8 @@ function CarForm({communities}) {
 
                 <select name="violation_type" id="violation_type" value={violationType} onChange={(e) => setViolationType(e.target.value)}>
                     <option>---select violation</option>
-                    {violationArr.map(value => {
-                        return <option key={value._id} value={value.violation_type} >{value.violation_type}</option>
+                    {violationArr.map((value,index) => {
+                        return <option key={`2${index}`} value={value.violation_type} >{value.violation_type}</option>
                     })}
                 </select>
                 <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>

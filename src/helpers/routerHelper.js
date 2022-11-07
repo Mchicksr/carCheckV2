@@ -6,7 +6,7 @@ const isSameOrBefore = require("dayjs/plugin/isSameOrBefore");
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
 console.log('car:','DF3G4WW')
-const no ="No Cars"
+// const no ="No Cars"
 // const handleFilterDate = (date,field) => {
 //   const filteredData = cars.filter(item => {
 //     if(field == 'from' && dayjs(item.modified).isSameOrAfter(date)){
@@ -26,13 +26,12 @@ const no ="No Cars"
 //   setData(filteredData);
 // };
  const renderCarTags = (Route,cars,TagCard,searchTerm,manager,creator,safe,show,setShow) => {
-  console.log('show',show)
 
-    const row = ['/Tags','/Tags/:urlId'].map(path => (
-        <>
+    const row = ['/Tags','/Tags/:urlId'].map((path,index) => (
+        <div key={`k${index}`}>
           <Route
           exact
-            key={path}
+            key={index}
             path={path}
             render={routerProps => {
             const {urlId} = routerProps.match.params
@@ -45,18 +44,14 @@ const no ="No Cars"
                 
                 return car
               }
-              // return null
             }).filter((val)=>{
               if(searchTerm == ""){
-                console.log('empty')
                   return val
               
               } else if(searchTerm == 0){
-                console.log('none')
                 return val
               }
               else if(val.license_plate.toLowerCase().includes(searchTerm.toLowerCase())){
-              // }else if(val.license_plate.includes(searchTerm)){
 
                   return val
               }
@@ -70,12 +65,12 @@ const no ="No Cars"
 
           }).map((item,index) => (
             
-              console.log('item',item),
             
-            <li >
+            <li key={`li${index}`}>
              {
              
               <TagCard
+              key={index}
                       id={item._id}
                       lp={item.license_plate}
                       carMake={item.car_make}
@@ -87,7 +82,6 @@ const no ="No Cars"
                       modified={item.modified}
                       community={item.community_id}
                       sticker={item.sticker}
-                      key={item._id}
                       manager={manager}
                       creator={creator}
                   />
@@ -98,7 +92,7 @@ const no ="No Cars"
             }
           }
           />    
-        </>
+        </div>
       ))
       return row
 }

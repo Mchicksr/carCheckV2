@@ -10,12 +10,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@material-ui/core/Container';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
-import MenuItem from '@material-ui/core/MenuItem';
+// import MenuItem from '@material-ui/core/MenuItem';
 import useStyles from './styles'
 
  
@@ -37,9 +37,9 @@ function Navbar({manager}) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
   
-    const handleOpenNavMenu = (event) => {
-      setAnchorElNav(event.currentTarget);
-    };
+    // const handleOpenNavMenu = (event) => {
+    //   setAnchorElNav(event.currentTarget);
+    // };
     const handleOpenUserMenu = (event) => {
       setAnchorElUser(event.currentTarget);
     };
@@ -72,6 +72,7 @@ function Navbar({manager}) {
 
     return (
         <AppBar position="static" color="transparent">
+          
           <Container maxWidth="xl">
             <Toolbar disableGutters>
               <Typography
@@ -83,8 +84,8 @@ function Navbar({manager}) {
                 <Link to="/"><img src={logo} alt="logo" className={classes.image} height="60"/></Link>
 
               </Typography>
-    
-              <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                &nbsp;
+              {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                 <IconButton
                   // size="large"
                   size="medium"
@@ -121,7 +122,7 @@ function Navbar({manager}) {
                   ))}
                  
                 </Menu>
-              </Box>
+              </Box> */}
               <Typography
                 variant="h6"
                 noWrap
