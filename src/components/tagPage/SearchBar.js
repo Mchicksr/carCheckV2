@@ -1,6 +1,10 @@
 import React,{useState,useEffect} from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import {getCar} from '../../actions/cars';
+// import CarEntryForm from '../../Routes/carEntryForm/carEntryForm';
+import CarForm from '../carForm/CarForm';
+import './SearchBar.css'
+
 import axios from 'axios';
 // import {Link} from 'react-router-dom'
 function SearchBar({searchTerm,setSearchTerm,setCarArr,setShow,communities}) {
@@ -8,6 +12,7 @@ function SearchBar({searchTerm,setSearchTerm,setCarArr,setShow,communities}) {
     const [carResult,setCarResult ] = useState('')
     const [numOfCars,setNumofCars] = useState({num:cars.length})
     const [carNum, setCarNum] = useState(0)
+    const [formModal, setFormModal] = useState(false)
     // const [numOfCars,setNumofCars] = useState(0)
     // const numOfCars = cars.length
     const dispatch = useDispatch()
@@ -30,6 +35,7 @@ function SearchBar({searchTerm,setSearchTerm,setCarArr,setShow,communities}) {
 
         if(searchTerm == 0){
             setCarResult('Type License Plate in Field')
+            activateForm()
         } else {
           
           
@@ -58,10 +64,29 @@ function SearchBar({searchTerm,setSearchTerm,setCarArr,setShow,communities}) {
         return carResult
     }
 
-    
+    const activateForm = () =>{
+
+        // if(cars.length === 0){
+            // return <CarEntryForm/>
+            // return <CarEntryForm communities={communities} cars={cars} user={user}/>
+            return <CarForm communities={communities}/>
+        // } else {
+        //     console.log('good')
+        //   return null
+        // }
+    }
+
+    const triggerForm = () =>{
+        setFormModal(()=>{return !formModal })
+       
+    }
   
     return (
         <div>
+            <button className='btn btn-primary' onClick={triggerForm}>{formModal ? 'Hide Form' : 'Show Form'}</button>
+            <div className={formModal ? 'showForm' : 'hideForm'}>
+                {activateForm()}
+            </div>
             <h2 className="tagSub">Tag Number</h2>
               <form>
               <label htmlFor="TagNumber"></label> 
@@ -74,6 +99,7 @@ function SearchBar({searchTerm,setSearchTerm,setCarArr,setShow,communities}) {
         
           <p> Results: {numOfCars.num}</p>
           <p>Communities: {carName()}</p>
+
         </div>
     );
 }

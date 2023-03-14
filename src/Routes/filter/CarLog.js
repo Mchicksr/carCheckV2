@@ -22,7 +22,7 @@ function CarLog({cars,communities,violations}) {
     const [allCars, setCars] = useState(cars)
     const [commute,setCommute] = useState('')
     const [carStatus, setCarStatus] = useState([]) 
-   console.log('carsS',carStatus)
+//    console.log('carsS',carStatus)
     const componentRef = useRef();
 
 //   const handlePrint = useReactToPrint({

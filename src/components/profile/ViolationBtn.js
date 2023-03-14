@@ -6,7 +6,8 @@ import { format } from 'date-fns'
 import { addViolation} from '../../actions/cars'
 import { Button } from '@material-ui/core'
 import { getViolations } from '../../actions/violation';
-import { createViolation } from '../../actions/violation';
+import { createViolation} from '../../actions/violation';
+import {violations_list} from '../../actions/cars'
 
 function ViolationBtn({ id, violations, lic }) {
     const violation_types = useSelector((state) => state.violations)
@@ -16,24 +17,24 @@ function ViolationBtn({ id, violations, lic }) {
 
     const violationData = { violation_type: violationType, carLic: lic }
     // const newarr = []
-    useEffect(() => {
-        dispatch(getViolations())
+    // useEffect(() => {
+    //     dispatch(getViolations())
 
-        const result = violation_types.filter(item => {
-            if (item.carLic === lic) {
-                console.log('cehs3',item.carLic)
-                return item
-            } else {
-                console.log('sdcs')
-                return null
-            }
-        })
+    //     const result = violation_types.filter(item => {
+    //         if (item.carLic === lic) {
+    //             // console.log('cehs3',item.carLic)
+    //             return item
+    //         } else {
+    //             // console.log('sdcs')
+    //             return null
+    //         }
+    //     })
         
-            console.log('check2',result.length)
-            setVio(result.length)
+    //         // console.log('check2',result.length)
+    //         setVio(result.length)
         
 
-    }, [vio,])
+    // }, [vio])
 
 
 
@@ -50,9 +51,9 @@ function ViolationBtn({ id, violations, lic }) {
     // console.log('check',violation_types)
     // console.log('violations',violations)
     const violationCount = () => {
-        const result = violation_types.filter(item => {
+        const result = violation_types.filter((item,index) => {
             if (item.carLic === lic) {
-                return item
+                return <p class={`lo${index}`}>{item}</p>
             } else {
 
                 return null
@@ -91,21 +92,21 @@ function ViolationBtn({ id, violations, lic }) {
             <h3>Violations Detail</h3>
             <select name="violation_type" id="violation_type" value={violationType} onChange={(e) => setViolationType(e.target.value)}>
                 <option>Add violation</option>
-                {violationArr.map(value => {
-                    return <option key={value.id} value={value.violation_type} >{value.violation_type}</option>
+                {violationArr.map((value,index )=> {
+                    return <option key={`re${index}`} value={value.violation_type} >{value.violation_type}</option>
                 })}
             </select> <br />
             {/* <Button variant="contained" color="secondary" size="small" onClick={()=> {return dispatch(createViolation({...violationData}))}}>Add Violation</Button> */}
             <Button variant="contained" color="secondary" size="small" onClick={violationCount}>Add Violation</Button>
             
-            {violation_types.filter(item => {
+            {violation_types.filter((item,index) => {
                 if (item?.carLic === lic) {
                     
                     return item
                 } else {
                     return null
                 }
-            }).map(item => (<div className="violation_type"> <div className="vPair"> <h4>Violation type:</h4><p>{item.violation_type}</p></div>  <div className="vPair"><h4>Date created</h4> <p>{format(item.modified, 'Do MMM YYYY')}</p></div> </div>))}
+            }).map((item,index )=> (<div className="violation_type" key={`ma${index}`}> <div className="vPair"> <h4>Violation type:</h4><p key={index}>{item.violation_type}</p></div>  <div className="vPair"><h4>Date created</h4> <p>{format(item.modified, 'Do MMM YYYY')}</p></div> </div>))}
 
             
             </div>

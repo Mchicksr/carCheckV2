@@ -18,7 +18,8 @@ function Nav(props) {
     const logout = useCallback(() => {
   
         dispatch({type:'LOGOUT'})
-        history.push('/')
+        // history.push('/')
+        history('/')
         setUser(null)
     },[dispatch,history])
     
@@ -43,6 +44,7 @@ function Nav(props) {
                         <li className="navItem"><Link to='/CarForm'><h2>Add Car</h2></Link></li>
                         <li className="navItem"><Link to='/Fax'><h2>Tow Car</h2></Link></li>
                         <li className="navItem"><Link to='/CarLog'><h2>Car Log</h2></Link></li>
+                        {/* <li className="navItem"><Link to='/CarLog'><h2>Car Log2</h2></Link></li> */}
                         
                     </ul>
                 </div>
@@ -55,6 +57,7 @@ function Nav(props) {
                     </div>
                 ):(
                         <Button component={Link} to="/Login" variant="contained" color="primary">sign in</Button>
+                        // <Button component={Link} to="/Logins" variant="contained" color="primary">sign in</Button>
                 )}
 
             </Toolbar>

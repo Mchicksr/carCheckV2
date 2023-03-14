@@ -1,11 +1,15 @@
 import React from "react"
 import dayjs from "dayjs"
 
+
+import { Routes } from "react-router-dom";
+
 const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
 const isSameOrBefore = require("dayjs/plugin/isSameOrBefore");
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
 console.log('car:','DF3G4WW')
+console.log('car2:','EE3Y3ED')
 // const no ="No Cars"
 // const handleFilterDate = (date,field) => {
 //   const filteredData = cars.filter(item => {
@@ -25,17 +29,18 @@ console.log('car:','DF3G4WW')
 
 //   setData(filteredData);
 // };
- const renderCarTags = (Route,cars,TagCard,searchTerm,manager,creator,safe,show,setShow) => {
+ const RenderCarTags = (Route,cars,TagCard,searchTerm,manager,creator,safe,show,setShow,violationCount) => {
 
-    const row = ['/Tags','/Tags/:urlId'].map((path,index) => (
+    const row = ['/Tags','/Tags/:urlId','/Tags/:urlId/:searchterm' ].map((path,index) => (
         <div key={`k${index}`}>
+          
           <Route
           exact
             key={index}
             path={path}
             render={routerProps => {
             const {urlId} = routerProps.match.params
-    
+             
             return cars.filter(car => {
                if(!car){
                 return car
@@ -51,25 +56,20 @@ console.log('car:','DF3G4WW')
               } else if(searchTerm == 0){
                 return val
               }
-              else if(val.license_plate.toLowerCase().includes(searchTerm.toLowerCase())){
+              else if(val.license_plate.toUpperCase().includes(searchTerm.toUpperCase())){
 
                   return val
               }
               return null
-          }).filter((val) => {
-            if(!safe){
-              return val
-            } else if(safe && val.verified[0]){
-              return val
-            }
-
           }).map((item,index) => (
-            
-            
+
             <li key={`li${index}`}>
              {
              
+              [
+              console.log(item.license_plate),
               <TagCard
+              
               key={index}
                       id={item._id}
                       lp={item.license_plate}
@@ -84,7 +84,9 @@ console.log('car:','DF3G4WW')
                       sticker={item.sticker}
                       manager={manager}
                       creator={creator}
-                  />
+                      safe={item.safe}
+                      violationCount={violationCount}
+                  />]
           }
                   </li>
          
@@ -92,9 +94,10 @@ console.log('car:','DF3G4WW')
             }
           }
           />    
+        
         </div>
       ))
       return row
 }
 
-export default renderCarTags
+export default RenderCarTags

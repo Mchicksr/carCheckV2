@@ -9,8 +9,12 @@ function CarEntryForm({communities,user}) {
             <CarForm communities={communities}/>
 
             </>:<h1>Please Login</h1>}
+            {/* <CarForm communities={communities}/> */}
+
         </div>
     );
 }
 
 export default CarEntryForm;
+
+// directed from 

@@ -6,4 +6,5 @@ import comments from './comments'
 import sticker from './sticker'
 import image from './image'
 import violations from './violation'
-export default combineReducers({communities,cars,auth,comments,sticker,image,violations})
+import safeList from './safeList'
+export default combineReducers({communities,cars,auth,comments,sticker,image,violations,safeList})

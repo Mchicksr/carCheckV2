@@ -1,0 +1,6 @@
+.rulesModalOpen{
+    display: block;
+}
+.rulesModalClose{
+    display: none;
+}

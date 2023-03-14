@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-function TagCardEditBtn({id,violations,cm,cmo,lic,color,address,modified,verified,sticker,manager,creator}) {
-
+function TagCardEditBtn({id,violations,cm,cmo,lic,color,address,modified,verified,sticker,manager,creator,community}) {
     return (
         <div>
             <Link className={'TCEdit'} to={{
-                pathname:`/Profile/${lic}`,
+                // pathname:`/Profile/${lic}`,
+                pathname:`/Tags/${community}/${lic}`,
                 state:{
                     id:id,
                     violations:violations,

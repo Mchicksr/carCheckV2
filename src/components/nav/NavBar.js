@@ -23,7 +23,8 @@ import useStyles from './styles'
 const pages = [<li><Link className="navLink" to='/Tags'><p className="navLink">Find Car Tags</p></Link></li>,
               <li className="navItem"><Link className="navLink" to='/CarForm'><p className="navLink">Add Car</p></Link></li>,
               <li className="navItem"><Link to='/CarLog'><p>Car Log</p></Link></li>,
-              <li className="navItem"><Link className="navLink" to='/Fax'><p className="navLink">Tow Car</p></Link></li>
+              <li className="navItem"><Link className="navLink" to='/Fax'><p className="navLink">Tow Car</p></Link></li>,
+              <li className="navItem"><Link className="navLink" to='/community'><p className="navLink">Add Community</p></Link></li>
                   ]
 // const settings = ['Profile', 'Account', 'Dashboard'];
 
