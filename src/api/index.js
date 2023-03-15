@@ -2,8 +2,8 @@ import axios from 'axios'
 import config from '../config'
 import React,{useState,useEffect} from 'react';
 
-// const API = axios.create({baseURL:config.API_ENDPOINT})
-export const API = axios.create({baseURL:'http://localhost:8000'})
+const API = axios.create({baseURL:config.API_ENDPOINT})
+// export const API = axios.create({baseURL:'http://localhost:8000'})
 
 API.interceptors.request.use((req)=>{
     if(localStorage.getItem('profile')){
@@ -20,7 +20,8 @@ export const createRules = (id,rules) => API.post(`/community/rules/${id}`,rules
 export const fetchCars = () => API.get('/cars')
 export const createCars = (newCar) => API.post('/cars',newCar)
 export const deleteCar = (id) => API.delete(`/cars/${id}`)
-export const getCar = (searchTerm) => axios.get(`http://localhost:8000/cars/find/${searchTerm}`)
+// export const getCar = (searchTerm) => axios.get(`http://localhost:8000/cars/find/${searchTerm}`)
+export const getCar = (searchTerm) => API.get(`/cars/find/${searchTerm}`)
 
 // violation NEW
 // export const addViolation =  (id) => API.patch(`/cars/${id}/violation`)
@@ -35,7 +36,8 @@ export const verify = (id) => API.patch(`/cars/${id}/verify`)
 //  There is an API in side of SafeBtn 
 export const getSafeList = (id) => API.get(`cars/safe/${id}`)
 // export const updateSafe = (id,safe) => API.patch(`cars/safe/${id}`,safe)
-export const updateSafe = (id,safe) => axios.patch(`http://localhost:8000/cars/safe/${id}`,safe)
+// export const updateSafe = (id,safe) => axios.patch(`http://localhost:8000/cars/safe/${id}`,safe)
+export const updateSafe = (id,safe) => API.patch(`/cars/safe/${id}`,safe)
 
 
 // sticker
