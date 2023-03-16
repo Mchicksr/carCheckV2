@@ -20,6 +20,7 @@ import Fax from './components/towForm/Fax';
 import CarLog from './Routes/filter/CarLog';
 import CommunityForm from './Routes/communityForm/communityForm';
 import SafeListRoute from './Routes/safeList/SafeListRoute';
+import NewNav from './components/nav/NewNav';
 
   
 function App() {
@@ -77,7 +78,8 @@ function App() {
 
     <div className="App"> 
     
-    <Navbar manager={manager}/>    
+    {/* <Navbar manager={manager}/> */}
+    <NewNav/>    
     {/* --------------------------------------------------------------------------------------- */}
     {/* {manager ? 
       <>

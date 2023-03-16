@@ -86,44 +86,7 @@ function Navbar({manager}) {
 
               </Typography>
                 &nbsp;
-              {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                <IconButton
-                  // size="large"
-                  size="medium"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorElNav}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
-                  sx={{
-                    display: { xs: 'block', md: 'none' },
-                  }}
-                >
-                  {pages.map((page,index) => (
-                    <MenuItem key={index} onClick={handleCloseNavMenu}>
-                      <Typography textlign="center">{page}</Typography>
-                    </MenuItem>
-                  ))}
-                 
-                </Menu>
-              </Box> */}
+           
               <Typography
                 variant="h6"
                 noWrap
@@ -141,12 +104,7 @@ function Navbar({manager}) {
                     {page}
                   </Button>
                 ))}
-                  {/* <ul className="navList">
-                        <li><Link to='/Tags'><h3>Find Car Tags</h3></Link></li>
-                        <li className="navItem"><Link to='/CarForm'><h3>Add Car</h3></Link></li>
-                        <li className="navItem"><Link to='/Fax'><h3>Tow Car</h3></Link></li>
-                        
-                    </ul> */}
+                
               </Box>
     
               <Box sx={{ flexGrow: 0 }}>

@@ -13,3 +13,29 @@
 .navLink{
     color: grey!important;
 }
+
+.avatar{
+    border-radius: 50%;
+    background-color: gray;
+    color: white;
+    width: 40px;
+    height: 40px;
+}
+
+.clear-btn{
+    border: none;
+    background-color: transparent;
+}
+
+.log-hide{
+    opacity: 0;
+}
+
+.log-show{
+    opacity: 1;
+}
+
+.navbar-dark .navbar-toggler {
+    /* color: rgb(255 255 255); */
+    border-color: rgb(255 255 255 / 82%);
+}
