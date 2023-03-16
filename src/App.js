@@ -79,7 +79,7 @@ function App() {
     <div className="App"> 
     
     {/* <Navbar manager={manager}/> */}
-    <NewNav/>    
+    <NewNav manager={manager}/>    
     {/* --------------------------------------------------------------------------------------- */}
     {/* {manager ? 
       <>
