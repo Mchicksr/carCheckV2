@@ -2,8 +2,8 @@ import axios from 'axios'
 import config from '../config'
 import React,{useState,useEffect} from 'react';
 
-const API = axios.create({baseURL:config.API_ENDPOINT})
-// export const API = axios.create({baseURL:'http://localhost:8000'})
+// const API = axios.create({baseURL:config.API_ENDPOINT})
+export const API = axios.create({baseURL:'http://localhost:8000'})
 
 API.interceptors.request.use((req)=>{
     if(localStorage.getItem('profile')){
@@ -11,7 +11,7 @@ API.interceptors.request.use((req)=>{
     }
     return req
 })
-// community
+// communitys
 export const fetchCommunity = () => API.get('/community')
 export const createCommunity = (commData) => API.post('/community',commData)
 export const createRules = (id,rules) => API.post(`/community/rules/${id}`,rules)
