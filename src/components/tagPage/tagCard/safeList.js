@@ -35,10 +35,10 @@ function SafeList({ safe, setSafe }) {
     const showSafe = () =>{
         setSafe(!safe)
         createId()
-        if(commID == storeID){
-            console.log('click')
-            dispatch(getSafeList(storeID))
-        }
+        dispatch(getSafeList(commID))
+        // if(commID == storeID){
+        //     console.log('click')
+        // }
     }
     return (
         <div>
