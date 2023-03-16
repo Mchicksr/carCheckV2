@@ -8,8 +8,7 @@ const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
 const isSameOrBefore = require("dayjs/plugin/isSameOrBefore");
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
-console.log('car:','DF3G4WW')
-console.log('car2:','EE3Y3ED')
+
 // const no ="No Cars"
 // const handleFilterDate = (date,field) => {
 //   const filteredData = cars.filter(item => {
@@ -67,7 +66,7 @@ console.log('car2:','EE3Y3ED')
              {
              
               [
-              console.log(item.license_plate),
+              // console.log(item.license_plate),
               <TagCard
               
               key={index}

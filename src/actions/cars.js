@@ -85,22 +85,24 @@ export const violationList = (id,violations) => async (dispatch)=> {
 
 export const verify = (id) => async (dispatch) => {
     try {
+        console.log('safeID',id)
+        // console.log('safeupdate',safe)
         const {data} = await api.verify(id)
-        dispatch({type:UPDATE,payload:data})
+        // dispatch({type:UPDATE,payload:data})
     } catch (error) {
         console.log(error)
     }
 }
 
-// export const getSafeList = (id) => async (dispatch) =>{
-//     try {
-//         const {data} = await api.getSafeList(id)
-//         console.log('action',data)
-//         dispatch({type:GET_SAFELIST,payload:data})
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+export const getSafeList = (id) => async (dispatch) =>{
+    try {
+        const {data} = await api.getSafeList(id)
+        console.log('action',data)
+        dispatch({type:GET_SAFELIST,payload:data})
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export const deleteCar = (id) => async (dispatch) => {
     try {

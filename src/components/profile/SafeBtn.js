@@ -19,11 +19,13 @@ const SafeBtn = ({ id, safe }) => {
 
     const verifySafeStatus = () => {
         if (safe == 0) {
-            setSafeStatus(1)
-            // return safeStatus
+            // setSafeStatus(1)
+            dispatch(updateSafeStatus(id,{safe:1}))
+            // dispatch(updateSafeStatus({id:id,safe:1}))
         } else if (safe == 1) {
-            setSafeStatus(0)
-            // return safeStatus
+            // setSafeStatus(0)
+            // dispatch(updateSafeStatus({id:id,safe:0}))
+            dispatch(updateSafeStatus(id,{safe:0}))
 
         }
 
@@ -32,7 +34,7 @@ const SafeBtn = ({ id, safe }) => {
     const updateStatus = () => {
         verifySafeStatus()
         // dispatch(updateSafeStatus(id,{safe:safeStatus}))
-        axios.patch(`http://localhost:8000/cars/safe/${id}`,{safe:safeStatus})
+        // axios.patch(`http://localhost:8000/cars/safe/${id}`,{safe:safeStatus})
         // API.patch(`/cars/safe/${id}`,{safe:safeStatus})
         updatebtn()
         

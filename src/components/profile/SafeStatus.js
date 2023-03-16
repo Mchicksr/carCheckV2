@@ -1,6 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux'
+
+
 
 const SafeStatus = ({id,safe}) => {
+    const cars = useSelector((state)=> state.cars)
+    const newSafe = cars.map(safe => safe.safe)
+    // console.log('safefromStatus',newSafe)
 
     const verifyStatus = () => {
 

@@ -9,8 +9,9 @@ import './safelist.css'
 function SafeList({ safe, setSafe }) {
     const dispatch = useDispatch()
     const safeList = useSelector((state) => state.safeList)
+    const cars = useSelector((state)=> state.cars)
     const [commID, setCommId] = useState('')
-    
+    // console.log('safeList',cars.map(item => item))
     const Url = new URL(window.location)
 
 
@@ -22,15 +23,26 @@ function SafeList({ safe, setSafe }) {
 
     useEffect(() => {
         createId()
-        // dispatch(getSafeList(commID))
     }, [commID, createId]);
-    // console.log('commid',commID)
     const getComId = () => {
-        dispatch(getSafeList(commID))
+        // dispatch(getSafeList(commID))
+    }
+    // console.log('effect',commID)
+
+
+
+    const storeID = cars.map(item => item.community_id)
+    const showSafe = () =>{
+        setSafe(!safe)
+        createId()
+        if(commID == storeID){
+            console.log('click')
+            dispatch(getSafeList(storeID))
+        }
     }
     return (
         <div>
-            <Button className={!safe ? "safe" : "safeOn"} variant="contained" size="small" onClick={() => setSafe(!safe)}>Safe List</Button>
+            <Button className={!safe ? "safe" : "safeOn"} variant="contained" size="small" onClick={showSafe}>Safe List</Button>
             <div className={`safeList ${!safe ? 'hide': null}`}>
                 <h3>Safe Cars(Do Not Tag)</h3>
                 {safeList.map((list,index )=>(
@@ -40,7 +52,7 @@ function SafeList({ safe, setSafe }) {
                     </ul>
                 ))}
             </div>
-            <button className="btn btn-primary d-block mx-auto" onClick={getComId}>Check</button>
+            {/* <button className="btn btn-primary d-block mx-auto" onClick={getComId}>Check</button> */}
         </div>
     );
 }
