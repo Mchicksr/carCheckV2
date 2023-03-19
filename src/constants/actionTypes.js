@@ -21,3 +21,6 @@ export const DELETE_VIOLATION = "DELETE_VIOLATION"
 export const VIOLATION_LIST = "VIOLATION_LIST"
 export const GET_SAFELIST = "GET_SAFELIST"
 export const UPDATE_SAFELIST= "UPDATE_SAFELIST"
+
+// carIndex
+export const WEEKLY_CARS = "WEEKLY_CARS"

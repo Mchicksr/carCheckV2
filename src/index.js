@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux'
 import { createStore,applyMiddleware,compose } from 'redux';
+import {devToolsEnhancer} from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import './index.css';
 import App from './App';
 import reducers from './reducers/'
-const store = createStore(reducers,compose(applyMiddleware(thunk)))
+const store = createStore(reducers,compose(applyMiddleware(thunk),devToolsEnhancer({trace:true})))
 
 store.subscribe(()=>{
   // console.log('store udpated')

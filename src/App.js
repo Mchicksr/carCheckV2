@@ -21,6 +21,7 @@ import CarLog from './Routes/filter/CarLog';
 import CommunityForm from './Routes/communityForm/communityForm';
 import SafeListRoute from './Routes/safeList/SafeListRoute';
 import NewNav from './components/nav/NewNav';
+import CarIndex from './Routes/index/carIndex';
 
   
 function App() {
@@ -130,6 +131,7 @@ function App() {
       
       <Route path='/'  component={UserProfile}/>
       {/* <Route path="/CarLog" element={<CarLog cars={cars} communities={communities} violations={violations}/>}/> */}
+      <Route path="/carLog"  render={() => <CarIndex/>} />
       <Route path="/Fax" render={() => <Fax manager={manager} creator={creator} towManager={towManager}/>}/>
       <Route path="/Login" component={AuthPath}/>
       <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>

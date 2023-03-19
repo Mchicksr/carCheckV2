@@ -7,4 +7,5 @@ import sticker from './sticker'
 import image from './image'
 import violations from './violation'
 import safeList from './safeList'
-export default combineReducers({communities,cars,auth,comments,sticker,image,violations,safeList})
+import cindex from './carIndex'
+export default combineReducers({communities,cars,auth,comments,sticker,image,violations,safeList,cindex})

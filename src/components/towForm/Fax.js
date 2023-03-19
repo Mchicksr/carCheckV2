@@ -21,10 +21,11 @@ function Fax({manager,creator,towManager}) {
         
         let more = {
             // 'faxNumber':'+18558093317',
-            'faxNumber':`+1${faxNum}`,
+            // 'faxNumber':`${faxNum}`,
+            "faxNumber":"18334220081"
             }
         let attachments = new FormData();
-        attachments.append('faxNumber',JSON.stringify(more));
+        attachments.append("faxNumber","15618327178");
         attachments.append('attachments',img)
 
         for (let i = 0; i < img.length; i++){

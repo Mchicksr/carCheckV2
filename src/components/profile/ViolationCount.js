@@ -24,6 +24,29 @@ const ViolationCount = ({id,violations_list,lic,setViolationCount}) => {
         {id:9,violation_type:"other",val:`{"violation": "other"}`}
     
     ]
+    // const violationArr = [
+    //     {id:1,violation_type:"parking in grass", val:`{"reason": "parking in grass"}`},
+    //     {id:2,violation_type:"backing in",val:`{"reason": "backing in"}`},
+    //     {id:3,violation_type:"parking on street",val:`{"reason": "parking on street"}`}, 
+    //     {id:4,violation_type:"expired license plate",val:`{"reason": "expired license plate"}`},
+    //     {id:5,violation_type:"not registered",val:`{"reason":"not registered" }`},
+    //     {id:7,violation_type:"expired pass",val:`{"reason": "expired pass"}`},
+    //     {id:8,violation_type:"commercial vehicle" ,val:`{"reason": "commercial vehicle"}`},
+    //     {id:9,violation_type:"other",val:`{"reason": "other"}`}
+    
+    // ]
+    // const violationArr = [
+    //     {id:1,violation_type:"parking in grass", val:`{"sticker":"true","reason":[{"violation": "parking in grass"}]}`},
+    //     {id:2,violation_type:"backing in",val:`{"sticker":"true","reason":[{"violation": "backing in"}]}`},
+    //     {id:3,violation_type:"parking on street",val:`{"sticker":"true","reason":[{"violation": "parking on street"}]}`}, 
+    //     {id:4,violation_type:"expired license plate",val:`{"sticker":"true","reason":[{"violation": "expired license plate"}]}`},
+    //     {id:5,violation_type:"not registered",val:`{"sticker":"true","reason":[{"violation":"not registered" }]}`},
+    //     {id:7,violation_type:"expired pass",val:`{"sticker":"true","reason":[{"violation": "expired pass"}]}`},
+    //     {id:8,violation_type:"commercial vehicle" ,val:`{"sticker":"true","reason":[{"violation": "commercial vehicle"}]}`},
+    //     {id:9,violation_type:"other",val:`{"sticker":"true","reason":[{"violation": "other"}]}`}
+    
+    // ]
+  
   
 
     const newNum = cars?.map(num => num.violations_list.length)
@@ -40,7 +63,23 @@ const ViolationCount = ({id,violations_list,lic,setViolationCount}) => {
     }
 
     const showViolations = () => {
-        const list  = violations_list.map((item,index) => (<p key={index}>{item.violation}<span className='pl-3'>{format(item.modified, 'Do MMM YYYY') }</span></p>))
+        const input = (vio) =>{
+            return vio.reason.map((item,index)=> (
+                <div key={`fe${index}`}>
+                    <p key={index}>{item.violation}<span className='pl-3'>{format(item.modified, 'Do MMM YYYY') }</span></p>    
+                </div>
+                ))
+        }   
+
+        const stickerI = (vio,index) => {
+            return <h5 key={`lk${index}`}>{vio.sticker ? `sticker ${index + 1}` : `no Sticker`}</h5>
+        }
+        
+
+
+
+        // const list  = violations_list.map((item,index) => (<p key={index}>{item.violation}<span className='pl-3'>{format(item.modified, 'Do MMM YYYY') }</span></p>))
+        const list  = violations_list.map((vio,index) => {return [stickerI(vio,index), input(vio)]} )
 
        return list
     }
