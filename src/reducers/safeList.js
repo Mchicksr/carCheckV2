@@ -1,4 +1,4 @@
-import {GET_SAFELIST,UPDATE_SAFELIST } from "../constants/actionTypes";
+import {GET_SAFELIST} from "../constants/actionTypes";
 
 const safeList = (cars=[],action) =>{
     switch (action.type) {

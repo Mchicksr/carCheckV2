@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+// import React, {useState, useEffect} from 'react';
 import SafeList from '../../components/tagPage/tagCard/safeList';
 
 const SafeListRoute = ({safe, setSafe, cars}) => {

@@ -19,11 +19,11 @@ function Fax({manager,creator,towManager}) {
     
     const uploadFiles = (index) => {
         
-        let more = {
+        // let more = {
             // 'faxNumber':'+18558093317',
             // 'faxNumber':`${faxNum}`,
-            "faxNumber":"18334220081"
-            }
+            // "faxNumber":"18334220081"
+            // }
         let attachments = new FormData();
         attachments.append("faxNumber","15618327178");
         attachments.append('attachments',img)

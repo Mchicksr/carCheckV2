@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateSafeStatus } from '../../actions/safeList';
-import axios from 'axios';
-import { API } from '../../api';
+// import axios from 'axios';
+// import { API } from '../../api';
 const SafeBtn = ({ id, safe }) => {
     const dispatch = useDispatch()
-    const [safeStatus, setSafeStatus] = useState(0)
+    const [safeStatus] = useState(0)
     const [clicked, setClicked] = useState(false)
 
     useEffect(() => {
@@ -18,11 +18,11 @@ const SafeBtn = ({ id, safe }) => {
     }
 
     const verifySafeStatus = () => {
-        if (safe == 0) {
+        if (safe === 0) {
             // setSafeStatus(1)
             dispatch(updateSafeStatus(id,{safe:1}))
             // dispatch(updateSafeStatus({id:id,safe:1}))
-        } else if (safe == 1) {
+        } else if (safe === 1) {
             // setSafeStatus(0)
             // dispatch(updateSafeStatus({id:id,safe:0}))
             dispatch(updateSafeStatus(id,{safe:0}))

@@ -5,20 +5,20 @@ import {getCar} from '../../actions/cars';
 import CarForm from '../carForm/CarForm';
 import './SearchBar.css'
 
-import axios from 'axios';
+// import axios from 'axios';
 // import {Link} from 'react-router-dom'
-function SearchBar({searchTerm,setSearchTerm,setCarArr,setShow,communities}) {
+function SearchBar({searchTerm,setSearchTerm,setShow,communities}) {
     const cars = useSelector((state)=> state.cars)
     const [carResult,setCarResult ] = useState('')
     const [numOfCars,setNumofCars] = useState({num:cars.length})
-    const [carNum, setCarNum] = useState(0)
+    // const [carNum, setCarNum] = useState(0)
     const [formModal, setFormModal] = useState(false)
     // const [numOfCars,setNumofCars] = useState(0)
     // const numOfCars = cars.length
     const dispatch = useDispatch()
    
-   const myUrl = new URL('http://localhost:3000/')
-   const Url = new URL(window.location.href)
+//    const myUrl = new URL('http://localhost:3000/')
+//    const Url = new URL(window.location.href)
     
     useEffect(() => {
    
@@ -33,7 +33,7 @@ function SearchBar({searchTerm,setSearchTerm,setCarArr,setShow,communities}) {
         await dispatch(getCar(searchTerm))
         setShow(true)
 
-        if(searchTerm == 0){
+        if(searchTerm === 0){
             setCarResult('Type License Plate in Field')
             activateForm()
         } else {
@@ -52,10 +52,11 @@ function SearchBar({searchTerm,setSearchTerm,setCarArr,setShow,communities}) {
         let carResult;
         let commute;
        carResult = cars.map(car => {
-            communities.filter((coms, index) =>{
-                if(coms._id == car.community_id){
+            communities.filter((coms) =>{
+                if(coms._id === car.community_id){
                     commute = coms.community
                 }
+                return null
             } )
             return commute
         })

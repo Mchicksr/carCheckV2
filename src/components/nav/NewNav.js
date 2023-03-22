@@ -2,7 +2,7 @@ import React, {useState, useEffect,useCallback} from 'react';
 import {Link,useHistory,useLocation} from 'react-router-dom'
 import decode from 'jwt-decode'
 import {useDispatch} from 'react-redux'
-import {AppBar,Toolbar,Typography,Avatar,Button} from '@material-ui/core'
+import {Toolbar,Avatar,Button} from '@material-ui/core'
 import logo from '../../images/official-logo.png'
 
 import useStyles from './styles'
@@ -37,24 +37,24 @@ const NewNav = ({manager}) => {
     },[location,logout,user?.token])
 
     return (
-        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-transparent">
         <Link to="/"><img src={logo} alt="logo" className={classes.image} height="60"/></Link>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto text-white">
                         <li className="nav-item text-white"><Link to='/Tags'><p className='nav-link text-white'>Find Car Tags</p></Link></li>
                         <li className="nav-item text-white"><Link to='/CarForm'><p className='nav-link text-white'>Add Car</p></Link></li>
-                        { manager ?
+                        {/* { manager ? */}
                         <>
                         <li className="nav-item text-white"><Link to='/Fax'><p className='nav-link text-white'>Tow Car</p></Link></li>
                         <li className="nav-item text-white"><Link to='/CarLog'><p className='nav-link text-white'>Car Log</p></Link></li>
                         </>
-                        :
-                          null
-                      }
+                        {/* : */}
+                          {/* null */}
+                      {/* } */}
                         {/* <li className="navItem"><Link to='/CarLog'><h2>Car Log2</h2></Link></li> */}
                         
                     </ul>

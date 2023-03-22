@@ -2,7 +2,7 @@ import React from "react"
 import dayjs from "dayjs"
 
 
-import { Routes } from "react-router-dom";
+// import { Routes } from "react-router-dom";
 
 const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
 const isSameOrBefore = require("dayjs/plugin/isSameOrBefore");
@@ -48,11 +48,12 @@ dayjs.extend(isSameOrAfter);
                 
                 return car
               }
+              return null
             }).filter((val)=>{
-              if(searchTerm == ""){
+              if(searchTerm === ""){
                   return val
               
-              } else if(searchTerm == 0){
+              } else if(searchTerm === 0){
                 return val
               }
               else if(val.license_plate.toUpperCase().includes(searchTerm.toUpperCase())){

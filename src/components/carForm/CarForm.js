@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 // import FileBase from 'react-file-base64';
 import {createCar} from '../../actions/cars'
 import { createViolation } from '../../actions/violation';
-import { violationList } from '../../actions/cars';
+// import { violationList } from '../../actions/cars';
 import useStyles from './styles'
 import './CarForm.css'
 
@@ -13,7 +13,8 @@ function CarForm({communities}) {
     // const violation = 'violation'
     const [violationType2,setViolationType2] = useState([])
     const [carData,setCarData] = useState({license_plate:"",car_make:"",car_model:"",color:"",car_address:"",violations:0,community_id:"",violations_list:{}})
-    const [violationType,setViolationType] = useState("")
+    // const [violationType,setViolationType] = useState("")
+    const [violationType] = useState("")
     // const violation_types = useSelector((state) => state.violations)    
     const classes = useStyles()
     const dispatch = useDispatch()

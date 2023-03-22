@@ -21,7 +21,7 @@ function CarLog({cars,communities,violations}) {
     // console.log('this',cars)
     const [allCars, setCars] = useState(cars)
     const [commute,setCommute] = useState('')
-    const [carStatus, setCarStatus] = useState([]) 
+    // const [carStatus, setCarStatus] = useState([]) 
 //    console.log('carsS',carStatus)
     const componentRef = useRef();
 
@@ -38,6 +38,7 @@ function CarLog({cars,communities,violations}) {
             // console.log('Copy',dayjs(item.modified).isSameOrAfter(date))
             return item
           } 
+          return null
         })
         setCars(filteredData)
       }
@@ -59,7 +60,7 @@ function CarLog({cars,communities,violations}) {
             carModel={item.car_model}
             modified={item.modified}
             vType={violations}
-            setCarStatus={setCarStatus}
+            // setCarStatus={setCarStatus}
             
             />)
             return list

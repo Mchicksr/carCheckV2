@@ -1,11 +1,11 @@
 import React from 'react';
 import CommunityNav from '../../components/tagPage/community/CommunityNav';
 import SearchBar from '../../components/tagPage/SearchBar';
-import SafeList from '../../components/tagPage/tagCard/safeList';
+// import SafeList from '../../components/tagPage/tagCard/safeList';
 import Profile from '../carprofile/CarProfile';
 import ShowRules from '../../components/community/ShowRules';
 import SafeListRoute from '../safeList/SafeListRoute';
-import { NavLink,Routes } from 'react-router-dom';
+// import { NavLink,Routes } from 'react-router-dom';
 // import DateFilter from '../../components/tagPage/filter/DateFilter'
 
 function Tags({RenderCarTags, Route, cars, TagCard,searchTerm, setSearchTerm,manager,user,creator,safe,setSafe,setCarArr,show,setShow, communities,setViolationCount,violationCount}) {

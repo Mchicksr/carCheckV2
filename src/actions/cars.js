@@ -26,12 +26,16 @@ export const createCar = (carData) => async (dispatch) => {
         // console.log('data1',carData.violations_list)
        const newArr = [...carData.violations_list]
        const parsArr = []
+       const completeArray =[{"reason":[]}]
+        let finalArr;
        newArr.forEach(item => { 
         const updated = JSON.parse(item)
         parsArr.push(updated)
+        finalArr = completeArray.map(arr => {return {...arr, "reason":parsArr}})
+
     })
     // console.log('hpe it works',parsArr)
-    const updatedVio = {...carData, violations_list:parsArr}
+    const updatedVio = {...carData, violations_list:finalArr}
 
     // console.log('money',updatedVio)
 
@@ -70,14 +74,21 @@ export const resetViolation = (id) => async (dispatch) => {
 
 export const violationList = (id,violations) => async (dispatch)=> {
     const parsedArray = []
+    const completeArray =[{"reason":[]}]
+    let finalArr;
     try {
          violations.forEach(item =>{
             const final = JSON.parse(item)
             parsedArray.push(final)
+            finalArr = completeArray.map(arr => {return {...arr, "reason":parsedArray}})
+            return finalArr
         })
-        const {data} = await api.violationList(id,parsedArray)
+        // console.log('hope',finalArr)
+        // console.log('ps',parseDone)
+        // const {data} = await api.violationList(id,finalArr)
+         await api.violationList(id,finalArr)
         // console.log("PAAARSEDARR",parsedArray)
-        dispatch({type:VIOLATION_LIST, payload:parsedArray})
+        dispatch({type:VIOLATION_LIST, payload:finalArr})
     } catch (error) {
         console.log(error)
     }
@@ -87,7 +98,7 @@ export const verify = (id) => async (dispatch) => {
     try {
         console.log('safeID',id)
         // console.log('safeupdate',safe)
-        const {data} = await api.verify(id)
+         await api.verify(id)
         // dispatch({type:UPDATE,payload:data})
     } catch (error) {
         console.log(error)

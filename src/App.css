@@ -38,6 +38,10 @@ a:visited{
 .violation-status-error{
   color: red;
 }
+button.clear-btn {
+  background: transparent;
+  border: none;
+}
 
 @media all and (min-width: 1024px) and (max-width: 1280px) { }
  

@@ -1,9 +1,9 @@
 import React from 'react';
-import { useLocation } from "react-router-dom"
+// import { useLocation } from "react-router-dom"
 import CarInfo from '../../components/profile/CarInfo';
 import TowBtn from '../../components/profile/TowBtn';
-import ViolationBtn from '../../components/profile/ViolationBtn'
-import Verify from '../../components/profile/Verify';
+// import ViolationBtn from '../../components/profile/ViolationBtn'
+// import Verify from '../../components/profile/Verify';
 import ViolationCount from '../../components/profile/ViolationCount';
 import './carProfile.css'
 import Sticker from '../../components/sticker/Sticker';
@@ -13,7 +13,7 @@ import SafeStatus from '../../components/profile/SafeStatus';
 import SafeBtn from '../../components/profile/SafeBtn';
 
 function CarProfile({violations, lic, cm, cmo, id, address, color, modified, sticker, manager,creator,violations_list,safe,setViolationCount}) {
-    const location = useLocation()
+    // const location = useLocation()
     // const violations = location.state?.violations
     // const lic = location.state?.lic
     // const cm = location.state?.cm

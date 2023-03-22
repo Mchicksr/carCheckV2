@@ -2,24 +2,25 @@ import React,{useEffect,useState} from 'react';
    
 import './App.css';
 import {useDispatch,useSelector} from 'react-redux'
-import { Route, Switch, Routes, Navigate} from 'react-router-dom';
-import { Home, Landing, Login, Signup } from "./screens";
+// import { Route, Switch, Routes, Navigate} from 'react-router-dom';
+import { Route} from 'react-router-dom';
+// import { Home, Landing, Login, Signup } from "./screens";
 // import {getCar} from './actions/cars'
 import {getCommunities} from './actions/community'
 import { getViolations } from './actions/violation';
-import Navbar from './Routes/navBar/Navbar';
+// import Navbar from './Routes/navBar/Navbar';
 import UserProfile from './Routes/userProfile/UserProfile'
 import Tags from './Routes/tags/Tags';
 import TagCard from './components/tagPage/tagCard/SingleTagCard';
 import RenderCarTags from './helpers/routerHelper'
-import Profile from './Routes/carprofile/CarProfile';
+// import Profile from './Routes/carprofile/CarProfile';
 import Tow from './Routes/tow/Tow';
 import CarEntryForm from './Routes/carEntryForm/carEntryForm';
 import AuthPath from './Routes/auth/AuthPath';
 import Fax from './components/towForm/Fax';
-import CarLog from './Routes/filter/CarLog';
+// import CarLog from './Routes/filter/CarLog';
 import CommunityForm from './Routes/communityForm/communityForm';
-import SafeListRoute from './Routes/safeList/SafeListRoute';
+// import SafeListRoute from './Routes/safeList/SafeListRoute';
 import NewNav from './components/nav/NewNav';
 import CarIndex from './Routes/index/carIndex';
 
@@ -27,7 +28,7 @@ import CarIndex from './Routes/index/carIndex';
 function App() {
   const cars = useSelector((state)=>  state.cars)
   const communities = useSelector((state) => state.communities)
-  const violations = useSelector((state)=>state.violations)
+  // const violations = useSelector((state)=>state.violations)
   const [carArr, setCarArr] = useState([])
   const [searchTerm,setSearchTerm] = useState("")
   const [manager,setManager] = useState(false)

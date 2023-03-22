@@ -12,7 +12,7 @@ function CommunityNav(props) {
     const community = useSelector((state) => state.communities)
     const dispatch = useDispatch()
 
-    const [value, setValue] = React.useState(0);
+    const [value, ] = React.useState(0);
 
     // const handleChange = (event, newValue) => {
         // setValue(newValue);

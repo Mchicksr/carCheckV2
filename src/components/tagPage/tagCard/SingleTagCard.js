@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs from "dayjs";
 import './singleTagCard.css'
 import TagCardEditBtn from './TagCardEditBtn';
-import Verify from '../../profile/Verify';
+// import Verify from '../../profile/Verify';
 import Sticker from '../../sticker/Sticker';
 import SafeStatus from '../../profile/SafeStatus';
 import { useSelector } from 'react-redux';

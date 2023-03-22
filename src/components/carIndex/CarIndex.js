@@ -1,6 +1,9 @@
 import React, {useState}from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import {getWeeklyCars} from '../../actions/carIndex'
+import {format} from 'date-fns'
+import './carindex.css'
+
 
 const FindCarIndex = () => {
     const community = useSelector(state => state.communities)
@@ -17,9 +20,9 @@ const FindCarIndex = () => {
         dispatch(getWeeklyCars(comID,[para1,para2]))
     }
     // console.log('logs',logs)
-    const showLog = () => {
-        logs.map((log,index) => (<h3 key={index}>{log.license_plate}</h3>))
-    }
+    // const showLog = () => {
+    //     logs.map((log,index) => (<h3 key={index}>{log.license_plate}</h3>))
+    // }
     return (
         <div>
             <form action="" onSubmit={sendInfo}>
@@ -33,7 +36,39 @@ const FindCarIndex = () => {
                 </select> 
                     <button className='btn btn-primary' type='submit'>Submut</button>
             </form>
-            {logs.map((log,index) => (<h3 key={index}>{log.license_plate}</h3>))}
+            <div className="">
+                    {logs.map((log,index) => (
+                        <div key={`30${index}`} className='log-bg'>
+                            <div className='row justify-content-center gap my-2' >
+                                <div className=''>
+                                    <h4>License Plate</h4>
+                                    <p key={index}>{log.license_plate}</p>
+                                </div>
+                                <div className='pl-2'>
+                                    <h4>Car Make</h4>
+                                    <p key={index}>{log.car_make}</p>
+                                </div>
+                                <div className='pl-2'>
+                                    <h4>Car Model</h4>
+                                    <p key={index}>{log.car_model}</p>
+                                </div>
+                            </div>
+                            <div className="row justify-content-center gap my-2">
+                                {log.violations_list.map((stick,index) => (
+                                    <div key={`10${index}`} className="m-0">
+                                        <h4>{`Sticker ${index + 1}`}</h4>
+                                        {stick.reason.map((vio,index )=> (
+                                            <div key={`20${index}`} className="">
+                                                <p>{vio.violation}</p>
+                                                <p>{format(vio.modified, 'Do MMM YYYY')}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+            </div>
         </div>
     );
 }

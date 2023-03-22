@@ -1,11 +1,11 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns'
 import { violationList } from '../../actions/cars';
 
 
-const ViolationCount = ({id,violations_list,lic,setViolationCount}) => {
-    const [violationNum,  setViolationNum] = useState(0)
+const ViolationCount = ({violations_list,lic}) => {
+    // const [violationNum,  setViolationNum] = useState(0)
     const [openSelect, setOpenSelect] = useState(false)
     const [violationType2,setViolationType2] = useState([])
     const cars = useSelector((state) => state.cars)

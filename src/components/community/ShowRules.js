@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect, useCallback} from 'react';
 import './showRules.css'
 
 const ShowRules = ({communities}) => {
@@ -7,12 +7,16 @@ const ShowRules = ({communities}) => {
     const Url = new URL(window.location)
     
 
-    const createId = () =>{
+    
+    // const createId = () =>{
+    //     const newStr = Url.pathname.split('s/')
+    //     setCommId(newStr[1])
+
+    // }
+    const createId = useCallback(()=>{
         const newStr = Url.pathname.split('s/')
         setCommId(newStr[1])
-
-    }
-
+    },[Url.pathname])
     useEffect(() => {
         createId()   
     }, [commID,createId]);
@@ -22,6 +26,7 @@ const ShowRules = ({communities}) => {
         if(commID === comm._id){
             return comm
         }
+        return null
        }).map((comm,index) => {
         return comm.rules.map((item,index )=> <h2 key={`1${index}`}className="d-block">{item}</h2>)   
 
