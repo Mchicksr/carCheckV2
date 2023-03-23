@@ -1,8 +1,9 @@
-import React, {useState}from 'react';
+import React, {useState,useEffect,useCallback }from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import {getWeeklyCars} from '../../actions/carIndex'
 import {format} from 'date-fns'
 import './carindex.css'
+import { iTotal } from '../../actions/indexTotal';
 
 
 const FindCarIndex = () => {
@@ -12,30 +13,84 @@ const FindCarIndex = () => {
     const [para1,setpara1] = useState('')
     const [para2,setpara2] = useState('')
     const dispatch = useDispatch()
-    console.log('comm',community)
-    console.log('reacommute',comID)
 
-    const sendInfo = (e) =>{
+ 
+     // ///////// Dispatch get weekly cars/////////////////////
+     const sendInfo = (e) =>{
         e.preventDefault()
         dispatch(getWeeklyCars(comID,[para1,para2]))
+        
     }
-    // console.log('logs',logs)
-    // const showLog = () => {
-    //     logs.map((log,index) => (<h3 key={index}>{log.license_plate}</h3>))
-    // }
+    ///////////// Counts the violations ///////////////////////
+    const logsArr= []
+    const countViolations = () => {
+       let lg = logs.map((log,index) => log.violations_list.forEach(arr => logsArr.push(arr)))
+  
+        return lg
+    }
+    countViolations()
+    const lastLogsArr = []
+    logsArr.map(item => item.reason.map(i => lastLogsArr.push(i)))
+
+    /////////////////count the number of cars towed /////////////////////////
+
+    const countTows = () => {
+
+        let total = 0
+         logs.forEach(num => {
+            if(num.violations_list.length >= 3 ){
+                total++
+            }
+        })
+
+        return total
+    }
+    const totalCount = countTows()
+    
+    
+   
+    
+
+    const carStats= useCallback(()=>{return {car_amount:logs.length, tows_total:totalCount, violation_totals:lastLogsArr.length}},[logs.length,totalCount,lastLogsArr.length])
+    useEffect(() => {
+    
+        dispatch(iTotal(carStats()))
+        return () => {
+        }
+        
+    }, [carStats,dispatch]);
+
+ 
+
     return (
         <div>
             <form action="" onSubmit={sendInfo}>
-                <input type="date" onChange={(e)=> setpara1(e.target.value)}/>
-                <input type="date" onChange={(e)=> setpara2(e.target.value)}/>
-                <select name="community_id" id="community_id" value={comID} onChange={(e) => setComID(e.target.value)}>
+                <input className="mr-3" type="date" onChange={(e)=> setpara1(e.target.value)}/>
+                <input type="date" onChange={(e)=> setpara2(e.target.value)}/><br></br>
+                <select className="mt-4" name="community_id" id="community_id" value={comID} onChange={(e) => setComID(e.target.value)}>
                     <option>---select community</option>
                     {community.map((value,index) => {
                         return <option key={index} value={value._id}>{value.community}</option>
                     })}
-                </select> 
-                    <button className='btn btn-primary' type='submit'>Submut</button>
+                </select> <br></br>
+                    <button className='btn btn-primary my-3' type='submit'>Submit</button>
             </form>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col">
+                        <h3>Amount of cars</h3>
+                        <h4>{logs.length}</h4>
+                    </div>
+                    <div className="col">
+                        <h3>Total cars Towed</h3>
+                        <h4>{totalCount}</h4>
+                    </div>
+                    <div className="col">
+                        <h3>Total violations</h3>
+                        <h4>{lastLogsArr.length}</h4>
+                    </div>
+                </div>
+            </div>
             <div className="">
                     {logs.map((log,index) => (
                         <div key={`30${index}`} className='log-bg'>

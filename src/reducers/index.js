@@ -8,4 +8,5 @@ import image from './image'
 import violations from './violation'
 import safeList from './safeList'
 import cindex from './carIndex'
-export default combineReducers({communities,cars,auth,comments,sticker,image,violations,safeList,cindex})
+import indexTotal from './indextotal'
+export default combineReducers({communities,cars,auth,comments,sticker,image,violations,safeList,cindex,indexTotal})

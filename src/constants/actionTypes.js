@@ -24,3 +24,8 @@ export const UPDATE_SAFELIST= "UPDATE_SAFELIST"
 
 // carIndex
 export const WEEKLY_CARS = "WEEKLY_CARS"
+export const GET_CAR_AMOUNT = "GET_CAR_AMOUNT"
+export const GET_TOTAL_VIOLATIONS = "GET_TOTAL_VIOLATIONS"
+
+// Index Total
+export const INDEX_TOTAL = "INDEX_TOTAL"
