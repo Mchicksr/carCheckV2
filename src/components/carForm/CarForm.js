@@ -39,6 +39,11 @@ function CarForm({communities}) {
         {id:5,violation_type:"not registered",val:`{"violation":"not registered" }`},
         {id:7,violation_type:"expired pass",val:`{"violation": "expired pass"}`},
         {id:8,violation_type:"commercial vehicle" ,val:`{"violation": "commercial vehicle"}`},
+        {id:8,violation_type:"no decal or pass" ,val:`{"violation": "no decal or pass"}`},
+        {id:8,violation_type:"invalid decal" ,val:`{"violation": "invalid decal"}`},
+        {id:8,violation_type:"inop vehicle" ,val:`{"violation": "inop vehicle"}`},
+        {id:8,violation_type:"improper parking" ,val:`{"violation": "improper parking"}`},
+        {id:8,violation_type:"resident in" ,val:`{"violation": "resident in"}`}, 
         {id:9,violation_type:"other",val:`{"violation": "other"}`}
     
     ]

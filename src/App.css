@@ -9,6 +9,19 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 background-attachment: fixed;
 }
 
+h1{
+  text-transform: capitalize;
+}
+h2{
+  text-transform: capitalize;
+}
+h3{
+  text-transform: capitalize;
+}
+h4{
+  text-transform: capitalize;
+}
+
 li{
   list-style-type: none;
 }
@@ -41,6 +54,10 @@ a:visited{
 button.clear-btn {
   background: transparent;
   border: none;
+}
+
+.capital{
+  text-transform: capitalize;
 }
 
 @media all and (min-width: 1024px) and (max-width: 1280px) { }

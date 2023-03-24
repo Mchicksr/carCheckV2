@@ -50,9 +50,10 @@ function SafeList({ safe, setSafe }) {
             <Button className={!safe ? "safe" : "safeOn"} variant="contained" size="small" onClick={showSafe}>Safe List</Button>
             <div className={`safeList ${!safe ? 'hide': null}`}>
                 <h3>Safe Cars(Do Not Tag)</h3>
+                <h4 className='pt-3'>Color Car Make Car Model: <br/>License Plate</h4>
                 {safeList.map((list,index )=>(
                     <ul key={`10${index}`}>
-                        <li key={`19${index}`}>{list.license_plate}</li>
+                        <li class="capital" key={`19${index}`}>{list.color} {list.car_make} {list.car_model}: <br/> {list.license_plate}</li>
                         
                     </ul>
                 ))}
