@@ -83,12 +83,11 @@ export const violationList = (id,violations) => async (dispatch)=> {
             finalArr = completeArray.map(arr => {return {...arr, "reason":parsedArray}})
             return finalArr
         })
-        // console.log('hope',finalArr)
-        // console.log('ps',parseDone)
-        // const {data} = await api.violationList(id,finalArr)
-         await api.violationList(id,finalArr)
-        // console.log("PAAARSEDARR",parsedArray)
-        dispatch({type:VIOLATION_LIST, payload:finalArr})
+    
+         const {data} = await api.violationList(id,finalArr)
+    //      const data = finalArr
+    //    console.log('data',data)
+        dispatch({type:VIOLATION_LIST, payload:data})
     } catch (error) {
         console.log(error)
     }
@@ -108,7 +107,7 @@ export const verify = (id) => async (dispatch) => {
 export const getSafeList = (id) => async (dispatch) =>{
     try {
         const {data} = await api.getSafeList(id)
-        console.log('action',data)
+        // console.log('action',data)
         dispatch({type:GET_SAFELIST,payload:data})
     } catch (error) {
         console.log(error)

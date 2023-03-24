@@ -38,6 +38,7 @@ function App() {
   const dispatch = useDispatch()
   const access = '61a94e4adba13dd081420629'
   const access2 = '61bb63d143156f329531f69b'
+  const access3 = "mikehicks@gmail.com"
   const user = JSON.parse(localStorage.getItem('profile'))
   const [violationCount, setViolationCount] = useState()
   // const user = localStorage.getItem("user");
@@ -55,7 +56,9 @@ function App() {
     // dispatch(getCar({id:carArr}))
     dispatch(getCommunities())
     dispatch(getViolations())
-    user?.result?._id === access && access2? setManager(true) : setManager(false)
+    user?.result?._id === access && access2 && access3? setManager(true) : setManager(false)
+    // user?.result?._id === access || access2 || access3? setManager(true) : setManager(false)
+    user?.result?.email === access3 ? setManager(true) : setManager(false)
     user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
     user?.result?._id === access ? setCreator(true) : setCreator(false)
 
@@ -73,8 +76,7 @@ function App() {
     //   }
 
     // })
-  }, [dispatch,user?.result?._id])
-
+  }, [dispatch,user?.result?._id,user?.result?.email])
   return (
 
 
@@ -130,9 +132,9 @@ function App() {
 
  
       
-      <Route path='/'  component={UserProfile}/>
+      <Route path='/' exact component={UserProfile}/>
       {/* <Route path="/CarLog" element={<CarLog cars={cars} communities={communities} violations={violations}/>}/> */}
-      <Route path="/carLog"  render={() => <CarIndex/>} />
+      <Route path="/carLog"  render={() => <CarIndex manager={manager}/>} />
       <Route path="/Fax" render={() => <Fax manager={manager} creator={creator} towManager={towManager}/>}/>
       <Route path="/Login" component={AuthPath}/>
       <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>

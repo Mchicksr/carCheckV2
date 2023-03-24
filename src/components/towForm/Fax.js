@@ -45,12 +45,12 @@ function Fax({manager,creator,towManager}) {
            clear()
         })
     }
-     console.log('towManager',towManager)
+     console.log('towManager',manager)
    
 
     return (
         <>
-        {creator || towManager?<>
+        {creator || manager?<>
             <Paper>
                 <h1 className="FormLabel">Tow Car</h1>
                 <h2>Tow company Number</h2>

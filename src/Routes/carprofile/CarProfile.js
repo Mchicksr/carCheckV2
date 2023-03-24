@@ -6,7 +6,7 @@ import TowBtn from '../../components/profile/TowBtn';
 // import Verify from '../../components/profile/Verify';
 import ViolationCount from '../../components/profile/ViolationCount';
 import './carProfile.css'
-import Sticker from '../../components/sticker/Sticker';
+// import Sticker from '../../components/sticker/Sticker';
 import Comments from '../../components/comments/Comments';
 import DeleteCarBtn from '../../components/profile/DeleteCarBtn';
 import SafeStatus from '../../components/profile/SafeStatus';
@@ -40,7 +40,7 @@ function CarProfile({violations, lic, cm, cmo, id, address, color, modified, sti
             {/* <Verify id={id} verified={verified} manager={manager}/> */}
             <SafeStatus id={id} safe={safe}/>
             <SafeBtn id={id} safe={safe}/>
-            <Sticker carId={id} sticker={sticker} manager={manager}/>
+            {/* <Sticker carId={id} sticker={sticker} manager={manager}/> */}
             <TowBtn lic={lic} cm={cm} cmo={cmo}  color={color} address={address}/>
             <Comments carId={id} address={address} modified={modified}/>
             <DeleteCarBtn id={id} manager={manager} creator={creator}/>

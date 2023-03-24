@@ -50,7 +50,7 @@ const ViolationCount = ({violations_list,lic}) => {
   
 
     const newNum = cars?.map(num => num.violations_list.length)
-    console.log('NEWNUM', newNum)
+    // console.log('NEWNUM', newNum)
     const handleCheckboxChange = (e) =>{
        
         let newArr = [...violationType2, e.target.id]

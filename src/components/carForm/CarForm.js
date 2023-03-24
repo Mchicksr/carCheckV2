@@ -72,7 +72,7 @@ function CarForm({communities}) {
         if(violationType2.includes(e.target.id)){
             newArr = newArr.filter(vio => vio !==  e.target.id)
         }
-            console.log('narr',newArr)
+            // console.log('narr',newArr)
       
         setViolationType2(newArr)
        

@@ -15,17 +15,14 @@ function TagCard({id,lp,carMake,carModel,violations,verified,color,address,modif
                 <ul key={id}>
                     <h2 className="TcH2">License Plate:</h2>
                         <h4 key={lp}>{lp.toUpperCase()}</h4>
-                        {/* <h4 key={lp}>{lp}</h4> */}
                     <h2 className="TcH2">Car Make:</h2>
                         <h4 key={carMake}>{carMake}</h4>
                     <h2 className="TcH2">Car Model:</h2>
                         <h4 key={carModel}>{carModel}</h4>
                         <SafeStatus id={id} safe={safe}/>
                     <h3>Violations</h3>
-                        {/* <h4>{violations}</h4> */}
                         <h4 className={newNum >= 3 ? 'violation-status-error' : null}>{newNum}</h4>
 
-                        {/* <Verify id={id} verified={verified} /> */}
                         <Sticker carId={id}/>
                     <p>
                     {dayjs(modified).format("DD MMMM YYYY")}

@@ -4,13 +4,20 @@ import FindCarIndex from '../../components/carIndex/CarIndex';
 import LogCsv from '../../components/carIndex/LogCsv';
 
 // import ''
-const CarIndex = () => {
+const CarIndex = ({manager}) => {
+    console.log('manager',manager)
     return (
         <div>
-            {/* <CommunityNav/> */}
-            <h1>index</h1>
-           <div className="pb-3"><LogCsv/></div> 
-            <FindCarIndex/>
+            {manager ?
+                <>
+                    <h1>index</h1>
+                <div className="pb-3"><LogCsv/></div> 
+                    <FindCarIndex/>  
+                </>
+                :
+                <><h1>Authorized Personal Only</h1></>
+           
+            }
         </div>
     );
 }
