@@ -56,9 +56,9 @@ function App() {
     // dispatch(getCar({id:carArr}))
     dispatch(getCommunities())
     dispatch(getViolations())
-    user?.result?._id === access && access2 && access3? setManager(true) : setManager(false)
+    // user?.result?._id === access && access2 && access3? setManager(true) : setManager(false)
     // user?.result?._id === access || access2 || access3? setManager(true) : setManager(false)
-    user?.result?.email === access3 ? setManager(true) : setManager(false)
+    user?.result?.email === access3 || access2 ? setManager(true) : setManager(false)
     user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
     user?.result?._id === access ? setCreator(true) : setCreator(false)
 
