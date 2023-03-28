@@ -1,5 +1,5 @@
 import axios from 'axios'
-// import config from '../config'
+import config from '../config'
 // import React,{useState,useEffect} from 'react';
 
 // const API = axios.create({baseURL:config.API_ENDPOINT})
