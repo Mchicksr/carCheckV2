@@ -53,7 +53,7 @@ function SafeList({ safe, setSafe }) {
                 <h4 className='pt-3'>Color Car Make Car Model: <br/>License Plate</h4>
                 {safeList.map((list,index )=>(
                     <ul key={`10${index}`}>
-                        <li class="capital" key={`19${index}`}>{list.color} {list.car_make} {list.car_model}: <br/> {list.license_plate}</li>
+                        <li className="capital" key={`19${index}`}>{list.color} {list.car_make} {list.car_model}: <br/> {list.license_plate}</li>
                         
                     </ul>
                 ))}

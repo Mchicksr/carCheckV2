@@ -20,9 +20,40 @@ export const getCar = (searchTerm) => async (dispatch) => {
     }
 }
 
+// export const createCar = (carData) => async (dispatch) => {
+    
+//         // console.log('data1',carData)
+//         // console.log('data1',carData.violations_list)
+//        const newArr = [...carData.violations_list]
+//        const parsArr = []
+//        const completeArray =[{"reason":[]}]
+//         let finalArr;
+//        newArr.forEach(item => { 
+//         const updated = JSON.parse(item)
+//         parsArr.push(updated)
+//         finalArr = completeArray.map(arr => {return {...arr, "reason":parsArr}})
+
+//     })
+//     const updatedVio = {...carData, violations_list:finalArr}
+
+//         const {data} = await api.createCars(updatedVio)
+//         console.log(data)
+//         try {
+//             dispatch({type:CREATE_CARS,payload:data})
+
+//     } catch (error) {
+//         console.log('data',error) 
+//         if(error.message === 400){
+//             alert(`Car already exists`)
+//         } else {
+
+//             alert(`Something went wrong please check all fields and try again`)
+//         }
+//     }
+// } 
 export const createCar = (carData) => async (dispatch) => {
     try {
-        console.log('data1',carData)
+        // console.log('data1',carData)
         // console.log('data1',carData.violations_list)
        const newArr = [...carData.violations_list]
        const parsArr = []
@@ -41,14 +72,17 @@ export const createCar = (carData) => async (dispatch) => {
 
 
        
-        const {data} = await api.createCars(updatedVio)
-        // console.log('data',data)
+        const data = await api.createCars(updatedVio)
+        console.log('data',data)
+        if(data.status === 200){
+            alert('car already exists')
+        } else {
+            dispatch({type:CREATE_CARS,payload:data.data})
+        }
 
-
-        dispatch({type:CREATE_CARS,payload:data})
     } catch (error) {
         console.log(error)
-        alert('Please choose the community')
+        alert(error.message)
     }
 } 
 

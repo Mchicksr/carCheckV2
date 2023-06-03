@@ -1,0 +1,25 @@
+.compBtn{
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    outline: none;
+    font: inherit;
+    font-size: 30px;
+    color: white;
+}
+
+.compBtn:hover{
+    color: gold;
+}
+
+.compBtn:focus{
+    /* transform: scale(10px); */
+    color: wheat;
+    /* border: 
+    solid 1px black; */
+}
+
+.email-link{
+    font-size: 3rem;
+}
+

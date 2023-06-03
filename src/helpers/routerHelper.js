@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import dayjs from "dayjs"
 
 
@@ -28,7 +28,7 @@ dayjs.extend(isSameOrAfter);
 
 //   setData(filteredData);
 // };
- const RenderCarTags = (Route,cars,TagCard,searchTerm,manager,creator,safe,show,setShow,violationCount) => {
+ const RenderCarTags = (Route,cars,TagCard,searchTerm,manager,creator,safe,show,setShow,violationCount,setSafeMessage) => {
 
     const row = ['/Tags','/Tags/:urlId','/Tags/:urlId/:searchterm' ].map((path,index) => (
         <div key={`k${index}`}>
@@ -44,9 +44,12 @@ dayjs.extend(isSameOrAfter);
                if(!car){
                 return car
               }
-              else if(car.community_id === urlId){
+              else if(car.community_id === urlId && car.safe === 0){
                 
                 return car
+              } 
+              else if(car.safe === 1){
+                  setSafeMessage(car.license_plate)
               }
               return null
             }).filter((val)=>{

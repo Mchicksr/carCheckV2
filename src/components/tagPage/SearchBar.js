@@ -7,7 +7,7 @@ import './SearchBar.css'
 
 // import axios from 'axios';
 // import {Link} from 'react-router-dom'
-function SearchBar({searchTerm,setSearchTerm,setShow,communities}) {
+function SearchBar({searchTerm,setSearchTerm,setShow,communities,safeMessage}) {
     const cars = useSelector((state)=> state.cars)
     const [carResult,setCarResult ] = useState('')
     const [numOfCars,setNumofCars] = useState({num:cars.length})
@@ -81,7 +81,7 @@ function SearchBar({searchTerm,setSearchTerm,setShow,communities}) {
         setFormModal(()=>{return !formModal })
        
     }
-  
+    // console.log('safeMes',safeMessage)
     return (
         <div>
             <button className='btn btn-primary' onClick={triggerForm}>{formModal ? 'Hide Form' : 'Show Form'}</button>
@@ -96,8 +96,11 @@ function SearchBar({searchTerm,setSearchTerm,setShow,communities}) {
               <button className="btn btn-primary" type="button" onClick={findCar}>Search</button>
 
           </form>
-      
-        
+            { safeMessage.length !== 0 ?
+                <h1 class="py-3 mt-2"><span className="text-warning">{safeMessage}</span><br/> is on the safe list. DO NOT STICKER.</h1>
+                :
+                null
+            }
           <p> Results: {numOfCars.num}</p>
           <p>Communities: {carName()}</p>
 

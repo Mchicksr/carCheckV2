@@ -8,8 +8,9 @@ import SafeListRoute from '../safeList/SafeListRoute';
 // import { NavLink,Routes } from 'react-router-dom';
 // import DateFilter from '../../components/tagPage/filter/DateFilter'
 
-function Tags({RenderCarTags, Route, cars, TagCard,searchTerm, setSearchTerm,manager,user,creator,safe,setSafe,setCarArr,show,setShow, communities,setViolationCount,violationCount}) {
+function Tags({RenderCarTags, Route, cars, TagCard,searchTerm, setSearchTerm,manager,user,creator,safe,setSafe,setCarArr,show,setShow, communities,setViolationCount,violationCount,safeMessage,setSafeMessage}) {
 //    console.log('cars',cars)
+
     return (
         <div>
             
@@ -17,7 +18,7 @@ function Tags({RenderCarTags, Route, cars, TagCard,searchTerm, setSearchTerm,man
             <h1>Car Tags</h1>
             {/* <SafeList safe={safe} setSafe={setSafe}/> */}
             <ShowRules communities={communities}/>
-            <SearchBar setCarArr={setCarArr} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setShow={setShow} cars={cars} communities={communities}/>
+            <SearchBar setCarArr={setCarArr} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setShow={setShow} cars={cars} communities={communities} safeMessage={safeMessage}/>
             <CommunityNav/>
             {/* <SafeList safe={safe} setSafe={setSafe}/> */}
             <Route path="/Tags/:id" component={() => <SafeListRoute safe={safe}  setSafe={setSafe} cars={cars}/>}/>
@@ -29,7 +30,7 @@ function Tags({RenderCarTags, Route, cars, TagCard,searchTerm, setSearchTerm,man
             
             {cars.length === 0 && show ? <p>no cars with that name</p> : 
             
-            RenderCarTags(Route,cars,TagCard,searchTerm,manager,creator,safe,show,setShow,violationCount)
+            RenderCarTags(Route,cars,TagCard,searchTerm,manager,creator,safe,show,setShow,violationCount,setSafeMessage)
             }
             
             

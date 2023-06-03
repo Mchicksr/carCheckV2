@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import axios from 'axios'
 import { TextField, Button,Paper } from '@material-ui/core';
+import Email from '../../components/towForm/Email';
 
 function Fax({manager,creator,towManager}) {
     const [img, setImg] = useState({})
@@ -47,7 +48,9 @@ function Fax({manager,creator,towManager}) {
     }
      console.log('towManager',manager)
    
+     console.log('pdf2',img)
 
+     
     return (
         <>
         {creator || manager?<>
@@ -62,8 +65,10 @@ function Fax({manager,creator,towManager}) {
                 <label htmlFor="" className="FormLabel">PDF and Photo</label> <br />
                 <input type="file" name="pdf" className="FormLabel" onChange={handleChange} multiple/> <br />
                
-    
-                <Button type="submit" variant="contained" color="primary" onClick={uploadFiles}>Send</Button>
+                <div className="d-flex justify-content-center justify-content-even">
+                {/* <Button type="submit" variant="contained" color="primary" className='mr-4 mt-4' onClick={uploadFiles}>Send Fax</Button> */}
+                <Email img={img}/>
+                </div>
             </Paper>
             
             </>: <h1>Authorized personal only.</h1>}

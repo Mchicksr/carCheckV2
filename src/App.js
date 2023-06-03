@@ -23,6 +23,7 @@ import CommunityForm from './Routes/communityForm/communityForm';
 // import SafeListRoute from './Routes/safeList/SafeListRoute';
 import NewNav from './components/nav/NewNav';
 import CarIndex from './Routes/index/carIndex';
+import Emails from './Routes/tow/Emails';
 
   
 function App() {
@@ -31,6 +32,7 @@ function App() {
   // const violations = useSelector((state)=>state.violations)
   const [carArr, setCarArr] = useState([])
   const [searchTerm,setSearchTerm] = useState("")
+  const [safeMessage, setSafeMessage] = useState("")
   const [manager,setManager] = useState(false)
   const [towManager,setTowManager] = useState(false)
   const [creator,setCreator] = useState(false)
@@ -132,15 +134,16 @@ function App() {
 
  
       
-      <Route path='/' exact component={UserProfile}/>
+      {/* <Route path='/' exact component={UserProfile}/> */}
+      {/* <Route path='/'/> */}
       {/* <Route path="/CarLog" element={<CarLog cars={cars} communities={communities} violations={violations}/>}/> */}
-      <Route path="/carLog"  render={() => <CarIndex manager={manager}/>} />
+      <Route path="/carLog"  exact render={() => <CarIndex manager={manager}/>} />
       <Route path="/Fax" render={() => <Fax manager={manager} creator={creator} towManager={towManager}/>}/>
       <Route path="/Login" component={AuthPath}/>
       <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
       <Route path='/TowForm' component={Tow}/>
-
-       <Route path='/Tags' render={() =>
+      <Route path="/Email" render={() => <Emails/>}/>
+       <Route path='/' render={() =>
          <Tags 
           car={carArr} 
           RenderCarTags={RenderCarTags} 
@@ -158,6 +161,8 @@ function App() {
          communities={communities}
          setViolationCount={setViolationCount}
          violationCount={violationCount}
+         safeMessage={safeMessage}
+         setSafeMessage={setSafeMessage}
          />}
          /> 
 

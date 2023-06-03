@@ -53,7 +53,7 @@ function ViolationBtn({ id, violations, lic }) {
     const violationCount = () => {
         const result = violation_types.filter((item,index) => {
             if (item.carLic === lic) {
-                return <p class={`lo${index}`}>{item}</p>
+                return <p className={`lo${index}`}>{item}</p>
             } else {
 
                 return null
