@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter} from 'react-router-dom';
+import { CompatRouter } from "react-router-dom-v5-compat";
 import {Provider} from 'react-redux'
 import { createStore,applyMiddleware,compose } from 'redux';
 import {devToolsEnhancer} from 'redux-devtools-extension'
@@ -17,7 +18,9 @@ store.subscribe(()=>{
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
+        <CompatRouter>
       <App />
+        </CompatRouter>
     </BrowserRouter>
   </Provider>,
 
