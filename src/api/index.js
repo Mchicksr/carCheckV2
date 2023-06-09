@@ -1,9 +1,10 @@
 import axios from 'axios'
-// import config from '../config'
+import config from '../config'
 // import React,{useState,useEffect} from 'react';
 
 // const API = axios.create({baseURL:config.API_ENDPOINT})
 export const API = axios.create({baseURL:'http://localhost:8000'})
+// export const API = axios.create({baseURL:' https://code-car-checkv2.herokuapp.com/'})
 
 API.interceptors.request.use((req)=>{
     if(localStorage.getItem('profile')){
