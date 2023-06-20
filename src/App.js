@@ -60,7 +60,10 @@ function App() {
     dispatch(getViolations())
     // user?.result?._id === access && access2 && access3? setManager(true) : setManager(false)
     // user?.result?._id === access || access2 || access3? setManager(true) : setManager(false)
-    user?.result?.email === access3 || access2 ? setManager(true) : setManager(false)
+    // user?.result?.email === access3 || access2 ? setManager(true) : setManager(false)
+    // (user?.result?.email === access3 || user?.result?.email === access2) ? setManager(true) : setManager(false);
+    user?.result?.email === access3 ? setManager(true) : 
+    user?.result?.email === access2 ? setManager(true) :
     user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
     user?.result?._id === access ? setCreator(true) : setCreator(false)
 
@@ -78,6 +81,7 @@ function App() {
     //   }
 
     // })
+    console.log('mange',manager)
   }, [dispatch,user?.result?._id,user?.result?.email])
   return (
 
@@ -142,7 +146,7 @@ function App() {
       <Route path="/Login" component={AuthPath}/>
       <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
       <Route path='/TowForm' component={Tow}/>
-      <Route path="/Email" render={() => <Emails/>}/>
+      <Route path="/Email" render={() => <Emails manager={manager}/>}/>
        <Route path='/' render={() =>
          <Tags 
           car={carArr} 

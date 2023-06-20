@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 import { violationList } from '../../actions/cars';
 
 
-const ViolationCount = ({violations_list,lic}) => {
+const ViolationCount = ({violations_list,lic,communityID, comID}) => {
     // const [violationNum,  setViolationNum] = useState(0)
     const [openSelect, setOpenSelect] = useState(false)
     const [violationType2,setViolationType2] = useState([])
@@ -54,7 +54,11 @@ const ViolationCount = ({violations_list,lic}) => {
   
   
 
-    const newNum = cars?.map(num => num.violations_list.length)
+    const newNum = cars?.filter((car)=>{
+        if(car.community_id === comID){
+            return car
+        }
+    }).map(num => num.violations_list.length)
     // console.log('NEWNUM', newNum)
     const handleCheckboxChange = (e) =>{
        

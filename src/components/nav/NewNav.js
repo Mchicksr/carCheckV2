@@ -46,7 +46,7 @@ const NewNav = ({manager}) => {
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto text-white">
                         <li className="nav-item text-white"><Link to='/Tags'><p className='nav-link text-white'>Find Car Tags</p></Link></li>
-                        <li className="nav-item text-white"><Link to='/CarForm'><p className='nav-link text-white'>Add Car</p></Link></li>
+                        {/* <li className="nav-item text-white"><Link to='/CarForm'><p className='nav-link text-white'>Add Car</p></Link></li> */}
                         {/* { manager ? */}
                         <>
                         <li className="nav-item text-white"><Link to='/Fax'><p className='nav-link text-white'>Tow Car</p></Link></li>
