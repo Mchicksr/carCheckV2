@@ -51,7 +51,7 @@ function App() {
   // const allAccess = googleUser?.email
   // console.log('SDFDSA')
 
-
+// console.log('hey')
 // console.log('check',cars.map(item => item.violations_list))
 
   useEffect(() => {
@@ -173,7 +173,7 @@ function App() {
       
   
   </div>
-
+// hello
     // <div className="App"> 
     //   <Navbar manager={manager}/>    
     //   <Switch> 
