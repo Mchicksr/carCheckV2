@@ -49,7 +49,7 @@ const NewNav = ({manager}) => {
                         {/* <li className="nav-item text-white"><Link to='/CarForm'><p className='nav-link text-white'>Add Car</p></Link></li> */}
                         {/* { manager ? */}
                         <>
-                        <li className="nav-item text-white"><Link to='/Fax'><p className='nav-link text-white'>Tow Car</p></Link></li>
+                        {/* <li className="nav-item text-white"><Link to='/Fax'><p className='nav-link text-white'>Tow Car</p></Link></li> */}
                         <li className="nav-item text-white"><Link to='/Email'><p className='nav-link text-white'>Email to Tow</p></Link></li>
                         <li className="nav-item text-white"><Link to='/CarLog'><p className='nav-link text-white'>Car Log</p></Link></li>
                         </>

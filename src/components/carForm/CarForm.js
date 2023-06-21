@@ -43,7 +43,7 @@ function CarForm({communities}) {
         {id:8,violation_type:"invalid decal" ,val:`{"violation": "invalid decal"}`},
         {id:8,violation_type:"inop vehicle" ,val:`{"violation": "inop vehicle"}`},
         {id:8,violation_type:"improper parking" ,val:`{"violation": "improper parking"}`},
-        {id:8,violation_type:"resident in" ,val:`{"violation": "resident in"}`}, 
+        {id:8,violation_type:"resident parked in guest parking" ,val:`{"violation": "resident parked in guest parking"}`}, 
         {id:9,violation_type:"other",val:`{"violation": "other"}`}
     
     ]
