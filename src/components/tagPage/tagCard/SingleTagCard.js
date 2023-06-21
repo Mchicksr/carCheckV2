@@ -8,7 +8,14 @@ import SafeStatus from '../../profile/SafeStatus';
 import { useSelector } from 'react-redux';
 function TagCard({id,lp,carMake,carModel,violations,verified,color,address,modified,sticker,manager,creator,community,safeStatus, safe,violationCount}) {
     const cars = useSelector((state) => state.cars)
-    const newNum = cars?.map(num => num.violations_list.length)
+    const newNum = cars?.filter((car)=>{
+               
+
+        if(car.community_id === community){
+            return car
+        }
+
+    }).map(num => num.violations_list.length)
     return (
         <div className='tagCard' key={id}>
             <div className="containerTc">

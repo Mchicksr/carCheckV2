@@ -39,7 +39,8 @@ function App() {
   const [safe,setSafe] = useState(false)
   const dispatch = useDispatch()
   const access = '61a94e4adba13dd081420629'
-  const access2 = '61bb63d143156f329531f69b'
+  // const access2 = '61bb63d143156f329531f69b'
+  const access2 = 'parksmartfl@gmail.com'
   const access3 = "mikehicks@gmail.com"
   const user = JSON.parse(localStorage.getItem('profile'))
   const [violationCount, setViolationCount] = useState()
@@ -60,7 +61,10 @@ function App() {
     dispatch(getViolations())
     // user?.result?._id === access && access2 && access3? setManager(true) : setManager(false)
     // user?.result?._id === access || access2 || access3? setManager(true) : setManager(false)
-    user?.result?.email === access3 || access2 ? setManager(true) : setManager(false)
+    // user?.result?.email === access3 || access2 ? setManager(true) : setManager(false)
+    // (user?.result?.email === access3 || user?.result?.email === access2) ? setManager(true) : setManager(false);
+    user?.result?.email === access3 ? setManager(true) : 
+    user?.result?.email === access2 ? setManager(true) :
     user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
     user?.result?._id === access ? setCreator(true) : setCreator(false)
 
@@ -78,6 +82,7 @@ function App() {
     //   }
 
     // })
+    console.log('mange',manager)
   }, [dispatch,user?.result?._id,user?.result?.email])
   return (
 
@@ -142,7 +147,7 @@ function App() {
       <Route path="/Login" component={AuthPath}/>
       <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
       <Route path='/TowForm' component={Tow}/>
-      <Route path="/Email" render={() => <Emails/>}/>
+      <Route path="/Email" render={() => <Emails manager={manager}/>}/>
        <Route path='/' render={() =>
          <Tags 
           car={carArr} 

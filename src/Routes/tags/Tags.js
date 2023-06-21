@@ -10,6 +10,18 @@ import SafeListRoute from '../safeList/SafeListRoute';
 
 function Tags({RenderCarTags, Route, cars, TagCard,searchTerm, setSearchTerm,manager,user,creator,safe,setSafe,setCarArr,show,setShow, communities,setViolationCount,violationCount,safeMessage,setSafeMessage}) {
 //    console.log('cars',cars)
+const Url = new URL(window.location)
+
+
+const getUrlPart = (url) => {
+    const regex = /\/Tags\/(\w+)\//; // Regex pattern to match the desired part
+    const match = url.match(regex);
+    if (match && match.length > 1) {
+      return match[1];
+    }
+    return null; // Return null if no match found
+  };
+ const ComId = getUrlPart(Url.pathname)
 
     return (
         <div>
@@ -37,7 +49,15 @@ function Tags({RenderCarTags, Route, cars, TagCard,searchTerm, setSearchTerm,man
             </>:<h1>Please Login</h1>}
             <Route path="/Tags/:id/:searchterm" component={() => 
         (
-            cars.map((car,index)=>{
+            cars.filter((car)=>{
+               
+
+                if(car.community_id === ComId){
+                    return car
+                }
+
+            }).map((car,index)=>{
+                console.log('cr',car)
                 return <Profile 
                     key={index}
                     violations={car.violations}
@@ -54,6 +74,7 @@ function Tags({RenderCarTags, Route, cars, TagCard,searchTerm, setSearchTerm,man
                     violations_list={car.violations_list}
                     safe={car.safe}
                     setViolationCount={setViolationCount}
+                    communityID={car.community_id}
                 />
 
             })

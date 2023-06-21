@@ -23,7 +23,7 @@ const Email = ({img}) => {
     const chooseCompany = () => {
       const companynav =   companies.map( (company,index) => (
             <div key={index} className=''>
-                <button className='pr-4 compBtn' onClick={() => setCompany(company.email)} >{company.company}</button>
+                <button className='mr-4 btn btn-primary' onClick={() => setCompany(company.email)} >{company.company}</button>
             </div>
         ))
         return companynav

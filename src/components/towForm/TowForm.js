@@ -26,7 +26,7 @@ function TowForm({Lic, Cm, Cmo}) {
     const [date,setDate]= useState(dayz)
     const [time,setTime]= useState(timez)
     const [from,setFrom]= useState("Pat Mo")
-    const [owner,setOwner]= useState("Parks Smart")
+    const [owner,setOwner]= useState("Park Smart")
     const [callback,setCallback]= useState("7866272664")
     const [sa,setSa]= useState("")
     const [city,setCity]= useState("")

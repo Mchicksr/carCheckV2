@@ -1,9 +1,14 @@
 import React from 'react';
 import Email from '../../components/towForm/Email'
-const Emails = () => {
+const Emails = ({manager}) => {
     return (
-        <div>
+        <div class="py-5" style={{backgroundColor: "#343a4094"}}>
+            {manager ? 
             <Email/>
+            
+            : 
+                <h1>Authorized Personal Only</h1>
+            }
         </div>
     );
 }

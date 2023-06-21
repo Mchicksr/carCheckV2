@@ -48,12 +48,13 @@ function Fax({manager,creator,towManager}) {
     }
      console.log('towManager',manager)
    
-     console.log('pdf2',img)
+    //  console.log('pdf2',img)
 
      
     return (
         <>
-        {creator || manager?<>
+        {/* {creator || manager?<> */}
+        {manager ?<>
             <Paper>
                 <h1 className="FormLabel">Tow Car</h1>
                 <h2>Tow company Number</h2>
@@ -67,7 +68,7 @@ function Fax({manager,creator,towManager}) {
                
                 <div className="d-flex justify-content-center justify-content-even">
                 {/* <Button type="submit" variant="contained" color="primary" className='mr-4 mt-4' onClick={uploadFiles}>Send Fax</Button> */}
-                <Email img={img}/>
+                {/* <Email img={img}/> */}
                 </div>
             </Paper>
             
