@@ -37,11 +37,8 @@ function SearchBar({searchTerm,setSearchTerm,setShow,communities,safeMessage}) {
             setCarResult('Type License Plate in Field')
             activateForm()
         } else {
-          
-          
-
-            setCarResult(numOfCars.num)
-          
+             setCarResult(numOfCars.num)
+   
         }
         
     }
@@ -84,7 +81,7 @@ function SearchBar({searchTerm,setSearchTerm,setShow,communities,safeMessage}) {
     // console.log('safeMes',safeMessage)
     return (
         <div>
-            <button className='btn btn-primary' onClick={triggerForm}>{formModal ? 'Hide Form' : 'Show Form'}</button>
+            <button className='btn btn-primary' onClick={triggerForm}>{formModal ? 'Hide Form' : 'Add Car'}</button>
             <div className={formModal ? 'showForm' : 'hideForm'}>
                 {activateForm()}
             </div>
