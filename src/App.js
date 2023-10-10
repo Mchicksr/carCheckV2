@@ -3,8 +3,10 @@ import React,{useEffect,useState} from 'react';
 import './App.css';
 import {useDispatch,useSelector} from 'react-redux'
 // import { Route, Switch, Routes, Navigate} from 'react-router-dom';
+import { CompatRoute, Navigate, Routes } from "react-router-dom-v5-compat";
+
 import { Route} from 'react-router-dom';
-// import { Home, Landing, Login, Signup } from "./screens";
+import { Home, Landing, Login, Signup } from "./screens";
 // import {getCar} from './actions/cars'
 import {getCommunities} from './actions/community'
 import { getViolations } from './actions/violation';
@@ -46,10 +48,10 @@ function App() {
   // const user = localStorage.getItem("user");
   const [show,setShow] = useState(false)
   // Google Auth state
-  // const [googleUser, setGoogleUser] = useState({})
-  // const profiles = ['mhicksrichardson@gmail.com','mikehicks','djsoundna@gmail.com']
-  // const allAccess = googleUser?.email
-  // console.log('SDFDSA')
+  const [googleUser, setGoogleUser] = useState({})
+  const profiles = ['mhicksrichardson@gmail.com','mikehicks','djsoundna@gmail.com']
+  const allAccess = googleUser?.email
+  console.log('SDFDSA')
 
 
 // console.log('check',cars.map(item => item.violations_list))
@@ -58,26 +60,26 @@ function App() {
     // dispatch(getCar({id:carArr}))
     dispatch(getCommunities())
     dispatch(getViolations())
-    // user?.result?._id === access && access2 && access3? setManager(true) : setManager(false)
-    // user?.result?._id === access || access2 || access3? setManager(true) : setManager(false)
+    user?.result?._id === access && access2 && access3? setManager(true) : setManager(false)
+    user?.result?._id === access || access2 || access3? setManager(true) : setManager(false)
     user?.result?.email === access3 || access2 ? setManager(true) : setManager(false)
     user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
     user?.result?._id === access ? setCreator(true) : setCreator(false)
 
-    // const theUser = localStorage.getItem("user");
+    const theUser = localStorage.getItem("user");
 
-    // if (theUser && !theUser.includes("undefined")) {
-    //   setGoogleUser(JSON.parse(theUser));
-    // }
+    if (theUser && !theUser.includes("undefined")) {
+      setGoogleUser(JSON.parse(theUser));
+    }
 
-    // profiles.map((pass)=>{
-    //   if(allAccess === pass ){
-    //     setManager(true)
-    //   } else {
-    //     return null
-    //   }
+    profiles.map((pass)=>{
+      if(allAccess === pass ){
+        setManager(true)
+      } else {
+        return null
+      }
 
-    // })
+    })
   }, [dispatch,user?.result?._id,user?.result?.email])
   return (
 
@@ -87,7 +89,7 @@ function App() {
     {/* <Navbar manager={manager}/> */}
     <NewNav manager={manager}/>    
     {/* --------------------------------------------------------------------------------------- */}
-    {/* {manager ? 
+    {manager ? 
       <>
       <h1 className="text-warning">Form App</h1>
       <input type="text" placeholder="Name" /><br />
@@ -105,27 +107,27 @@ function App() {
       window.location.reload();
     }}>logout</button>
       <Routes>
-        <Route
+        <CompatRoute
           path="/"
           element={googleUser?.email ? <Navigate to="/home" /> : <Landing />}
 
         />
-        <Route
+        <CompatRoute
           path="/signup"
           element={googleUser?.email ? <Navigate to="/home" /> : <Signup />}
         />
-        <Route
+        <CompatRoute
           path="/login"
           element={googleUser?.email ? <Navigate to="/home" /> : <Login />}
           />
-        <Route
+        <CompatRoute
           path="/home"
           element={googleUser?.email ? <Home user={googleUser} /> : <Navigate to="/" />}
           // element={<Navigate to="/home" />}
         />
-              <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
+              <CompatRoute path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
 
-      </Routes> */}
+      </Routes>
 
 {/* --------------------------------------------------------------------------------------- */}
 
@@ -137,13 +139,15 @@ function App() {
       {/* <Route path='/' exact component={UserProfile}/> */}
       {/* <Route path='/'/> */}
       {/* <Route path="/CarLog" element={<CarLog cars={cars} communities={communities} violations={violations}/>}/> */}
-      <Route path="/carLog"  exact render={() => <CarIndex manager={manager}/>} />
-      <Route path="/Fax" render={() => <Fax manager={manager} creator={creator} towManager={towManager}/>}/>
-      <Route path="/Login" component={AuthPath}/>
-      <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
-      <Route path='/TowForm' component={Tow}/>
-      <Route path="/Email" render={() => <Emails/>}/>
-       <Route path='/' render={() =>
+      <Routes>
+
+      <CompatRoute path="/carLog"  exact render={() => <CarIndex manager={manager}/>} />
+      <CompatRoute path="/Fax" render={() => <Fax manager={manager} creator={creator} towManager={towManager}/>}/>
+      <CompatRoute path="/Login" component={AuthPath}/>
+      <CompatRoute path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
+      <CompatRoute path='/TowForm' component={Tow}/>
+      <CompatRoute path="/Email" render={() => <Emails/>}/>
+       <CompatRoute path='/' render={() =>
          <Tags 
           car={carArr} 
           RenderCarTags={RenderCarTags} 
@@ -167,9 +171,10 @@ function App() {
          /> 
 
         
-        <Route path='/community' render={() => <CommunityForm/>}/>
+        <CompatRoute path='/community' render={() => <CommunityForm/>}/>
 
     
+      </Routes>
       
   
   </div>
