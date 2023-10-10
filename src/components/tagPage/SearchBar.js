@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { useDispatch,useSelector } from 'react-redux';
-import {getCar} from '../../actions/cars';
+import {clearCar, getCar} from '../../actions/cars';
 // import CarEntryForm from '../../Routes/carEntryForm/carEntryForm';
 import CarForm from '../carForm/CarForm';
 import './SearchBar.css'
@@ -41,6 +41,13 @@ function SearchBar({searchTerm,setSearchTerm,setShow,communities,safeMessage}) {
    
         }
         
+    }
+
+    const clearBtn = () =>{
+        setSearchTerm('')
+        dispatch(clearCar())
+        // setShow(false)
+        // setCarResult('')
     }
 
     const carName = () => {
@@ -90,11 +97,12 @@ function SearchBar({searchTerm,setSearchTerm,setShow,communities,safeMessage}) {
               <label htmlFor="TagNumber"></label> 
               <input className="TFInput" type="text" value={searchTerm} onChange={e => setSearchTerm(e.target.value)}></input><br></br>
 
-              <button className="btn btn-primary" type="button" onClick={findCar}>Search</button>
+              <button className="btn btn-primary mr-3" type="button" onClick={findCar}>Search</button>
+                <button className="btn btn-danger" type="button" onClick={clearBtn}>Clear</button>
 
           </form>
             { safeMessage.length !== 0 ?
-                <h1 class="py-3 mt-2"><span className="text-warning">{safeMessage}</span><br/> is on the safe list. DO NOT STICKER.</h1>
+                <h1 className="py-3 mt-2"><span className="text-warning">{safeMessage}</span><br/> is on the safe list. DO NOT STICKER.</h1>
                 :
                 null
             }

@@ -1,5 +1,7 @@
 import React, { useState,useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { TextField, Button, Paper } from '@material-ui/core';
+import {useLocation} from 'react-router-dom';
 import axios from 'axios'
 import {saveAs} from 'file-saver'
 import formData from 'form-data'
@@ -11,17 +13,24 @@ import config from '../../config'
 
 
 
-
 function TowForm({Lic, Cm, Cmo}) {
     const ndate = new Date()
     const dayz= `${ndate.getMonth()+ 1}/${ndate.getDate()}/${ndate.getFullYear()}`
     const timez= `${ndate.getHours()}:${ndate.getMinutes()}`
-    // const dispatch=useDispatch()
-    // const image = useSelector((state)=>state.image)
+    const communities = useSelector(state => state.communities)
+    const cars = useSelector(state => state.cars)
+    const vioList = cars[0]?.violations_list
+    console.log('vioList',vioList)
+    console.log('cars',cars)
+
+    
+
     const classes = useStyles()
-
-
-    const [to,setTo]= useState("Kelle Towing")
+    
+    const theLocation = useLocation()
+    const ComId = theLocation.state.ComId
+    
+    const [to,setTo]= useState("")
     const [faxNum,setFaxNum]= useState("5618327178")
     const [date,setDate]= useState(dayz)
     const [time,setTime]= useState(timez)
@@ -46,7 +55,71 @@ function TowForm({Lic, Cm, Cmo}) {
     const [photo,setPhoto] = useState([])
     const [photo1,setPhoto1] = useState("")
     const [photo2,setPhoto2] = useState("")
+    const [chosenComID, setChosenComID] = useState("")
+    const [reasonList, setReasonList] = useState([])
     // console.log('test1',photo)
+    let comsIDS;
+    
+    useEffect(() => {
+        const populateViolations = () => {
+            const vioArr = []
+            vioList?.map(item => {
+                item.reason.forEach(i => {
+                    console.log('i',i.violation)
+                    vioArr.push(i.violation)
+                })
+            })
+            // setReasonList(vioArr)
+            const vioStr = vioArr.join(" ")
+            setReason(vioStr)
+        }
+        populateViolations()
+    },[])
+
+    useEffect(()=>{
+        const findCommunity = () => {
+            const theID = communities.filter(com => {
+                if(com._id === ComId){
+                    // setChosenComID(com.tow_company)
+                    return com
+                }
+            }).map((com) => {
+                comsIDS = com.tow_company
+            })
+            return theID;
+        }
+        findCommunity()
+        // console.log('fd',comsIDS)
+        // console.log('ch',chosenComID)
+        switch (comsIDS) {
+            case 'Kelle towing':
+                setTo("Kelle Towing")
+                // setSa("2635 electronic way")
+                // setCity("Wpb")
+                // setZip("33407")
+                setFaxNum("561.832.7178")
+
+                break;
+            case 'Priority towing':
+                setTo("Priority towing")
+                // setSa("740 Barnett drive")
+                // setCity("Lake Worth")
+                // setZip("33461")
+                setFaxNum("561.533.5573")
+                break;
+            case "Zuccalas":
+                setTo("Zuccala\\'s wrecker service")
+                // setSa("905 N. Railroad Ave.")
+                // setCity("Boynton Bch.")
+                // setZip("33435")
+                setFaxNum("(561) 737-6379")
+                break;
+        
+            default:
+                // console.log('nothing')
+                break;
+        }
+    },[])
 
     const chooseImage = () =>{
        setPhoto1(photo[0].selectedFile)

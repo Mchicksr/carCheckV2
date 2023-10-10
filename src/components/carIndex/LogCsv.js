@@ -5,14 +5,16 @@ import { useSelector } from 'react-redux';
 const LogCsv = () => {
     const logs = useSelector(state => state.cindex)
     const totals = useSelector(state => state.indexTotal )
-
+    const community_name = totals.communityName
  const headers = [
+     {label:`Community: ${community_name}`, key:"communityName"},
     {label:"Cars Total", key:"car_amount"},
     {label:"Tows Total", key:"tows_total"},
     {label:"Violations Total", key:"violation_totals"},
     {label: "License plate", key:"license_plate"},
     {label: "Car make", key:"car_make"},
     {label: "Car model", key:"car_model"},
+    {label: "Car color", key:"color"},
     {label:"Sticker 1 info", key:""},
     {label:"violations1", key:"violations_list[0].reason[0].violation"},
     {label:"violation Date", key:"violations_list[0].reason[0].modified"},
@@ -38,7 +40,6 @@ const LogCsv = () => {
 
     // const total = {car_amount:11,car_tow:3}
     const updatedArr = [totals,...logs]
-   
     const data = updatedArr
     return (
         <div>
@@ -46,7 +47,7 @@ const LogCsv = () => {
                 className='btn btn-primary'
                 data={data}
                 headers={headers}
-                filename={"Car Stats"}
+                filename={`${community_name}Car Stats`}
                 target="_blank"
                 >
                     Download CSV

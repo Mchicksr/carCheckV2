@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import './CarCard.css'
 // import violations from '../../reducers/violation';
 
-function CarCard({cars,vType,setCarStatus}) {
+function CarCard({cars,vType,setCarStatus,color}) {
   const carS = []
   // const carObj = {}
 useEffect(() => {

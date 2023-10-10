@@ -50,7 +50,7 @@ function App() {
   // const [googleUser, setGoogleUser] = useState({})
   // const profiles = ['mhicksrichardson@gmail.com','mikehicks','djsoundna@gmail.com']
   // const allAccess = googleUser?.email
-  // console.log('SDFDSA')
+  console.log('FD8FE3')
 
 
 // console.log('check',cars.map(item => item.violations_list))
@@ -82,7 +82,7 @@ function App() {
     //   }
 
     // })
-    console.log('mange',manager)
+    // console.log('mange',manager)
   }, [dispatch,user?.result?._id,user?.result?.email])
   return (
 

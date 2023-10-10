@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import CommunityNav from '../../components/tagPage/community/CommunityNav';
 import SearchBar from '../../components/tagPage/SearchBar';
 // import SafeList from '../../components/tagPage/tagCard/safeList';
@@ -11,6 +11,21 @@ import SafeListRoute from '../safeList/SafeListRoute';
 function Tags({RenderCarTags, Route, cars, TagCard,searchTerm, setSearchTerm,manager,user,creator,safe,setSafe,setCarArr,show,setShow, communities,setViolationCount,violationCount,safeMessage,setSafeMessage}) {
 //    console.log('cars',cars)
 const Url = new URL(window.location)
+const [comName,setComName] = useState('')
+useEffect(() => {
+     const getCommunityName = () => {
+        let input = Url.pathname
+        const Urlid = input.replace(/Tags\//, '')
+        const id =Urlid .substring(1)
+        
+        const communityName = communities.find((community) => community._id === id)
+        // console.log('communityName',communityName.community)
+        setComName(communityName?.community)
+    }
+    getCommunityName()
+},[Url])
+
+
 
 
 const getUrlPart = (url) => {
@@ -23,18 +38,31 @@ const getUrlPart = (url) => {
   };
  const ComId = getUrlPart(Url.pathname)
 
-    return (
+//  const getCommunityName = () => {
+//     const id = input.replace(/^Tags\//, '')
+//     console.log('id',id)
+//     // if()
+//  }
+
+
+ return (
         <div>
             
             {user?<>
             <h1>Car Tags</h1>
-            {/* <SafeList safe={safe} setSafe={setSafe}/> */}
-            <ShowRules communities={communities}/>
-            <SearchBar setCarArr={setCarArr} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setShow={setShow} cars={cars} communities={communities} safeMessage={safeMessage}/>
+            <h2>Select A Commuinity</h2>
             <CommunityNav/>
-            {/* <SafeList safe={safe} setSafe={setSafe}/> */}
-            <Route path="/Tags/:id" component={() => <SafeListRoute safe={safe}  setSafe={setSafe} cars={cars}/>}/>
-           
+            <Route path="/Tags/:id" component={() => (
+                <>
+                    <h2>You Are Now In:</h2>
+                    <h1 className='mb-5'>{comName}</h1>
+                   
+                    <ShowRules communities={communities}/>
+                    <SafeListRoute safe={safe}  setSafe={setSafe} cars={cars} manager={manager}/>
+                </>
+                
+            )}/>
+            <SearchBar setCarArr={setCarArr} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setShow={setShow} cars={cars} communities={communities} safeMessage={safeMessage}/>
 
             {/* <Route path="/Tags/:id" component={<SafeListRoute safe={safe}  setSafe={setSafe} cars={cars}/>}/> */}
            
@@ -57,7 +85,7 @@ const getUrlPart = (url) => {
                 }
 
             }).map((car,index)=>{
-                console.log('cr',car)
+                // console.log('cr',car)
                 return <Profile 
                     key={index}
                     violations={car.violations}
@@ -69,11 +97,12 @@ const getUrlPart = (url) => {
                     color={car.color}
                     modified={car.modified}
                     sticker={car.sticker}
-                    manager={car.manager}
+                    manager={manager}
                     creator={creator}
                     violations_list={car.violations_list}
                     safe={car.safe}
                     setViolationCount={setViolationCount}
+                    image={car.car_image}
                     communityID={car.community_id}
                 />
 

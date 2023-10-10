@@ -28,6 +28,7 @@ export const getCar = (searchTerm) => API.get(`/cars/find/${searchTerm}`)
 export const addViolation =  (id,violation) => API.patch(`/cars/${id}/violation`,violation)
 export const resetViolation = (id) => API.patch(`/cars/${id}/resetviolation`)
 export const violationList = (id,violations) => API.patch(`/cars/violations/${id}`,violations)
+export const deleteViolationApi = (id,index) => API.patch(`/cars/removeViolation/${id}`,index)
 
 // verify
 export const verify = (id) => API.patch(`/cars/${id}/verify`)
@@ -64,4 +65,7 @@ export const deleteViolation = (id) => API.delete(`/violation/${id}`)
 
 // Car Index
 export const weeklyCars = (id,dates) => API.post(`cars/search/${id}`,dates)
+
+// Car Image
+export const createCarImage = (id,car_image) => API.patch(`cars/addCarImage/${id}`,car_image)
 

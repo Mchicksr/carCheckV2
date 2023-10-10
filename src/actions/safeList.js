@@ -19,3 +19,4 @@ export const updateSafeStatus = (id,safe) => async (dispatch) => {
         console.log(error)
     }
 }
+
