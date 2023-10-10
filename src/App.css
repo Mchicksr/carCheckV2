@@ -60,6 +60,23 @@ button.clear-btn {
   text-transform: capitalize;
 }
 
+.radio-button{
+  height: 16px;
+  background-color: white;
+}
+
+.selected-radio-button{
+  height: 16px;
+  background-color: gold;
+
+}
+
+.image-size{
+  max-width: 20rem;
+  max-height: 20rem;
+
+}
+
 @media all and (min-width: 1024px) and (max-width: 1280px) { }
  
 @media all and (min-width: 768px) and (max-width: 1024px) { }

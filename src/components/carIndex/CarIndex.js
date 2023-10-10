@@ -10,11 +10,14 @@ const FindCarIndex = () => {
     const community = useSelector(state => state.communities)
     const logs = useSelector(state => state.cindex)
     const [comID, setComID] = useState('')
+    // const [communityName, setCommunityName] = useState('')
     const [para1,setpara1] = useState('')
     const [para2,setpara2] = useState('')
     const dispatch = useDispatch()
 
- 
+ ///////////////////Get Comunity name/////////////////////
+    const findCommunity = community.find((item) => item._id === comID)
+    const communityName = findCommunity?.community
      // ///////// Dispatch get weekly cars/////////////////////
      const sendInfo = (e) =>{
         e.preventDefault()
@@ -51,7 +54,7 @@ const FindCarIndex = () => {
    
     
 
-    const carStats= useCallback(()=>{return {car_amount:logs.length, tows_total:totalCount, violation_totals:lastLogsArr.length}},[logs.length,totalCount,lastLogsArr.length])
+    const carStats= useCallback(()=>{return {car_amount:logs.length, tows_total:totalCount, violation_totals:lastLogsArr.length, communityName:communityName}},[logs.length,totalCount,lastLogsArr.length,communityName])
     useEffect(() => {
     
         dispatch(iTotal(carStats()))
@@ -60,17 +63,21 @@ const FindCarIndex = () => {
         
     }, [carStats,dispatch]);
 
- 
-
+    const selectCommunity = (e) => {
+        
+        setComID(e.target.value)
+    }
+// console.log('communityName',communityName)
+console.log('comId',comID)
     return (
         <div>
             <form action="" onSubmit={sendInfo}>
                 <input className="mr-3" type="date" onChange={(e)=> setpara1(e.target.value)}/>
                 <input type="date" onChange={(e)=> setpara2(e.target.value)}/><br></br>
-                <select className="mt-4" name="community_id" id="community_id" value={comID} onChange={(e) => setComID(e.target.value)}>
+                <select className="mt-4"  id="community_id" value={comID}  onChange={(e) => setComID(e.target.value)}>
                     <option>---select community</option>
                     {community.map((value,index) => {
-                        return <option key={index} value={value._id}>{value.community}</option>
+                        return <option key={index} name={value.community}  value={value._id} >{value.community}</option>
                     })}
                 </select> <br></br>
                     <button className='btn btn-primary my-3' type='submit'>Submit</button>

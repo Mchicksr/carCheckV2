@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { updateSafeStatus } from '../../actions/safeList';
 // import axios from 'axios';
 // import { API } from '../../api';
-const SafeBtn = ({ id, safe }) => {
+const SafeBtn = ({ id, safe, list,remove, manager }) => {
     const dispatch = useDispatch()
     const [safeStatus] = useState(0)
     const [clicked, setClicked] = useState(false)
@@ -33,24 +33,25 @@ const SafeBtn = ({ id, safe }) => {
 
     const updateStatus = () => {
         verifySafeStatus()
-        // dispatch(updateSafeStatus(id,{safe:safeStatus}))
-        // axios.patch(`http://localhost:8000/cars/safe/${id}`,{safe:safeStatus})
-        // API.patch(`/cars/safe/${id}`,{safe:safeStatus})
         updatebtn()
+            if(list){
+                list()
+            }
+    
         
     }
 
    
-    // console.log('clicked', clicked)
+    // console.log('clicked', manager)
     return (
 
         <div>
-            {/* {
-                !clicked ? */}
-                <div className="btn btn-primary" onClick={updateStatus}>update</div>
-                {/* :
-                <p>Safe Status has been updated</p> */}
-            {/* } */}
+            {manager?
+                <div className="btn btn-primary" onClick={updateStatus}>{remove ? remove : 'update'}</div>
+            :
+                null
+            }
+                
         </div>
     );
 }

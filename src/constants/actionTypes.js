@@ -1,6 +1,7 @@
 export const FETCH_ALL = "FETCH_ALL"
 export const FETCH_CARS = "FETCH_CARS"
 export const GET_CAR = "GET_CAR"
+export const CLEAR_CAR = "CLEAR_CAR"
 export const FETCH_COMMENTS = "FETCH_COMMENTS"
 export const FETCH_IMAGE = "GET_IMAGE"
 export const CREATE_COMMUNITY = "CREATE_COMMUNITY"
@@ -21,6 +22,8 @@ export const DELETE_VIOLATION = "DELETE_VIOLATION"
 export const VIOLATION_LIST = "VIOLATION_LIST"
 export const GET_SAFELIST = "GET_SAFELIST"
 export const UPDATE_SAFELIST= "UPDATE_SAFELIST"
+export const DELETE_VIOLATION_AT = "DELETE_VIOLATION_AT"
+export const REFETCHCARIMAGE = "REFETCHCARIMAGE"
 
 // carIndex
 export const WEEKLY_CARS = "WEEKLY_CARS"
@@ -29,3 +32,9 @@ export const GET_TOTAL_VIOLATIONS = "GET_TOTAL_VIOLATIONS"
 
 // Index Total
 export const INDEX_TOTAL = "INDEX_TOTAL"
+
+// Car Profile
+export const GET_PROFILE = 'GET_PROFILE'
+export const PHOTOID ="PHOTOID"
+export const CREATE_CARIMAGE = "CREATE_CARIMAGE"
+export const SHOW_IMAGE = "SHOW_IMAGE"

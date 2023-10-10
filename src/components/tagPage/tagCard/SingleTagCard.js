@@ -6,7 +6,7 @@ import TagCardEditBtn from './TagCardEditBtn';
 import Sticker from '../../sticker/Sticker';
 import SafeStatus from '../../profile/SafeStatus';
 import { useSelector } from 'react-redux';
-function TagCard({id,lp,carMake,carModel,violations,verified,color,address,modified,sticker,manager,creator,community,safeStatus, safe,violationCount}) {
+function TagCard({id,lp,carMake,carModel,violations,verified,color,address,modified,sticker,manager,creator,community,safeStatus, safe,violationCount,image}) {
     const cars = useSelector((state) => state.cars)
     const newNum = cars?.filter((car)=>{
                
@@ -34,7 +34,7 @@ function TagCard({id,lp,carMake,carModel,violations,verified,color,address,modif
                     <p>
                     {dayjs(modified).format("DD MMMM YYYY")}
                     </p>
-                        <TagCardEditBtn id={id} violations={violations} cm={carMake} cmo={carModel} lic={lp} color={color} address={address} modified={modified} verified={verified} sticker={sticker} manager={manager} creator={creator} community={community}/>
+                        <TagCardEditBtn id={id} violations={violations} cm={carMake} cmo={carModel} lic={lp} color={color} address={address} modified={modified} verified={verified} sticker={sticker} manager={manager} creator={creator} community={community} carImage={image}/>
                 </ul>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { FETCH_CARS,CREATE_CARS,UPDATE, DELETE, GET_CAR, VIOLATION_LIST, GET_SAFELIST } from "../constants/actionTypes";
+import { FETCH_CARS,CREATE_CARS,UPDATE, DELETE, GET_CAR, VIOLATION_LIST, GET_SAFELIST, DELETE_VIOLATION_AT, REFETCHCARIMAGE, CLEAR_CAR } from "../constants/actionTypes";
 import * as api from '../api/index'
 
 export const getCars = () => async (dispatch) => {
@@ -19,38 +19,15 @@ export const getCar = (searchTerm) => async (dispatch) => {
         console.log(error)
     }
 }
+export const clearCar = () => async (dispatch) => {
+    try {
+        dispatch({type:CLEAR_CAR})
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-// export const createCar = (carData) => async (dispatch) => {
-    
-//         // console.log('data1',carData)
-//         // console.log('data1',carData.violations_list)
-//        const newArr = [...carData.violations_list]
-//        const parsArr = []
-//        const completeArray =[{"reason":[]}]
-//         let finalArr;
-//        newArr.forEach(item => { 
-//         const updated = JSON.parse(item)
-//         parsArr.push(updated)
-//         finalArr = completeArray.map(arr => {return {...arr, "reason":parsArr}})
 
-//     })
-//     const updatedVio = {...carData, violations_list:finalArr}
-
-//         const {data} = await api.createCars(updatedVio)
-//         console.log(data)
-//         try {
-//             dispatch({type:CREATE_CARS,payload:data})
-
-//     } catch (error) {
-//         console.log('data',error) 
-//         if(error.message === 400){
-//             alert(`Car already exists`)
-//         } else {
-
-//             alert(`Something went wrong please check all fields and try again`)
-//         }
-//     }
-// } 
 export const createCar = (carData) => async (dispatch) => {
     try {
         // console.log('data1',carData)
@@ -75,7 +52,11 @@ export const createCar = (carData) => async (dispatch) => {
         const data = await api.createCars(updatedVio)
         console.log('data',data)
         if(data.status === 200){
+            console.log('lp',carData.license_plate)
+            const foundCar = await api.getCar(carData.license_plate)
             alert('car already exists')
+            dispatch({type:GET_CAR,payload:foundCar.data})
+
         } else {
             dispatch({type:CREATE_CARS,payload:data.data})
         }
@@ -127,6 +108,19 @@ export const violationList = (id,violations) => async (dispatch)=> {
     }
 }
 
+export const deleteViolationAction = (id,indexNum) => async (dispatch) =>{
+    try {
+        // console.log('id',id,indexNum)
+        const {data} = await api.deleteViolationApi(id,indexNum)
+        const reudxData = {id,indexNum}
+        dispatch({type:DELETE_VIOLATION_AT,payload:reudxData})
+       
+            
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const verify = (id) => async (dispatch) => {
     try {
         console.log('safeID',id)
@@ -152,6 +146,23 @@ export const deleteCar = (id) => async (dispatch) => {
     try {
         await api.deleteCar(id)
         dispatch({type:DELETE})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const showImage = (car_image) => async (dispatch) => {
+    try {
+        dispatch({type:'SHOW_IMAGE',payload:car_image})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const reFetchCarImage = (lp) => async (dispatch) => {
+    try {
+        const {data} = await api.getCar(lp)
+        dispatch({type:REFETCHCARIMAGE,payload:data})
     } catch (error) {
         console.log(error)
     }

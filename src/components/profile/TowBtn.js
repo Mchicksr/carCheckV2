@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-function TowBtn({lic,cm,cmo,st,color,address}) {
+function TowBtn({lic,cm,cmo,st,color,address,ComId}) {
     return (
         <div>
             <div className="towButton">
@@ -16,6 +16,7 @@ function TowBtn({lic,cm,cmo,st,color,address}) {
                                 St: st,
                                 color:color,
                                 address:address,
+                                ComId:ComId,
                             }
                         }}>Tow</Link><br />
                     </div>

@@ -3,10 +3,10 @@ import { Button } from '@material-ui/core'
 import { useDispatch,useSelector } from 'react-redux'
 
 import { getSafeList } from '../../../actions/safeList';
-
+import SafeBtn from '../../profile/SafeBtn';
 import './safelist.css'
 
-function SafeList({ safe, setSafe }) {
+function SafeList({ safe, setSafe, manager }) {
     const dispatch = useDispatch()
     const safeList = useSelector((state) => state.safeList)
     // const cars = useSelector((state)=> state.cars)
@@ -45,6 +45,11 @@ function SafeList({ safe, setSafe }) {
         //     console.log('click')
         // }
     }
+
+    const updateList = (id) => {
+        console.log('remove',id)
+        dispatch(getSafeList(commID))
+    }
     return (
         <div>
             <Button className={!safe ? "safe" : "safeOn"} variant="contained" size="small" onClick={showSafe}>Safe List</Button>
@@ -54,7 +59,8 @@ function SafeList({ safe, setSafe }) {
                 {safeList.map((list,index )=>(
                     <ul key={`10${index}`}>
                         <li className="capital" key={`19${index}`}>{list.color} {list.car_make} {list.car_model}: <br/> {list.license_plate}</li>
-                        
+                        <SafeBtn id={list._id} manager={manager} safe={1} list={updateList} remove={'remove'}/>
+                        {/* <button className="secondary" onClick={() =>removefromSafeList(list._id)}>Remove</button> */}
                     </ul>
                 ))}
             </div>

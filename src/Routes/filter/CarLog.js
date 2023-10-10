@@ -60,6 +60,7 @@ function CarLog({cars,communities,violations}) {
             carModel={item.car_model}
             modified={item.modified}
             vType={violations}
+            color={item.color}
             // setCarStatus={setCarStatus}
             
             />)

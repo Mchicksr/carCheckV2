@@ -9,4 +9,5 @@ import violations from './violation'
 import safeList from './safeList'
 import cindex from './carIndex'
 import indexTotal from './indextotal'
-export default combineReducers({communities,cars,auth,comments,sticker,image,violations,safeList,cindex,indexTotal})
+import vProfile from './vProfileRed'
+export default combineReducers({communities,cars,auth,comments,sticker,image,violations,safeList,cindex,indexTotal,vProfile})
