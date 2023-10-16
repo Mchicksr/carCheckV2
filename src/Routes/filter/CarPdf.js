@@ -1,4 +1,4 @@
-import React,{ useRef, useState } from 'react';
+import React,{ useRef, useState,useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import ReactToPrint from 'react-to-print';
 import { PrintLog } from '../../components/carlog/PrintLog';
@@ -12,7 +12,13 @@ function CarPdf(props) {
     const componentRef = useRef();
     const [singleNote, setSingleNote] = useState('')
     const [note, setNote] = useState([])
+    const [dates,setDates] = useState({date1:"",date2:""})
 
+    useEffect(() => {
+        setDates({...dates, date1:carsOverView.para1,date2:carsOverView.para2})
+        
+    }, [cars]);
+    console.log('dates',dates)
     const carInfoList = () => {
         const result = cars.map((item,index) => {
             const reasonAarr = []
@@ -68,7 +74,7 @@ function CarPdf(props) {
           content={() => componentRef.current}
         //   copyStyles={false}
         />
-        <PrintLog ref={componentRef} carInfo={carInfoList} towInfo={carTowInfoList} noteList={formatNoteList} summary={carsOverView}/>
+        <PrintLog ref={componentRef} carInfo={carInfoList} towInfo={carTowInfoList} noteList={formatNoteList} summary={carsOverView} dateParams={dates}/>
         <div className="bg-secondary">
             <form action="" onSubmit={addToNoteList}>
                 <label htmlFor="">Create Note</label><br />

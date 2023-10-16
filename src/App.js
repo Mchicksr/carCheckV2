@@ -42,6 +42,7 @@ function App() {
   // const access2 = '61bb63d143156f329531f69b'
   const access2 = 'parksmartfl@gmail.com'
   const access3 = "mikehicks@gmail.com"
+  const access4 = "Drdonnah@me.com"
   const user = JSON.parse(localStorage.getItem('profile'))
   const [violationCount, setViolationCount] = useState()
   // const user = localStorage.getItem("user");
@@ -63,6 +64,7 @@ function App() {
     // user?.result?._id === access || access2 || access3? setManager(true) : setManager(false)
     // user?.result?.email === access3 || access2 ? setManager(true) : setManager(false)
     // (user?.result?.email === access3 || user?.result?.email === access2) ? setManager(true) : setManager(false);
+    user?.result?.email === access4 ? setManager(true) :
     user?.result?.email === access3 ? setManager(true) : 
     user?.result?.email === access2 ? setManager(true) :
     user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)

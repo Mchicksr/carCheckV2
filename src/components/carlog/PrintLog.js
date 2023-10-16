@@ -1,10 +1,12 @@
 import React from 'react';
+import { format } from 'date-fns';
 import './carLog.css'
 export const PrintLog = React.forwardRef((props, ref) => {
     return (
       <div ref={ref} >
         <div className="px-6">
-            <h1 className='text-dark mt-4'>Security Report: 08/25/2023 - 08/31/2023</h1>
+            {/* <h1 className='text-dark mt-4'>Security Report: 08/25/2023 - 08/31/2023</h1> */}
+            <h1 className='text-dark mt-4'>Security Report: {format(props.dateParams.date1, 'M/DD/YYYY')} - {format(props.dateParams.date2, 'M/DD/YYYY')}</h1>
             <div className="center-content">
                 <div className="container text-dark">
                     <h2 className='text-left'>Vioaltions Issued</h2>

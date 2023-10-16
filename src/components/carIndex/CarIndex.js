@@ -54,7 +54,7 @@ const FindCarIndex = () => {
    
     
 
-    const carStats= useCallback(()=>{return {car_amount:logs.length, tows_total:totalCount, violation_totals:lastLogsArr.length, communityName:communityName}},[logs.length,totalCount,lastLogsArr.length,communityName])
+    const carStats= useCallback(()=>{return {car_amount:logs.length, tows_total:totalCount, violation_totals:lastLogsArr.length, communityName:communityName,para1:para1,para2,para2}},[logs.length,totalCount,lastLogsArr.length,communityName,para1,para2])
     useEffect(() => {
     
         dispatch(iTotal(carStats()))
