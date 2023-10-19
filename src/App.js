@@ -24,6 +24,7 @@ import CommunityForm from './Routes/communityForm/communityForm';
 import NewNav from './components/nav/NewNav';
 import CarIndex from './Routes/index/carIndex';
 import Emails from './Routes/tow/Emails';
+import CurrentLocation from './components/location/CurrentLocation';
 
   
 function App() {
@@ -178,7 +179,7 @@ function App() {
 
     
       
-  
+  <CurrentLocation/>
   </div>
 // hello
     // <div className="App"> 
