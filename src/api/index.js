@@ -2,8 +2,8 @@ import axios from 'axios'
 import config from '../config'
 import React,{useState,useEffect} from 'react';
 
-const API = axios.create({baseURL:config.API_ENDPOINT})
-// export const API = axios.create({baseURL:'http://localhost:8000'})
+// const API = axios.create({baseURL:config.API_ENDPOINT})
+export const API = axios.create({baseURL:'http://localhost:8000'})
 
 API.interceptors.request.use((req)=>{
     if(localStorage.getItem('profile')){

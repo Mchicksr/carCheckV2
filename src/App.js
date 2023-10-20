@@ -179,7 +179,7 @@ function App() {
 
     
       
-  <CurrentLocation/>
+  {/* <CurrentLocation/> */}
   </div>
 // hello
     // <div className="App"> 
