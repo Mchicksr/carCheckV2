@@ -25,11 +25,13 @@ import NewNav from './components/nav/NewNav';
 import CarIndex from './Routes/index/carIndex';
 import Emails from './Routes/tow/Emails';
 import CurrentLocation from './components/location/CurrentLocation';
+import Gauth from './components/auth/Gauth';
 
   
 function App() {
   const cars = useSelector((state)=>  state.cars)
   const communities = useSelector((state) => state.communities)
+  const AdminAccess = useSelector((state)=>state.auth)
   // const violations = useSelector((state)=>state.violations)
   const [carArr, setCarArr] = useState([])
   const [searchTerm,setSearchTerm] = useState("")
@@ -44,7 +46,8 @@ function App() {
   const access2 = 'parksmartfl@gmail.com'
   const access3 = "mikehicks@gmail.com"
   const access4 = "Drdonnah@me.com"
-  const user = JSON.parse(localStorage.getItem('profile'))
+  const admin = ["michaelhr1@yahoo.com","mhicksrichardson@gmail.com" ]
+  let user = JSON.parse(localStorage.getItem('profile'))
   const [violationCount, setViolationCount] = useState()
   // const user = localStorage.getItem("user");
   const [show,setShow] = useState(false)
@@ -54,41 +57,29 @@ function App() {
   // const allAccess = googleUser?.email
   console.log('FD8FE3')
 
-// console.log('hey')
-// console.log('check',cars.map(item => item.violations_list))
+console.log('manager',manager)
 
   useEffect(() => {
     // dispatch(getCar({id:carArr}))
     dispatch(getCommunities())
     dispatch(getViolations())
-    // user?.result?._id === access && access2 && access3? setManager(true) : setManager(false)
-    // user?.result?._id === access || access2 || access3? setManager(true) : setManager(false)
-    // user?.result?.email === access3 || access2 ? setManager(true) : setManager(false)
-    // (user?.result?.email === access3 || user?.result?.email === access2) ? setManager(true) : setManager(false);
-    user?.result?.email === access4 ? setManager(true) :
-    user?.result?.email === access3 ? setManager(true) : 
-    user?.result?.email === access2 ? setManager(true) :
-    user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
-    user?.result?._id === access ? setCreator(true) : setCreator(false)
+    admin.includes(user?.email) ? setManager(true) : setManager(false)
+    console.log('AdminAccess.admin',AdminAccess.admin)
+    if(AdminAccess.admin ){
+      setManager(true)
+    }
+    // user ? setManager(true) : setManager(false)
 
-    // const theUser = localStorage.getItem("user");
+    // user?.result?.email === access4 ? setManager(true) :
+    // user?.result?.email === access3 ? setManager(true) : 
+    // user?.result?.email === access2 ? setManager(true) :
+    // user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
+    // user?.result?._id === access ? setCreator(true) : setCreator(false)
 
-    // if (theUser && !theUser.includes("undefined")) {
-    //   setGoogleUser(JSON.parse(theUser));
-    // }
+  }, [dispatch,AdminAccess])
+  console.log('maanager',manager)
 
-    // profiles.map((pass)=>{
-    //   if(allAccess === pass ){
-    //     setManager(true)
-    //   } else {
-    //     return null
-    //   }
-
-    // })
-    // console.log('mange',manager)
-  }, [dispatch,user?.result?._id,user?.result?.email])
   return (
-
 
     <div className="App"> 
     
@@ -137,11 +128,6 @@ function App() {
 
 {/* --------------------------------------------------------------------------------------- */}
 
-
-
-
- 
-      
       {/* <Route path='/' exact component={UserProfile}/> */}
       {/* <Route path='/'/> */}
       {/* <Route path="/CarLog" element={<CarLog cars={cars} communities={communities} violations={violations}/>}/> */}
@@ -177,9 +163,8 @@ function App() {
         
         <Route path='/community' render={() => <CommunityForm/>}/>
 
-    
-      
   {/* <CurrentLocation/> */}
+  {/* <Gauth/> */}
   </div>
 // hello
     // <div className="App"> 

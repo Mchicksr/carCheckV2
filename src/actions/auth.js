@@ -1,7 +1,5 @@
-import { AUTH } from '../constants/actionTypes'
+import { AUTH, USERACCESS, ADMINACCESS,LOGOUT2 } from '../constants/actionTypes'
 import * as api from '../api/index'
-// import { useNavigate } from "react-router-dom";
-// const navigate = useNavigate()
 
 export const signin = (formData, history) => async (dispatch) => {
     try {
@@ -22,4 +20,22 @@ export const signup = (formData, history) => async (dispatch) => {
     } catch (error) {
         console.log(error)
     }
+}
+
+export const adminAccess = (user,admin) => async (dispatch) => {
+    
+
+    const data = {user,admin}
+    dispatch({type:ADMINACCESS,data})
+   
+}
+
+export const userAccess = (user) => async (dispatch) => {
+        
+        const data = {user}
+        dispatch({type:USERACCESS,data})
+}
+
+export const logout2 = () => async (dispatch) => {
+    dispatch({type:LOGOUT2})
 }

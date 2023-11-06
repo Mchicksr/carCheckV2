@@ -16,6 +16,7 @@ export const UPDATE_STICKER = "UPDATE_STICKER"
 export const DELETE_STICKER = "DELETE_STICKER"
 export const AUTH = "AUTH"
 export const LOGOUT = "LOGOUT"
+export const LOGOUT2 = "LOGOUT2"
 export const CREATE_VIOLATION = "CREATE_VIOLATIOM"
 export const GET_VIOLATION = "GET_VIOLATION"
 export const DELETE_VIOLATION = "DELETE_VIOLATION"
@@ -38,3 +39,7 @@ export const GET_PROFILE = 'GET_PROFILE'
 export const PHOTOID ="PHOTOID"
 export const CREATE_CARIMAGE = "CREATE_CARIMAGE"
 export const SHOW_IMAGE = "SHOW_IMAGE"
+
+// Auth
+export const USERACCESS = "USERACCESS"
+export const ADMINACCESS= "ADMINACCESS"

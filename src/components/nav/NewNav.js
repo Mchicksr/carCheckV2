@@ -1,11 +1,18 @@
 import React, {useState, useEffect,useCallback} from 'react';
-import {Link,useHistory,useLocation} from 'react-router-dom'
+import {Link,useHistory,useLocation} from 'react-router-dom' 
+import {useSelector} from 'react-redux'
+import { auth } from '../../firebase/fbConfig';
+import { signOut } from 'firebase/auth';
 import decode from 'jwt-decode'
 import {useDispatch} from 'react-redux'
 import {Toolbar,Avatar,Button} from '@material-ui/core'
 import logo from '../../images/official-logo.png'
+import GsignIn from '../auth/GsignIn';
+import { logout2 } from '../../actions/auth';
+
 
 import useStyles from './styles'
+import { G } from '@react-pdf/renderer';
 
 
 
@@ -16,7 +23,11 @@ const NewNav = ({manager}) => {
     const location = useLocation()
     const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')))
     const [openLog, setOpenLog] = useState(false)
+    const AdminAcess = useSelector((state)=>state.auth)
 
+    useEffect(() => {
+      setUser(JSON.parse(localStorage.getItem('profile')))  
+    },[AdminAcess])
     const logout = useCallback(() => {
   
         dispatch({type:'LOGOUT'})
@@ -33,8 +44,20 @@ const NewNav = ({manager}) => {
             if(decodedToken.exp * 1000 < new Date().getTime())
             logout()
         }
-        setUser(JSON.parse(localStorage.getItem('profile')))
+        // setUser(JSON.parse(localStorage.getItem('profile')))
     },[location,logout,user?.token])
+
+const userSignOut = () => {
+  signOut(auth).then(() => {
+      // setAuthUser(null)
+      localStorage.clear()
+      dispatch(logout2())
+      history.push('/Login')
+  }).catch((error) => {
+      console.log(error)
+  });
+}
+
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-transparent">
@@ -64,14 +87,17 @@ const NewNav = ({manager}) => {
                 {user ? (
                     // <div className={classes.profile}>
                     <div className=''>
-                      <button className='clear-btn' onClick={() => {setOpenLog(!openLog)}}> <Avatar className={`${classes.purple}`} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar></button>
-                        <h6>{user?.result.name}</h6>
+                      <button className='clear-btn' onClick={() => {setOpenLog(!openLog)}}> <Avatar className={`${classes.purple}`} alt={user?.displayName} src={user?.result?.imageUrl}>{user?.displayName?.charAt(0)}</Avatar></button>
+                        <h6>{user?.displayName}</h6>
                        
-                        <Button variant="contained" className={classes.logout  } color="secondary" onClick={logout}>Logout</Button>
+                        <Button variant="contained" className={classes.logout} color="secondary" onClick={userSignOut}>Logout</Button>
                     </div>
                      
                 ):(
+                <>
                         <Button component={Link} to="/Login" variant="contained" color="primary">sign in</Button>
+                        {/* <GsignIn/> */}
+                </>
                         // <Button component={Link} to="/Logins" variant="contained" color="primary">sign in</Button>
                 )}
 

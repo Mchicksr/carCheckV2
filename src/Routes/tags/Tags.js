@@ -5,11 +5,14 @@ import SearchBar from '../../components/tagPage/SearchBar';
 import Profile from '../carprofile/CarProfile';
 import ShowRules from '../../components/community/ShowRules';
 import SafeListRoute from '../safeList/SafeListRoute';
+import {useSelector} from 'react-redux'
+
 // import { NavLink,Routes } from 'react-router-dom';
 // import DateFilter from '../../components/tagPage/filter/DateFilter'
 
 function Tags({RenderCarTags, Route, cars, TagCard,searchTerm, setSearchTerm,manager,user,creator,safe,setSafe,setCarArr,show,setShow, communities,setViolationCount,violationCount,safeMessage,setSafeMessage}) {
 //    console.log('cars',cars)
+const AdminAccess = useSelector((state)=>state.auth)
 const Url = new URL(window.location)
 const [comName,setComName] = useState('')
 useEffect(() => {
@@ -25,6 +28,17 @@ useEffect(() => {
     getCommunityName()
 },[Url])
 
+useEffect(() => {
+   if(AdminAccess.user){
+    user = true
+    return user
+   } 
+
+   if(!AdminAccess.user){
+    user = false
+    return user
+   }
+},[AdminAccess])
 
 
 
