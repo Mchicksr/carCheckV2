@@ -13,6 +13,7 @@ import SafeStatus from '../../components/profile/SafeStatus';
 import SafeBtn from '../../components/profile/SafeBtn';
 import SaveImage from '../../components/saveImage/SaveImage';
 import SaveImage2 from '../../components/saveImage/SaveImage2';
+// import AutoTow from '../../components/profile/autoTow';
 // console.log('93Bayy')
 
 function CarProfile({violations, lic, cm, cmo, id, address, color, modified, sticker, manager,creator,violations_list,safe,setViolationCount,communityID,image}) {
@@ -27,12 +28,14 @@ function CarProfile({violations, lic, cm, cmo, id, address, color, modified, sti
         return null; // Return null if no match found
       };
      const ComId = getUrlPart(Url.pathname)
+    //  const [immidiateTow, setImmidiateTow] = useState(false)
     return (
         <div>
             <h1>Profile</h1>
             <CarInfo violations={violations} lic={lic} cm={cm} cmo={cmo} id={id}  address={address} color={color} modified={modified}/>
             <SaveImage2 lp={lic} setImageID={setImageID} carImages={image}/>
-            <ViolationCount id={id} violations_list={violations_list} lic={lic} setViolationCount={setViolationCount} communityID={communityID} comID={ComId} manager={manager}/>
+            <ViolationCount id={id} violations_list={violations_list} lic={lic} setViolationCount={setViolationCount} communityID={communityID} comID={ComId} manager={manager} />
+            {/* <AutoTow setImmidiateTow={setImmidiateTow} immidiateTow={immidiateTow}/> */}
             <SafeStatus id={id} safe={safe}/>
             <SafeBtn id={id} safe={safe} manager={manager}/>
             <TowBtn lic={lic} cm={cm} cmo={cmo}  color={color} address={address} ComId={ComId}/>

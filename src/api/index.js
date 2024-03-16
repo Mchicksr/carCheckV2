@@ -2,8 +2,8 @@ import axios from 'axios'
 import config from '../config'
 import React,{useState,useEffect} from 'react';
 
-// const API = axios.create({baseURL:config.API_ENDPOINT})
-export const API = axios.create({baseURL:'http://localhost:8000'})
+const API = axios.create({baseURL:config.API_ENDPOINT})
+// export const API = axios.create({baseURL:'http://localhost:8000'})
 
 API.interceptors.request.use((req)=>{
     if(localStorage.getItem('profile')){
@@ -15,6 +15,8 @@ API.interceptors.request.use((req)=>{
 export const fetchCommunity = () => API.get('/community')
 export const createCommunity = (commData) => API.post('/community',commData)
 export const createRules = (id,rules) => API.post(`/community/rules/${id}`,rules)
+export const editCommunityRules = (id,rules) => API.patch(`community/updaterules/${id}`,rules)
+export const removeCommunity = (id) => API.delete(`/community/${id}`)
 
 // cars
 export const fetchCars = () => API.get('/cars')
@@ -69,3 +71,7 @@ export const weeklyCars = (id,dates) => API.post(`cars/search/${id}`,dates)
 // Car Image
 export const createCarImage = (id,car_image) => API.patch(`cars/addCarImage/${id}`,car_image)
 
+// Violation List Array
+export const getViolationArr = () => API.get('/violationArr')
+export const createViolationArr = (newViolation) => API.post('/violationArr',newViolation)
+export const deleteViolationArr = (id) => API.delete(`/violationArr/${id}`)

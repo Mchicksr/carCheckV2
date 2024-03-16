@@ -26,6 +26,8 @@ import CarIndex from './Routes/index/carIndex';
 import Emails from './Routes/tow/Emails';
 import CurrentLocation from './components/location/CurrentLocation';
 import Gauth from './components/auth/Gauth';
+import Admin from './Routes/admin/Admin';
+import { getViolationList } from './actions/violationArr';
 
   
 function App() {
@@ -46,7 +48,7 @@ function App() {
   const access2 = 'parksmartfl@gmail.com'
   const access3 = "mikehicks@gmail.com"
   const access4 = "Drdonnah@me.com"
-  const admin = ["michaelhr1@yahoo.com","mhicksrichardson@gmail.com" ]
+  const admin = ["michaelhr1@yahoo.com","mhicksrichardson@gmail.com","parksmartfl@gmail.com" ]
   let user = JSON.parse(localStorage.getItem('profile'))
   const [violationCount, setViolationCount] = useState()
   // const user = localStorage.getItem("user");
@@ -55,16 +57,14 @@ function App() {
   // const [googleUser, setGoogleUser] = useState({})
   // const profiles = ['mhicksrichardson@gmail.com','mikehicks','djsoundna@gmail.com']
   // const allAccess = googleUser?.email
-  console.log('FD8FE3')
 
-console.log('manager',manager)
 
   useEffect(() => {
     // dispatch(getCar({id:carArr}))
     dispatch(getCommunities())
     dispatch(getViolations())
+    dispatch(getViolationList())
     admin.includes(user?.email) ? setManager(true) : setManager(false)
-    console.log('AdminAccess.admin',AdminAccess.admin)
     if(AdminAccess.admin ){
       setManager(true)
     }
@@ -77,7 +77,6 @@ console.log('manager',manager)
     // user?.result?._id === access ? setCreator(true) : setCreator(false)
 
   }, [dispatch,AdminAccess])
-  console.log('maanager',manager)
 
   return (
 
@@ -124,13 +123,14 @@ console.log('manager',manager)
         />
               <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
 
-      </Routes> */}
+            </Routes> */}
 
 {/* --------------------------------------------------------------------------------------- */}
 
       {/* <Route path='/' exact component={UserProfile}/> */}
       {/* <Route path='/'/> */}
       {/* <Route path="/CarLog" element={<CarLog cars={cars} communities={communities} violations={violations}/>}/> */}
+      <Route path='/admin' exact render={() => <Admin/>}/>
       <Route path="/carLog"  exact render={() => <CarIndex manager={manager}/>} />
       <Route path="/Fax" render={() => <Fax manager={manager} creator={creator} towManager={towManager}/>}/>
       <Route path="/Login" component={AuthPath}/>

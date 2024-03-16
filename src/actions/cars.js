@@ -30,9 +30,11 @@ export const clearCar = () => async (dispatch) => {
 
 export const createCar = (carData) => async (dispatch) => {
     try {
+        console.log('triggered',carData.violations_list)
         // console.log('data1',carData)
         // console.log('data1',carData.violations_list)
        const newArr = [...carData.violations_list]
+       console.log('newArr',newArr)
        const parsArr = []
        const completeArray =[{"reason":[]}]
         let finalArr;

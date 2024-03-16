@@ -64,7 +64,7 @@ const getUrlPart = (url) => {
             
             {user?<>
             <h1>Car Tags</h1>
-            <h2>Select A Commuinity</h2>
+            <h2>Select A Community</h2>
             <CommunityNav/>
             <Route path="/Tags/:id" component={() => (
                 <>

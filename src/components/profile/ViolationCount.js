@@ -3,20 +3,23 @@ import Form from "react-bootstrap/Form"
 import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns'
 import { violationList, deleteViolationAction } from '../../actions/cars';
-import { violationArr } from '../violations/violationList';
+
+// import { violationArr } from '../violations/violationList';
 
 
 const ViolationCount = ({ id,violations_list, lic, communityID, comID,manager }) => {
     // const [violationNum,  setViolationNum] = useState(0)
+    const violationArr = useSelector((state) => state.violationList)
+
     const [openSelect, setOpenSelect] = useState(false)
     const [openDelete, setOpenDelete] = useState(false)
     const [violationType2, setViolationType2] = useState([])
     // const [selectedOption, setSelectedOption] = useState(0)
     const [selectedOption, setSelectedOption] = useState(0)
     // const [changeValue, setChangeValue] = useState('')
+    const [immidiateTow, setImmidiateTow] = useState(false)
     const cars = useSelector((state) => state.cars)
     const dispatch = useDispatch()
-
 
 
   
@@ -27,14 +30,26 @@ const ViolationCount = ({ id,violations_list, lic, communityID, comID,manager })
         }
     }).map(num => num.violations_list.length)
 
-    const handleCheckboxChange = (e) => {
-        let newArr = [...violationType2, e.target.id]
-        if (violationType2.includes(e.target.id)) {
-            newArr = newArr.filter(vio => vio !== e.target.id)
-        }
-        setViolationType2(newArr)
-    }
-
+    // const handleCheckboxChange = (e) => {
+    //     let newArr = [...violationType2, e.target.id]
+    //     if (violationType2.includes(e.target.id)) {
+    //         newArr = newArr.filter(vio => vio !== e.target.id)
+    //     }
+    //     setViolationType2(newArr)
+    // }
+    const handleCheckboxChange = (e) =>{
+        let transorm = {"violation": e.target.id}
+        let jsonViolation = JSON.stringify(transorm);
+         // let newArr = [...violationType2, e.target.id]
+         let newArr = [...violationType2, jsonViolation]
+         if(violationType2.includes(e.target.id)){
+             newArr = newArr.filter(vio => vio !==  e.target.id)
+         }
+             console.log('narr',newArr)
+       
+         setViolationType2(newArr)
+        
+     }
     const showViolations = () => {
         const input = (vio) => {
             return vio.reason.map((item, index) => (
@@ -61,10 +76,10 @@ const ViolationCount = ({ id,violations_list, lic, communityID, comID,manager })
     return (
         <div>
             violation count
-            <h2 className={newNum >= 3 ? 'violation-status-error' : null}>{newNum}</h2>
+            <h2 className={newNum >= 3 ? 'violation-status-error' : null}>{newNum >= 3 ? "Tow" : newNum}</h2>
             {showViolations()}
             <button className='btn btn-primary' onClick={() => setOpenSelect(!openSelect)}>Select Violation</button>
-            {manager ?
+            <button className="btn btn-danger ml-2" onClick={()=>setImmidiateTow(!immidiateTow)}>Force Tow</button>            {manager ?
             <button className='btn btn-secondary ml-2' onClick={() => setOpenDelete(!openDelete)}>Delete Violation</button>
             :
             null
@@ -77,7 +92,9 @@ const ViolationCount = ({ id,violations_list, lic, communityID, comID,manager })
                             {violationArr.map((item, index) => (
                                 <div key={`33${index}`}>
                                     <label>{item.violation_type}</label>
-                                    <input type="checkbox" id={item.val} value={item.val} onChange={handleCheckboxChange} />
+                                    {/* <input type="checkbox" id={item.val} value={item.val} onChange={handleCheckboxChange} /> */}
+                                    <input type="checkbox" id={item.val.violation} value={item.val.violation} onChange={handleCheckboxChange}/>
+
                                 </div>
                             ))}
                             <button className='btn btn-primary' onClick={() => { return dispatch(violationList(lic, violationType2)) }}>Add Violations</button>

@@ -17,7 +17,7 @@ const GsignIn = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
 
-    const admin = ["michaelhr1@yahoo.com","mhicksrichardson@gmail.com","flcarcheck@gmail.com" ]
+    const admin = ["michaelhr1@yahoo.com","mhicksrichardson@gmail.com","flcarcheck@gmail.com,parksmartfl@gmail.com" ]
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

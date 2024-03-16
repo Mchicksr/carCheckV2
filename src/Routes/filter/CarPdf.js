@@ -28,7 +28,7 @@ function CarPdf(props) {
                 })
             })
             const reasonStr = reasonAarr.join('/')
-            return <li key={index} className='text-left'>{`${index + 1}.`} {item.color} {item.car_make} {item.car_model} {format(item.modified, 'M/DD/YYYY')} {reasonStr}</li>
+            return <li key={index} className='text-left'>{`${index + 1}.`} {item.license_plate} {item.color} {item.car_make} {item.car_model} {format(item.modified, 'M/DD/YYYY')} {reasonStr}</li>
 
         });
         return result;

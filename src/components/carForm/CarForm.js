@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {createCar, reFetchCarImage} from '../../actions/cars'
 import { createViolation } from '../../actions/violation';
 // import { violationList } from '../../actions/cars';
-import { violationArr } from '../violations/violationList';
+// import { violationArr } from '../violations/violationList';
 import SaveImage from '../saveImage/SaveImage';
 import SaveImage2 from '../saveImage/SaveImage2';
 import { storage } from '../../firebase/fbConfig';
@@ -18,6 +18,7 @@ import './CarForm.css'
 
 function CarForm({communities}) {
     const cars = useSelector((state) => state.cars)
+    const violationArr = useSelector((state) => state.violationList)
     // const violation = 'violation'
     const [imageUpload, setImageUpload] = useState(null)
     const [imageSelected, setImageSelected] = useState([])
@@ -36,7 +37,6 @@ function CarForm({communities}) {
    
 
     const violationData = {violation_type: violationType,carLic: carData.license_plate, violations_list:{"violation":violationType2}}
-     console.log('cars',cars)
      const collectImages = (e) =>{
         const files  = Array.from(e.target.files)
         setImageSelected(files)
@@ -101,6 +101,7 @@ function CarForm({communities}) {
    
     const handleSubmit = async (e) => {
         e.preventDefault()
+        console.log('carData',carData)
         dispatch(createCar({...carData,violations_list:violationType2 }))
         dispatch(createViolation({...violationData}))
         
@@ -113,13 +114,26 @@ function CarForm({communities}) {
     }
     
    
-    const handleCheckboxChange = (e) =>{
+    // const handleCheckboxChange = (e) =>{
        
-        let newArr = [...violationType2, e.target.id]
+    //     let newArr = [...violationType2, e.target.id]
+    //     if(violationType2.includes(e.target.id)){
+    //         newArr = newArr.filter(vio => vio !==  e.target.id)
+    //     }
+    //         console.log('narr',newArr)
+      
+    //     setViolationType2(newArr)
+       
+    // }
+    const handleCheckboxChange = (e) =>{
+       let transorm = {"violation": e.target.id}
+       let jsonViolation = JSON.stringify(transorm);
+        // let newArr = [...violationType2, e.target.id]
+        let newArr = [...violationType2, jsonViolation]
         if(violationType2.includes(e.target.id)){
             newArr = newArr.filter(vio => vio !==  e.target.id)
         }
-            // console.log('narr',newArr)
+            console.log('narr',newArr)
       
         setViolationType2(newArr)
        
@@ -151,7 +165,8 @@ function CarForm({communities}) {
                 {violationArr.map((item,index) =>(
                     <div  key={`33${index}`}>
                     <label>{item.violation_type}</label>
-                    <input type="checkbox" id={item.val} value={item.val} onChange={handleCheckboxChange}/>
+                     <input type="checkbox" id={item.val.violation} value={item.val.violation} onChange={handleCheckboxChange}/>
+                    {/* <input type="checkbox" id={item.val} value={item.val} onChange={handleCheckboxChange}/> */}
                     </div>
                 ))}
             </div>
