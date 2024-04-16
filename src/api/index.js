@@ -24,6 +24,7 @@ export const createCars = (newCar) => API.post('/cars',newCar)
 export const deleteCar = (id) => API.delete(`/cars/${id}`)
 // export const getCar = (searchTerm) => axios.get(`http://localhost:8000/cars/find/${searchTerm}`)
 export const getCar = (searchTerm) => API.get(`/cars/find/${searchTerm}`)
+export const reGetCar = (id) => API.get(`/cars/refind/${id}`)
 
 // violation NEW
 // export const addViolation =  (id) => API.patch(`/cars/${id}/violation`)
@@ -31,6 +32,7 @@ export const addViolation =  (id,violation) => API.patch(`/cars/${id}/violation`
 export const resetViolation = (id) => API.patch(`/cars/${id}/resetviolation`)
 export const violationList = (id,violations) => API.patch(`/cars/violations/${id}`,violations)
 export const deleteViolationApi = (id,index) => API.patch(`/cars/removeViolation/${id}`,index)
+export const switchAutoTow = (id) => API.patch(`/cars/autoTow/${id}`)
 
 // verify
 export const verify = (id) => API.patch(`/cars/${id}/verify`)

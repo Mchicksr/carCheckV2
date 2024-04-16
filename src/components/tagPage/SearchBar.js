@@ -29,7 +29,7 @@ function SearchBar({searchTerm,setSearchTerm,setShow,communities,safeMessage}) {
 
 
     const findCar = async () =>{
-        
+        await dispatch(clearCar())
         await dispatch(getCar(searchTerm))
         setShow(true)
 

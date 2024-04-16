@@ -72,7 +72,8 @@ dayjs.extend(isSameOrAfter);
               [
               // console.log('helper',item.car_image),
               <TagCard
-              key={index}
+              key={item._id}
+                      customKey={item._id}
                       id={item._id}
                       lp={item.license_plate}
                       carMake={item.car_make}
@@ -89,6 +90,7 @@ dayjs.extend(isSameOrAfter);
                       safe={item.safe}
                       image={item.car_image}
                       violationCount={violationCount}
+                      autoTow={item.autoTow}
                   />]
           }
                   </li>

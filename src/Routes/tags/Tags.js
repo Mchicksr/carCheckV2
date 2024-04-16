@@ -101,7 +101,7 @@ const getUrlPart = (url) => {
             }).map((car,index)=>{
                 // console.log('cr',car)
                 return <Profile 
-                    key={index}
+                    key={car._id}
                     violations={car.violations}
                     lic={car.license_plate}
                     cm ={car.car_make}
@@ -118,6 +118,7 @@ const getUrlPart = (url) => {
                     setViolationCount={setViolationCount}
                     image={car.car_image}
                     communityID={car.community_id}
+                    autoTow={car.autoTow}
                 />
 
             })

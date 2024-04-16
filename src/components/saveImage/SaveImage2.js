@@ -4,18 +4,19 @@ import { storage } from '../../firebase/fbConfig';
 import { getDownloadURL, ref, uploadBytes, listAll } from 'firebase/storage';
 import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
 import { getProfile, saveImageID, createCarImage } from '../../actions/vProfileAct';
-import { showImage } from '../../actions/cars';
+import { showImage  } from '../../actions/cars';
 
 
-function SaveImage2({ lp, activateBtn, hideView,carImages }) {
+function SaveImage2({ id,lp, activateBtn, hideView,carImages }) {
     const [imageUpload, setImageUpload] = useState(null)
     const [shouldRunUploadImage, setShouldRunUploadImage] = useState(false)
     const [imageSelected, setImageSelected] = useState([])
     const carProfile = useSelector(state => state.vProfile)
+    const cars = useSelector(state => state.cars)
     const dispatch = useDispatch()
     const db = getFirestore()
     const colRef = collection(db, 'relatedCars')
-    
+
     // console.log('activateBtn',activateBtn)
     useEffect(() => {
 
@@ -30,6 +31,8 @@ function SaveImage2({ lp, activateBtn, hideView,carImages }) {
 
 
     }, [shouldRunUploadImage, activateBtn])
+
+
     ////////////////////////////
      const collectImages = (e) =>{
         const files  = Array.from(e.target.files)
@@ -59,7 +62,7 @@ imageSelected.forEach((imageUpload)=>{
                     setShouldRunUploadImage(true)
 
                     console.log('dUrl', downloadURL);
-                    dispatch(createCarImage(lp, {car_image:downloadURL}))
+                    dispatch(createCarImage(id, {car_image:downloadURL}))
                     dispatch(showImage({car_image:downloadURL}))
 
 

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { TextField, Button, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 // import FileBase from 'react-file-base64';
-import {createCar, reFetchCarImage} from '../../actions/cars'
+import {createCar, reFetchCarImage,clearCar,getCar} from '../../actions/cars'
 import { createViolation } from '../../actions/violation';
 // import { violationList } from '../../actions/cars';
 // import { violationArr } from '../violations/violationList';
@@ -12,6 +12,7 @@ import SaveImage2 from '../saveImage/SaveImage2';
 import { storage } from '../../firebase/fbConfig';
 import { getDownloadURL,ref, uploadBytes } from 'firebase/storage';
 import { createCarImage } from '../../actions/vProfileAct';
+import {carryLP, clearLP} from '../../actions/liveCalls'
 import { getFirestore, collection } from 'firebase/firestore';
 import useStyles from './styles'
 import './CarForm.css'
@@ -19,6 +20,7 @@ import './CarForm.css'
 function CarForm({communities}) {
     const cars = useSelector((state) => state.cars)
     const violationArr = useSelector((state) => state.violationList)
+    const carriedLP = useSelector((state) => state.liveCalls)
     // const violation = 'violation'
     const [imageUpload, setImageUpload] = useState(null)
     const [imageSelected, setImageSelected] = useState([])
@@ -62,10 +64,17 @@ function CarForm({communities}) {
                             setShouldRunUploadImage(true)
     
                             console.log('dUrl', downloadURL);
-                            const correctCar = cars.find(car => car.license_plate === carData.license_plate)
-                            console.log('correctCar',correctCar.license_plate)
-                                dispatch(createCarImage(correctCar.license_plate, {car_image:downloadURL}))
-                                dispatch(reFetchCarImage(correctCar.license_plate))
+                            console.log('cars',cars)
+                            console.log('carriedLP',carriedLP)
+                            const correctCar = cars.find(car => car.license_plate.toLowerCase() == carriedLP)
+                            // console.log('correctCar',correctCar.license_plate)
+                            console.log('correctCar',correctCar)
+                            // console.log('CCid',correctCar.id)
+                            console.log('CC_id',correctCar._id)
+                           
+                                dispatch(createCarImage(correctCar._id, {car_image:downloadURL}))
+                                dispatch(reFetchCarImage(correctCar._id))
+                           
     
                             // dispatch(showImage({car_image:downloadURL}))
     
@@ -81,9 +90,9 @@ function CarForm({communities}) {
                 })
         })
         }
-        console.log('activebtn',activateBtn)
+        // console.log('activebtn',activateBtn)
     if(activateBtn &&  cars.length > 0){
-        console.log('inside',carData.license_plate)
+        // console.log('inside',carData.license_plate)
         
         uploadImage()
         setActivateBtn(false)
@@ -92,8 +101,54 @@ function CarForm({communities}) {
         ]
     }
 
-    },[ carData.license_plate,shouldRunUploadImage,activateBtn,cars])
+    },[ carData,shouldRunUploadImage,activateBtn,cars])
 
+
+    // useEffect(() => {
+    //     const uploadImage = () => {
+    //         imageSelected.forEach((imageUpload) => {
+    //             if (imageUpload == null) return;
+    
+    //             const imageRef = ref(storage, `images/${imageUpload.name}`);
+    
+    //             uploadBytes(imageRef, imageUpload)
+    //                 .then(() => {
+    //                     alert("Image Upload");
+    
+    //                     getDownloadURL(imageRef)
+    //                         .then((downloadURL) => {
+    //                             setShouldRunUploadImage(true);
+                                
+    //                             console.log('dUrl', downloadURL);
+    //                                                     console.log('cars2',cars)
+    //                                                     console.log('carData2',carData)
+    //                             const correctCar = cars.find((car) => car.license_plate === carData.license_plate);
+    //                             console.log('correctCar', correctCar);
+    //                             if (correctCar) {
+    //                                 dispatch(createCarImage(correctCar.id, { car_image: downloadURL }));
+    //                                 dispatch(reFetchCarImage(correctCar.id));
+    //                             } else {
+    //                                 console.log("No matching car found.");
+    //                             }
+    //                         })
+    //                         .catch((error) => {
+    //                             console.log("Error getting download URL:", error);
+    //                         });
+    //                 })
+    //                 .catch((error) => {
+    //                     console.log("Error uploading image:", error);
+    //                 });
+    //         });
+    //     };
+    
+    //     if (shouldRunUploadImage && cars.length > 0) {
+    //         console.log('inside', carData.license_plate);
+    //         uploadImage();
+    //         setShouldRunUploadImage(false);
+    //         history.push('/Tags');
+    //     }
+    // }, [carData.license_plate, shouldRunUploadImage, cars, dispatch, history, imageSelected]);
+    
     const clear = () => {
        setCarData({license_plate:"",car_make:"",car_model:"",color:"",car_address:"",violations:0,community_id:""})
     }
@@ -101,10 +156,17 @@ function CarForm({communities}) {
    
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log('carData',carData)
+        // console.log('carData',carData)
+        dispatch(clearCar())
+        dispatch(clearLP())
+        dispatch(carryLP(carData.license_plate))
         dispatch(createCar({...carData,violations_list:violationType2 }))
         dispatch(createViolation({...violationData}))
-        
+        dispatch(clearCar())
+        console.log('getting car')
+        dispatch(getCar(carriedLP))
+        console.log('got car')
+
         setActivateBtn(true)
         clear()
         // return[
@@ -133,7 +195,7 @@ function CarForm({communities}) {
         if(violationType2.includes(e.target.id)){
             newArr = newArr.filter(vio => vio !==  e.target.id)
         }
-            console.log('narr',newArr)
+            // console.log('narr',newArr)
       
         setViolationType2(newArr)
        
@@ -141,6 +203,7 @@ function CarForm({communities}) {
 
     return (
         <Paper className={classes.paper}>
+            {/* <button className="btn btn-primary" onClick={()=> dispatch(carryLP(carData.license_plate))}>Carry</button> */}
             <p>Add Image of the Car</p>
             <form autoComplete="off"  className={`${classes.root} ${classes.form} mt-4`} onSubmit={handleSubmit}>
             {/* <SaveImage2 activateBtn={activateBtn} lp={carData.license_plate} hideView={carFormMode}/> */}

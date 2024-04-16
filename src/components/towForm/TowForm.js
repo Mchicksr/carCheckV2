@@ -13,7 +13,7 @@ import config from '../../config'
 
 
 
-function TowForm({Lic, Cm, Cmo}) {
+function TowForm({Lic, Cm, Cmo, id, violations_list}) {
     const ndate = new Date()
     const dayz= `${ndate.getMonth()+ 1}/${ndate.getDate()}/${ndate.getFullYear()}`
     const timez= `${ndate.getHours()}:${ndate.getMinutes()}`
@@ -50,7 +50,7 @@ function TowForm({Lic, Cm, Cmo}) {
     const [vid,setVid]= useState("")
     const [details,setDetails]= useState("")
     const [vinfo,setVinfo]= useState("")
-    const [reason,setReason]= useState("")
+    const [reason,setReason]= useState(violations_list)
     const [img] = useState(null)
     const [photo,setPhoto] = useState([])
     const [photo1,setPhoto1] = useState("")
@@ -59,21 +59,36 @@ function TowForm({Lic, Cm, Cmo}) {
     const [reasonList, setReasonList] = useState([])
     // console.log('test1',photo)
     let comsIDS;
+    // useEffect(() => {
+    //     const populateViolations = () => {
+    //         const vioArr = []
+    //         vioList?.map(item => {
+    //             item.reason.forEach(i => {
+    //                 console.log('i',i.violation)
+    //                 vioArr.push(i.violation)
+    //             })
+    //         })
+    //         // setReasonList(vioArr)
+    //         const vioStr = vioArr.join(" ")
+    //         setReason(vioStr)
+    //     }
+    //     populateViolations()
+    // },[])
     
     useEffect(() => {
-        const populateViolations = () => {
-            const vioArr = []
-            vioList?.map(item => {
-                item.reason.forEach(i => {
-                    console.log('i',i.violation)
-                    vioArr.push(i.violation)
+   
+        const ViolationsList = () => {
+    
+            const newArr = []
+            const vio = violations_list.violations_list.forEach(violation => {
+                  violation.reason.map(item => newArr.push(item.violation))
+                  
                 })
-            })
-            // setReasonList(vioArr)
-            const vioStr = vioArr.join(" ")
-            setReason(vioStr)
-        }
-        populateViolations()
+                const vioStr = newArr.join(", " )
+                        setReason(vioStr)
+              };
+         
+              ViolationsList()
     },[])
 
     useEffect(()=>{

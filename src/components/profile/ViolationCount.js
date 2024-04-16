@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import Form from "react-bootstrap/Form"
 import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns'
-import { violationList, deleteViolationAction } from '../../actions/cars';
+import { violationList, deleteViolationAction, AutoTow } from '../../actions/cars';
 
 // import { violationArr } from '../violations/violationList';
 
 
-const ViolationCount = ({ id,violations_list, lic, communityID, comID,manager }) => {
+const ViolationCount = ({ id,violations_list, lic, communityID, comID,manager,autoTow }) => {
     // const [violationNum,  setViolationNum] = useState(0)
     const violationArr = useSelector((state) => state.violationList)
-
     const [openSelect, setOpenSelect] = useState(false)
     const [openDelete, setOpenDelete] = useState(false)
     const [violationType2, setViolationType2] = useState([])
@@ -76,10 +75,11 @@ const ViolationCount = ({ id,violations_list, lic, communityID, comID,manager })
     return (
         <div>
             violation count
-            <h2 className={newNum >= 3 ? 'violation-status-error' : null}>{newNum >= 3 ? "Tow" : newNum}</h2>
+            <h2 className={newNum >= 3 || autoTow === true ? 'violation-status-error' : null}>{newNum >= 3 || autoTow === true ? "Tow" : newNum}</h2>
             {showViolations()}
             <button className='btn btn-primary' onClick={() => setOpenSelect(!openSelect)}>Select Violation</button>
-            <button className="btn btn-danger ml-2" onClick={()=>setImmidiateTow(!immidiateTow)}>Force Tow</button>            {manager ?
+            {/* <button className="btn btn-danger ml-2" onClick={()=>setImmidiateTow(!immidiateTow)}>Force Tow</button>            */}
+             {manager ?
             <button className='btn btn-secondary ml-2' onClick={() => setOpenDelete(!openDelete)}>Delete Violation</button>
             :
             null
@@ -97,7 +97,8 @@ const ViolationCount = ({ id,violations_list, lic, communityID, comID,manager })
 
                                 </div>
                             ))}
-                            <button className='btn btn-primary' onClick={() => { return dispatch(violationList(lic, violationType2)) }}>Add Violations</button>
+                            <button className='btn btn-primary' onClick={() => { return dispatch(violationList(id, violationType2)) }}>Add Violations</button>
+                            <button className="btn btn-danger ml-2" onClick={()=>[dispatch(AutoTow(id)), dispatch(violationList(id, violationType2))]}>Force Tow</button> 
                         </div>
                     </div>
                     :

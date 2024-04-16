@@ -1,4 +1,4 @@
-import { FETCH_CARS,CREATE_CARS,UPDATE, DELETE, GET_CAR, VIOLATION_LIST, GET_SAFELIST, DELETE_VIOLATION_AT, REFETCHCARIMAGE, CLEAR_CAR } from "../constants/actionTypes";
+import { FETCH_CARS,CREATE_CARS,UPDATE, DELETE, GET_CAR, RE_GET_CAR, VIOLATION_LIST, GET_SAFELIST, DELETE_VIOLATION_AT, REFETCHCARIMAGE, CLEAR_CAR, SWITCHAUTOTOW } from "../constants/actionTypes";
 import * as api from '../api/index'
 
 export const getCars = () => async (dispatch) => {
@@ -69,6 +69,8 @@ export const createCar = (carData) => async (dispatch) => {
     }
 } 
 
+
+
 export const addViolation = (id,violation) => async (dispatch) =>{
     try {
         const {data} = await api.addViolation(id,violation)
@@ -105,6 +107,15 @@ export const violationList = (id,violations) => async (dispatch)=> {
     //      const data = finalArr
     //    console.log('data',data)
         dispatch({type:VIOLATION_LIST, payload:data})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const AutoTow = (id) => async (dispatch) => {
+    try {
+        const {data} = await api.switchAutoTow(id)
+        dispatch({type:SWITCHAUTOTOW,payload:data})
     } catch (error) {
         console.log(error)
     }
@@ -161,9 +172,9 @@ export const showImage = (car_image) => async (dispatch) => {
     }
 }
 
-export const reFetchCarImage = (lp) => async (dispatch) => {
+export const reFetchCarImage = (id) => async (dispatch) => {
     try {
-        const {data} = await api.getCar(lp)
+        const {data} = await api.reGetCar(id)
         dispatch({type:REFETCHCARIMAGE,payload:data})
     } catch (error) {
         console.log(error)

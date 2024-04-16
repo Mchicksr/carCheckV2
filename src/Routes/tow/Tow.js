@@ -6,13 +6,15 @@ function Tow(props) {
     const Lic = location.state?.Lic
     const cm = location.state?.cm
     const cmo = location.state.cmo
+    const id = location.state?.id
+    const violations_list = location.state?.violations_list
     // const St = location.state.St
     // const color = location.state.color
     // const address = location.state.address 
     // console.log('cmo',cmo)
     return (
         <div>
-            <TowForm Lic={Lic} Cm={cm} Cmo={cmo}/>
+            <TowForm Lic={Lic} Cm={cm} Cmo={cmo} id={id} violations_list={violations_list}/>
         </div>
     );
 }
