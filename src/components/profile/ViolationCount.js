@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import Form from "react-bootstrap/Form"
 import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns'
-import { violationList, deleteViolationAction, AutoTow } from '../../actions/cars';
+import { violationList, deleteViolationAction, AutoTow, toggleTow } from '../../actions/cars';
+import { VIOLATION_LIST } from '../../constants/actionTypes';
 
 // import { violationArr } from '../violations/violationList';
 
 
-const ViolationCount = ({ id,violations_list, lic, communityID, comID,manager,autoTow }) => {
+const ViolationCount = ({ id,violations_list, lic, communityID, comID,manager,autoTow,towStatus }) => {
     // const [violationNum,  setViolationNum] = useState(0)
     const violationArr = useSelector((state) => state.violationList)
     const [openSelect, setOpenSelect] = useState(false)
@@ -20,14 +21,21 @@ const ViolationCount = ({ id,violations_list, lic, communityID, comID,manager,au
     const cars = useSelector((state) => state.cars)
     const dispatch = useDispatch()
 
+useEffect(()=>{
 
+    console.log("VIOLATION_LISTUSEEFFECT",violations_list.length)
+    // if(violations_list.length >= 3){
+    //     dispatch(toggleTow(id))
+    // }
+},[violations_list])
   
-
     const newNum = cars?.filter((car) => {
         if (car.community_id === comID) {
             return car
         }
     }).map(num => num.violations_list.length)
+
+  
 
     // const handleCheckboxChange = (e) => {
     //     let newArr = [...violationType2, e.target.id]
@@ -72,10 +80,20 @@ const ViolationCount = ({ id,violations_list, lic, communityID, comID,manager,au
         dispatch(deleteViolationAction(id,{index:selectedOption}))
     }
     // console.log('manager',manager)
+    // console.log('towed',towStatus)
+
+    const handleAddViolation = () => {
+        dispatch(violationList(id, violationType2))
+        // console.log('vl',violations_list.length )
+        // if(violations_list.length >= 3){
+        //     dispatch(toggleTow(id))
+        // }
+    }
     return (
         <div>
             violation count
-            <h2 className={newNum >= 3 || autoTow === true ? 'violation-status-error' : null}>{newNum >= 3 || autoTow === true ? "Tow" : newNum}</h2>
+            {/* <h2 className={newNum >= 3 || towStatus === true ? 'violation-status-error' : null}>{newNum >= 3 || towStatus === true ? "Tow" : newNum}</h2> */}
+            <h2 className={ towStatus === true ? 'violation-status-error' : null}>{ towStatus === true ? "Tow" : newNum}</h2>
             {showViolations()}
             <button className='btn btn-primary' onClick={() => setOpenSelect(!openSelect)}>Select Violation</button>
             {/* <button className="btn btn-danger ml-2" onClick={()=>setImmidiateTow(!immidiateTow)}>Force Tow</button>            */}
@@ -97,8 +115,10 @@ const ViolationCount = ({ id,violations_list, lic, communityID, comID,manager,au
 
                                 </div>
                             ))}
-                            <button className='btn btn-primary' onClick={() => { return dispatch(violationList(id, violationType2)) }}>Add Violations</button>
-                            <button className="btn btn-danger ml-2" onClick={()=>[dispatch(AutoTow(id)), dispatch(violationList(id, violationType2))]}>Force Tow</button> 
+                            <button className='btn btn-primary' onClick={handleAddViolation}>Add Violations</button>
+                            {/* <button className="btn btn-danger ml-2" onClick={()=>[dispatch(AutoTow(id)), dispatch(violationList(id, violationType2))]}>Force Tow</button>  */}
+                            <button className="btn btn-danger ml-2" onClick={()=>[dispatch(toggleTow(id)), dispatch(violationList(id, violationType2))]}>Force Tow</button> 
+                            {/* <button className="btn btn-danger ml-2" onClick={()=>[dispatch(toggleTow(id))]}>Force Tow</button>  */}
                         </div>
                     </div>
                     :

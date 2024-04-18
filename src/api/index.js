@@ -77,3 +77,6 @@ export const createCarImage = (id,car_image) => API.patch(`cars/addCarImage/${id
 export const getViolationArr = () => API.get('/violationArr')
 export const createViolationArr = (newViolation) => API.post('/violationArr',newViolation)
 export const deleteViolationArr = (id) => API.delete(`/violationArr/${id}`)
+
+// Tow
+export const callToggleTow = (id) => API.patch(`cars/autoTow/${id}`)

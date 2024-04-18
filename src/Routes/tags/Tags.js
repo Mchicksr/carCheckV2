@@ -119,6 +119,7 @@ const getUrlPart = (url) => {
                     image={car.car_image}
                     communityID={car.community_id}
                     autoTow={car.autoTow}
+                    towStatus={car.towed}
                 />
 
             })

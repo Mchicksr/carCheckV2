@@ -41,10 +41,15 @@ const FindCarIndex = () => {
 
         let total = 0
          logs.forEach(num => {
-            if(num.violations_list.length >= 3 ){
+            if(num.towed === true ){
                 total++
             }
         })
+        //  logs.forEach(num => {
+        //     if(num.violations_list.length >= 3 ){
+        //         total++
+        //     }
+        // })
 
         return total
     }

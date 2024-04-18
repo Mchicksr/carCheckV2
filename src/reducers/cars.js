@@ -1,4 +1,4 @@
-import { FETCH_CARS, CREATE_CARS, UPDATE, DELETE, GET_CAR, RE_GET_CAR,VIOLATION_LIST, GET_SAFELIST, UPDATE_SAFELIST, DELETE_VIOLATION_AT, SHOW_IMAGE, REFETCHCARIMAGE,CLEAR_CAR, SWITCHAUTOTOW } from "../constants/actionTypes";
+import { FETCH_CARS, CREATE_CARS, UPDATE, DELETE, GET_CAR, RE_GET_CAR,VIOLATION_LIST, GET_SAFELIST, UPDATE_SAFELIST, DELETE_VIOLATION_AT, SHOW_IMAGE, REFETCHCARIMAGE,CLEAR_CAR, SWITCHAUTOTOW,TOOGLETOW } from "../constants/actionTypes";
 const cars = (cars = [], action) => {
 
     switch (action.type) {
@@ -19,6 +19,8 @@ const cars = (cars = [], action) => {
             return action.payload ? action.payload : cars
         case SWITCHAUTOTOW:
             return cars.map((car) => car._id === action.payload._id ? action.payload : car)
+        case TOOGLETOW:
+            return cars.map((car)=> car._id === action.payload._id ? action.payload : car)
         case DELETE_VIOLATION_AT:
             const findIndex = action.payload.indexNum.index;
             console.log('findIndex', findIndex);

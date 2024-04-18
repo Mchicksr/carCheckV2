@@ -18,7 +18,7 @@ function CarPdf(props) {
         setDates({...dates, date1:carsOverView.para1,date2:carsOverView.para2})
         
     }, [cars]);
-    console.log('dates',dates)
+    // console.log('dates',dates)
     const carInfoList = () => {
         const result = cars.map((item,index) => {
             const reasonAarr = []
@@ -37,9 +37,12 @@ function CarPdf(props) {
     const carTowInfoList = () => {
         const towedArr = []
         const filterC = cars.map((item,index)=>{
-            if(item.violations_list.length >= 3){
+            if(item.towed === true){
              towedArr.push(item.license_plate)
             }
+            // if(item.violations_list.length >= 3){
+            //  towedArr.push(item.license_plate)
+            // }
         })
 
         if(towedArr.length > 0){

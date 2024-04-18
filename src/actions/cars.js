@@ -1,4 +1,4 @@
-import { FETCH_CARS,CREATE_CARS,UPDATE, DELETE, GET_CAR, RE_GET_CAR, VIOLATION_LIST, GET_SAFELIST, DELETE_VIOLATION_AT, REFETCHCARIMAGE, CLEAR_CAR, SWITCHAUTOTOW } from "../constants/actionTypes";
+import { FETCH_CARS,CREATE_CARS,UPDATE, DELETE, GET_CAR, RE_GET_CAR, VIOLATION_LIST, GET_SAFELIST, DELETE_VIOLATION_AT, REFETCHCARIMAGE, CLEAR_CAR, SWITCHAUTOTOW,TOOGLETOW } from "../constants/actionTypes";
 import * as api from '../api/index'
 
 export const getCars = () => async (dispatch) => {
@@ -116,6 +116,17 @@ export const AutoTow = (id) => async (dispatch) => {
     try {
         const {data} = await api.switchAutoTow(id)
         dispatch({type:SWITCHAUTOTOW,payload:data})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const toggleTow = (id) => async (dispatch) => {
+    try {
+        console.log('triggerdTow')
+        const {data} = await api.callToggleTow(id)
+        console.log('TowData',data)
+        dispatch({type:TOOGLETOW,payload:data})
     } catch (error) {
         console.log(error)
     }

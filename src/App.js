@@ -34,7 +34,6 @@ function App() {
   const cars = useSelector((state)=>  state.cars)
   const communities = useSelector((state) => state.communities)
   const AdminAccess = useSelector((state)=>state.auth)
-  // const violations = useSelector((state)=>state.violations)
   const [carArr, setCarArr] = useState([])
   const [searchTerm,setSearchTerm] = useState("")
   const [safeMessage, setSafeMessage] = useState("")
@@ -44,23 +43,18 @@ function App() {
   const [safe,setSafe] = useState(false)
   const dispatch = useDispatch()
   const access = '61a94e4adba13dd081420629'
-  // const access2 = '61bb63d143156f329531f69b'
   const access2 = 'parksmartfl@gmail.com'
   const access3 = "mikehicks@gmail.com"
   const access4 = "Drdonnah@me.com"
   const admin = ["michaelhr1@yahoo.com","mhicksrichardson@gmail.com","parksmartfl@gmail.com" ]
   let user = JSON.parse(localStorage.getItem('profile'))
   const [violationCount, setViolationCount] = useState()
-  // const user = localStorage.getItem("user");
   const [show,setShow] = useState(false)
-  // Google Auth state
-  // const [googleUser, setGoogleUser] = useState({})
-  // const profiles = ['mhicksrichardson@gmail.com','mikehicks','djsoundna@gmail.com']
-  // const allAccess = googleUser?.email
+
 
 
   useEffect(() => {
-    // dispatch(getCar({id:carArr}))
+
     dispatch(getCommunities())
     dispatch(getViolations())
     dispatch(getViolationList())
@@ -68,13 +62,7 @@ function App() {
     if(AdminAccess.admin ){
       setManager(true)
     }
-    // user ? setManager(true) : setManager(false)
 
-    // user?.result?.email === access4 ? setManager(true) :
-    // user?.result?.email === access3 ? setManager(true) : 
-    // user?.result?.email === access2 ? setManager(true) :
-    // user?.result?._id === access2 ? setTowManager(true) : setTowManager(false)
-    // user?.result?._id === access ? setCreator(true) : setCreator(false)
 
   }, [dispatch,AdminAccess])
 
@@ -82,54 +70,8 @@ function App() {
 
     <div className="App"> 
     
-    {/* <Navbar manager={manager}/> */}
     <NewNav manager={manager}/>    
-    {/* --------------------------------------------------------------------------------------- */}
-    {/* {manager ? 
-      <>
-      <h1 className="text-warning">Form App</h1>
-      <input type="text" placeholder="Name" /><br />
-      <input type="text" placeholder="Email" /><br />
-      <button href="#" className="btn btn-primary">Submit</button>
-      </>
-      : 
-      <>
-        <h2>Please sign in</h2>
-      </>
-      }
-      
-    <button className=" btn btn-primary" onClick={()=>{
-      localStorage.removeItem("user");
-      window.location.reload();
-    }}>logout</button>
-      <Routes>
-        <Route
-          path="/"
-          element={googleUser?.email ? <Navigate to="/home" /> : <Landing />}
 
-        />
-        <Route
-          path="/signup"
-          element={googleUser?.email ? <Navigate to="/home" /> : <Signup />}
-        />
-        <Route
-          path="/login"
-          element={googleUser?.email ? <Navigate to="/home" /> : <Login />}
-          />
-        <Route
-          path="/home"
-          element={googleUser?.email ? <Home user={googleUser} /> : <Navigate to="/" />}
-          // element={<Navigate to="/home" />}
-        />
-              <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
-
-            </Routes> */}
-
-{/* --------------------------------------------------------------------------------------- */}
-
-      {/* <Route path='/' exact component={UserProfile}/> */}
-      {/* <Route path='/'/> */}
-      {/* <Route path="/CarLog" element={<CarLog cars={cars} communities={communities} violations={violations}/>}/> */}
       <Route path='/admin' exact render={() => <Admin/>}/>
       <Route path="/carLog"  exact render={() => <CarIndex manager={manager}/>} />
       <Route path="/Fax" render={() => <Fax manager={manager} creator={creator} towManager={towManager}/>}/>
@@ -151,50 +93,20 @@ function App() {
           safe={safe} 
           setSafe={setSafe} 
           setCarArr={setCarArr}
-         show={show} setShow={setShow} 
-         communities={communities}
-         setViolationCount={setViolationCount}
-         violationCount={violationCount}
-         safeMessage={safeMessage}
-         setSafeMessage={setSafeMessage}
+          communities={communities}
+          setViolationCount={setViolationCount}
+          violationCount={violationCount}
+          safeMessage={safeMessage}
+          setSafeMessage={setSafeMessage}
+          show={show} setShow={setShow} 
          />}
          /> 
 
         
         <Route path='/community' render={() => <CommunityForm/>}/>
 
-  {/* <CurrentLocation/> */}
-  {/* <Gauth/> */}
   </div>
-// hello
-    // <div className="App"> 
-    //   <Navbar manager={manager}/>    
-    //   <Switch> 
-    //     <Route path="/CarLog" render={() => <CarLog cars={cars} communities={communities} violations={violations}/>}/>
-    //     <Route path="/Fax" render={() => <Fax manager={manager} creator={creator} towManager={towManager}/>}/>
-    //     <Route path="/Login" component={AuthPath}/>
-    //     <Route path="/Carform" render={() => <CarEntryForm communities={communities} cars={cars} user={user}/>}/>
-    //     <Route path='/TowForm' component={Tow}/>
-    //     <Route path='/Profile/:searchTerm' render={() => <Profile cars={cars}/>}/>
-    //     <Route path='/Tags' render={
-    //       () => <Tags 
-    //         car={carArr} 
-    //         renderCarTags={renderCarTags} 
-    //         Route={Route} cars={cars} 
-    //         TagCard={TagCard} searchTerm={searchTerm} 
-    //         setSearchTerm={setSearchTerm} 
-    //         manager={manager} 
-    //         user={user} 
-    //         creator={creator} 
-    //         safe={safe} 
-    //         setSafe={setSafe} 
-    //         setCarArr={setCarArr}
-    //        show={show} setShow={setShow} 
-    //        communities={communities}/>}/>
-    //     <Route path='/' exact component={UserProfile}/>
-    //   </Switch>
 
-    // </div>
   );
 }
 
