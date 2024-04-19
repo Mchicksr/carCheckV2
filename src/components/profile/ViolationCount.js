@@ -16,18 +16,13 @@ const ViolationCount = ({ id,violations_list, lic, communityID, comID,manager,au
     const [violationType2, setViolationType2] = useState([])
     // const [selectedOption, setSelectedOption] = useState(0)
     const [selectedOption, setSelectedOption] = useState(0)
+    const [hasToggledTow, setHasToggledTow] = useState(false); // State variable added
+
     // const [changeValue, setChangeValue] = useState('')
     const [immidiateTow, setImmidiateTow] = useState(false)
     const cars = useSelector((state) => state.cars)
     const dispatch = useDispatch()
 
-useEffect(()=>{
-
-    console.log("VIOLATION_LISTUSEEFFECT",violations_list.length)
-    // if(violations_list.length >= 3){
-    //     dispatch(toggleTow(id))
-    // }
-},[violations_list])
   
     const newNum = cars?.filter((car) => {
         if (car.community_id === comID) {
@@ -36,14 +31,6 @@ useEffect(()=>{
     }).map(num => num.violations_list.length)
 
   
-
-    // const handleCheckboxChange = (e) => {
-    //     let newArr = [...violationType2, e.target.id]
-    //     if (violationType2.includes(e.target.id)) {
-    //         newArr = newArr.filter(vio => vio !== e.target.id)
-    //     }
-    //     setViolationType2(newArr)
-    // }
     const handleCheckboxChange = (e) =>{
         let transorm = {"violation": e.target.id}
         let jsonViolation = JSON.stringify(transorm);
@@ -81,13 +68,19 @@ useEffect(()=>{
     }
     // console.log('manager',manager)
     // console.log('towed',towStatus)
+    console.log('vlOut',  violations_list.length )
 
-    const handleAddViolation = () => {
-        dispatch(violationList(id, violationType2))
-        // console.log('vl',violations_list.length )
-        // if(violations_list.length >= 3){
-        //     dispatch(toggleTow(id))
-        // }
+    const handleAddViolation =  () => {
+         dispatch(violationList(id, violationType2))
+       .then(() => {
+        console.log('vl', violations_list.length + 1);
+        if (violations_list.length + 1 >= 3) {
+            dispatch(toggleTow(id));
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
     }
     return (
         <div>
