@@ -66,7 +66,7 @@ function CarForm({communities}) {
                             console.log('dUrl', downloadURL);
                             console.log('cars',cars)
                             console.log('carriedLP',carriedLP)
-                            const correctCar = cars.find(car => car.license_plate == carriedLP)
+                            const correctCar = cars.find(car => car.license_plate.toLowerCase() == carriedLP.toLowerCase())
                             // console.log('correctCar',correctCar.license_plate)
                             console.log('correctCar',correctCar)
                             // console.log('CCid',correctCar.id)

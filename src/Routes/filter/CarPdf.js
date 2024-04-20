@@ -18,7 +18,6 @@ function CarPdf(props) {
         setDates({...dates, date1:carsOverView.para1,date2:carsOverView.para2})
         
     }, [cars]);
-    // console.log('dates',dates)
     const carInfoList = () => {
         const result = cars.map((item,index) => {
             const reasonAarr = []
@@ -27,28 +26,56 @@ function CarPdf(props) {
                     reasonAarr.push(res.violation)
                 })
             })
-            const reasonStr = reasonAarr.join('/')
-            return <li key={index} className='text-left'>{`${index + 1}.`} {item.license_plate} {item.color} {item.car_make} {item.car_model} {format(item.modified, 'M/DD/YYYY')} {reasonStr}</li>
+            const reasonStr = reasonAarr.join(', ')
 
+return [<tbody>
+        <tr>
+            <th scope="row">{index + 1}</th>
+            <td>{item.license_plate}</td>
+            <td>{item.color}</td>
+            <td>{item.car_make}</td>
+            <td>{item.car_model}</td>
+            <td>{format(item.modified, 'M/DD/YYYY')}</td>
+            <td>{reasonStr}</td>
+        </tr>
+        
+        </tbody>
+       ]
         });
         return result;
     }
 
     const carTowInfoList = () => {
+        
+
         const towedArr = []
         const filterC = cars.map((item,index)=>{
             if(item.towed === true){
-             towedArr.push(item.license_plate)
+             towedArr.push(item)
             }
-            // if(item.violations_list.length >= 3){
-            //  towedArr.push(item.license_plate)
-            // }
+       
         })
-
         if(towedArr.length > 0){
             const result = towedArr.map((item,index)=>{
-                console.log('towedArr',item)
-                return <li key={index} className='text-left'>{item}</li>
+                const reasonArr = []
+                item.violations_list.map((vio)=> vio.reason.forEach(reason => reasonArr.push(reason.violation)))
+                const reasonStr = reasonArr.join(', ')
+
+                return [
+       
+        <tbody>
+        <tr>
+            <th scope="row">{index + 1}</th>
+            <td>{item.license_plate}</td>
+            <td>{item.color}</td>
+            <td>{item.car_make}</td>
+            <td>{item.car_model}</td>
+            <td>{format(item.modified, 'M/DD/YYYY')}</td>
+            <td>{reasonStr}</td>
+        </tr>
+        
+        </tbody>
+       ]
     
             })
             return result
@@ -56,6 +83,62 @@ function CarPdf(props) {
             return <li  className='text-left'>None</li>
         }
     } 
+
+    // const tablehead = (index,license_plate,color,car_make,car_model,modified,reasonStr ) => {
+    //     return (<table class="table table-striped">
+    //     <thead>
+    //     <tr>
+    //         <th scope="col">#</th>
+    //         <th scope="col">license Plate</th>
+    //         <th scope="col">Color</th>
+    //         <th scope="col">Car Make</th>
+    //         <th scope="col">Car Model</th>
+    //         <th scope="col">Date Added</th>
+    //         <th scope="col">Violations</th>
+    //     </tr>
+    //     </thead>
+    //     <tbody>
+    //     <tr>
+    //         <th scope="row">{index + 1}</th>
+    //         <td>{license_plate}</td>
+    //         <td>{color}</td>
+    //         <td>{car_make}</td>
+    //         <td>{car_model}</td>
+    //         <td>{format(modified, 'M/DD/YYYY')}</td>
+    //         <td>{reasonStr}</td>
+    //     </tr>
+        
+    //     </tbody>
+    //     </table>
+    //     )
+        
+    // }
+ 
+    // const carTowInfoList = () => {
+        
+
+    //     const towedArr = []
+    //     const filterC = cars.map((item,index)=>{
+    //         if(item.towed === true){
+    //          towedArr.push(item)
+    //         }
+       
+    //     })
+    //     if(towedArr.length > 0){
+    //         const result = towedArr.map((item,index)=>{
+    //             const reasonArr = []
+    //             item.violations_list.map((vio)=> vio.reason.forEach(reason => reasonArr.push(reason.violation)))
+    //             const reasonStr = reasonArr.join(', ')
+
+    //             return tablehead(index,item.license_plate,item.color,item.car_make,item.car_model,item.modified,reasonStr)
+    
+    //         })
+    //         return result
+    //     } else {
+    //         return <li  className='text-left'>None</li>
+    //     }
+    // } 
+ 
     
     const addToNoteList = (e) => {
         e.preventDefault()
@@ -81,7 +164,7 @@ function CarPdf(props) {
         <div className="bg-secondary">
             <form action="" onSubmit={addToNoteList}>
                 <label htmlFor="">Create Note</label><br />
-                <p>Add One note a time</p> <br></br>
+                <p>Add One note at a time</p> <br></br>
             <textarea name="" id="" cols="30" rows="10" value={singleNote} onChange={(e) => setSingleNote(e.target.value)}></textarea> <br />
             <button type='submit' className='btn-primary'>Create Note</button>
             </form>
